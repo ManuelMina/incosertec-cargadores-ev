@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análisis Económico – Piloto YXD 80 kW | INCOSERTEC S.A.S.</title>
+  <style>
+    :root {
+      --primary: #0d2137;
+      --secondary: #00c853;
+      --accent: #ff8f00;
+      --danger: #c62828;
+      --warning: #f9a825;
+      --info: #0277bd;
+      --light: #f0f4f8;
+      --card: #ffffff;
+      --text: #1c2a38;
+      --muted: #607d8b;
+      --border: #dde3ea;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--light); color: var(--text); line-height: 1.65; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #003c1a 0%, #0d5c31 60%, #00c853 100%); color: #fff; padding: 56px 40px 44px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; background: rgba(255,255,255,.05); border-radius: 50%; }
+    .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,.75); font-size: .85rem; text-decoration: none; margin-bottom: 20px; border: 1px solid rgba(255,255,255,.25); padding: 5px 14px; border-radius: 20px; transition: all .2s; }
+    .back-link:hover { background: rgba(255,255,255,.1); color: #fff; }
+    .badge { display: inline-block; background: rgba(255,255,255,.15); color: #fff; font-size: .78rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+    .hero h1 { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
+    .hero h1 span { color: #b9f6ca; }
+    .hero p.lead { font-size: 1rem; color: rgba(255,255,255,.82); max-width: 680px; margin-bottom: 24px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 20px; font-size: .85rem; color: rgba(255,255,255,.65); }
+    .hero-meta strong { color: #fff; }
+
+    /* LAYOUT */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 52px 0 32px; }
+    .section-title { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; padding-bottom: 10px; border-bottom: 3px solid var(--secondary); display: inline-block; }
+    .section-sub { color: var(--muted); font-size: .92rem; margin-bottom: 28px; margin-top: 8px; }
+
+    /* CARDS */
+    .card { background: var(--card); border-radius: 12px; padding: 26px 30px; box-shadow: 0 2px 14px rgba(13,33,55,.07); margin-bottom: 20px; border: 1px solid var(--border); }
+    .card-title { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 14px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+
+    /* ALERTS */
+    .alert { border-radius: 10px; padding: 15px 18px; margin-bottom: 16px; font-size: .93rem; border-left: 5px solid; }
+    .alert-success { background: #f0fdf4; border-color: var(--secondary); color: #14532d; }
+    .alert-info { background: #eff6ff; border-color: var(--info); color: #1e3a5f; }
+    .alert-warning { background: #fffbeb; border-color: var(--warning); color: #78350f; }
+
+    /* TABLES */
+    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th { background: var(--primary); color: #fff; padding: 11px 14px; text-align: left; font-weight: 600; white-space: nowrap; }
+    td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8fafc; }
+
+    /* STATS */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 28px; }
+    .stat { background: var(--card); border-radius: 10px; padding: 20px 16px; text-align: center; border: 1px solid var(--border); }
+    .stat-val { font-size: 1.9rem; font-weight: 800; color: var(--primary); line-height: 1; }
+    .stat-val.green { color: var(--secondary); }
+    .stat-val.blue { color: var(--info); }
+    .stat-label { font-size: .78rem; color: var(--muted); margin-top: 5px; text-transform: uppercase; letter-spacing: .05em; }
+
+    /* TAGS */
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: .78rem; font-weight: 700; }
+    .tag-ok { background: #dcfce7; color: #166534; }
+    .tag-warn { background: #fef3c7; color: #92400e; }
+    .tag-info { background: #dbeafe; color: #1e40af; }
+
+    /* SCENARIOS */
+    .scenario { border-radius: 10px; border: 2px solid var(--border); padding: 22px; margin-bottom: 14px; }
+    .scenario.conservador { border-color: var(--warning); }
+    .scenario.base { border-color: var(--info); }
+    .scenario.optimista { border-color: var(--secondary); }
+    .scenario-name { font-weight: 700; font-size: .97rem; margin-bottom: 12px; }
+    .fin-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: .88rem; }
+    .fin-row:last-child { border-bottom: none; font-weight: 700; font-size: .97rem; }
+    .fin-val.pos { color: #166534; font-weight: 600; }
+    .fin-val.neg { color: var(--danger); font-weight: 600; }
+    .fin-val.strong { color: var(--primary); font-size: 1.05rem; font-weight: 800; }
+
+    /* CASH FLOW BAR */
+    .cf-bar-wrap { margin-top: 24px; }
+    .cf-bar-label { font-size: .8rem; color: var(--muted); margin-bottom: 4px; }
+    .cf-month { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-size: .82rem; }
+    .cf-month-name { width: 60px; color: var(--muted); flex-shrink: 0; }
+    .cf-bar-container { flex: 1; background: #e2e8f0; border-radius: 4px; height: 22px; position: relative; overflow: hidden; }
+    .cf-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 6px; font-size: .78rem; font-weight: 700; color: #fff; transition: width .3s; }
+    .cf-bar.pos { background: var(--secondary); }
+    .cf-bar.neg { background: var(--danger); }
+    .cf-amount { width: 80px; text-align: right; font-weight: 600; flex-shrink: 0; }
+    .cf-amount.pos { color: var(--secondary); }
+    .cf-amount.neg { color: var(--danger); }
+
+    /* COMPARISON */
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .comp-card { border-radius: 10px; padding: 20px; border: 2px solid var(--border); }
+    .comp-card.recommended { border-color: var(--secondary); background: #f0fdf4; }
+    .comp-card.alternative { border-color: var(--border); }
+    .comp-header { font-weight: 800; font-size: 1.1rem; margin-bottom: 14px; }
+    .comp-row { display: flex; justify-content: space-between; font-size: .86rem; padding: 5px 0; border-bottom: 1px solid var(--border); }
+    .comp-row:last-child { border-bottom: none; }
+
+    /* BREAKEVEN */
+    .breakeven-visual { background: linear-gradient(90deg, #fee2e2 0%, #fef3c7 40%, #dcfce7 100%); border-radius: 10px; padding: 20px 24px; position: relative; margin: 20px 0; }
+    .breakeven-line { position: absolute; left: 14%; top: 0; bottom: 0; width: 2px; background: var(--danger); }
+    .breakeven-marker { position: absolute; left: calc(14% - 12px); top: -8px; background: var(--danger); color: #fff; font-size: .72rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .tl-item { position: relative; margin-bottom: 22px; }
+    .tl-dot { position: absolute; left: -34px; top: 3px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .75rem; color: #fff; }
+    .tl-dot.green { background: var(--secondary); }
+    .tl-dot.blue { background: var(--info); }
+    .tl-dot.gray { background: var(--muted); }
+    .tl-period { font-size: .78rem; color: var(--accent); font-weight: 600; text-transform: uppercase; }
+    .tl-title { font-weight: 700; }
+    .tl-desc { font-size: .86rem; color: var(--muted); }
+
+    /* FOOTER */
+    footer { background: var(--primary); color: rgba(255,255,255,.6); text-align: center; padding: 28px 24px; font-size: .83rem; margin-top: 52px; }
+    footer strong { color: #fff; }
+    footer a { color: var(--secondary); text-decoration: none; }
+
+    .sup-note { font-size: .75rem; color: var(--muted); font-style: italic; margin-top: 8px; display: block; }
+    .fw-7 { font-weight: 700; }
+    .mt-16 { margin-top: 16px; }
+    @media(max-width:600px){ .hero { padding: 32px 18px 28px; } .comp-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <a href="reporte_electrolinera_cali.html" class="back-link">← Volver al reporte general</a>
+    <div class="badge">⚡ Análisis Económico – Piloto Recomendado</div>
+    <h1>Piloto <span>YXD 80 kW</span><br>Análisis Económico Detallado</h1>
+    <p class="lead">Proyecciones financieras, flujo de caja, punto de equilibrio y comparativa de inversión para el primer punto de carga rápida DC de INCOSERTEC en Cali, Colombia.</p>
+    <div class="hero-meta">
+      <span><strong>Equipo:</strong> YXD 80kW – CCS2 Dual</span>
+      <span><strong>Conexión:</strong> Media Tensión – Transformador 150 kVA dedicado</span>
+      <span><strong>Inversión media:</strong> ~$160M COP</span>
+      <span><strong>Elaborado por:</strong> Ing. Victor Manuel Mina · manuelmina.com</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+
+<!-- ══════════════════════
+  1. POR QUÉ EL 80kW PRIMERO
+══════════════════════ -->
+<section class="section">
+  <div class="section-title">1. ¿Por qué el YXD 80kW como piloto?</div>
+  <p class="section-sub">Justificación estratégica y técnica frente a los modelos de mayor potencia</p>
+
+  <div class="alert alert-success">
+    <strong>✅ Ventaja clave:</strong> El YXD 80kW es el único cargador del portafolio que ya cuenta con <strong>certificación IEC 61851-1/2017</strong>, opera a <strong>50Hz/60Hz</strong> (compatible con Colombia sin tramitación adicional), y tiene protocolo <strong>OCPP 1.6J</strong> listo para conectarse a CárgaME. Esto reduce el riesgo regulatorio en ~4 meses frente a los modelos AF.
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Ficha técnica relevante – YXD 80kW</div>
+      <div class="table-wrap" style="margin-bottom:0">
+        <table>
+          <tr><td><strong>Potencia nominal</strong></td><td>80 kW</td></tr>
+          <tr><td><strong>Voltaje entrada</strong></td><td>380 Vac ±15% trifásico</td></tr>
+          <tr><td><strong>Frecuencia</strong></td><td>50 Hz / 60 Hz <span class="tag tag-ok">✓ Colombia</span></td></tr>
+          <tr><td><strong>Voltaje salida DC</strong></td><td>200–1000 Vdc</td></tr>
+          <tr><td><strong>Corriente máx. salida</strong></td><td>200 A</td></tr>
+          <tr><td><strong>Conector</strong></td><td>CCS2 Dual <span class="tag tag-ok">✓ Obligatorio Colombia</span></td></tr>
+          <tr><td><strong>Eficiencia</strong></td><td>97%</td></tr>
+          <tr><td><strong>Factor de potencia</strong></td><td>0.99</td></tr>
+          <tr><td><strong>Protocolo OCPP</strong></td><td>OCPP 1.6J <span class="tag tag-ok">✓ CárgaME</span></td></tr>
+          <tr><td><strong>Certificación internacional</strong></td><td>IEC 61851-1/2017 · CE (SGS UKCA) · ISO 9001</td></tr>
+          <tr><td><strong>Protección IP</strong></td><td>IP54</td></tr>
+          <tr><td><strong>Temperatura operación</strong></td><td>-20 a 50°C (Cali: 15–28°C ✓)</td></tr>
+          <tr><td><strong>Altitud operación</strong></td><td>&lt;2.000 m (Cali: ~1.000 m ✓)</td></tr>
+          <tr><td><strong>Garantía</strong></td><td>3 años con soporte remoto</td></tr>
+          <tr><td><strong>Peso / Dimensiones</strong></td><td>335 kg / 800×630×1830 mm</td></tr>
+          <tr><td><strong>Tiempo de carga BYD Yuan (62 kWh)</strong></td><td>~47 minutos a carga completa</td></tr>
+          <tr><td><strong>Tiempo de carga BYD Seagull (38 kWh)</strong></td><td>~29 minutos a carga completa</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Ventajas estratégicas del piloto 80kW vs esperar el 160kW</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot green">1</div>
+          <div class="tl-period">Riesgo regulatorio</div>
+          <div class="tl-title">Certificación ya avanzada</div>
+          <div class="tl-desc">El YXD tiene IEC 61851-1/2017. Los modelos AF (120/160kW) no tienen certificaciones IEC visibles → 3–5 meses adicionales de trámite RETIE, con riesgo de rechazo.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot green">2</div>
+          <div class="tl-period">Velocidad al mercado</div>
+          <div class="tl-title">5 meses antes de generar ingresos</div>
+          <div class="tl-desc">Con el 80kW se puede operar en ~6 meses. Con el 160kW (AF), el escenario realista es 9–12 meses. Esos 3–5 meses de diferencia son ingresos perdidos y mercado cedido a la competencia.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot blue">3</div>
+          <div class="tl-period">Financiero</div>
+          <div class="tl-title">Menor capital en riesgo inicial</div>
+          <div class="tl-desc">$160M vs $230M. Con el piloto 80kW se valida el modelo operativo, la demanda real del sitio y la gestión del punto. Si funciona, el 160kW se financia con los ingresos del 80kW.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot blue">4</div>
+          <div class="tl-period">Operación</div>
+          <div class="tl-title">Aprendizaje sin riesgo máximo</div>
+          <div class="tl-desc">El primer punto de una nueva operación siempre tiene fricciones: EMCALI, trámites, clientes, mantenimiento. Es mejor aprenderlo con $160M que con $230M.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════
+  2. INVERSIÓN TOTAL
+══════════════════════ -->
+<section class="section">
+  <div class="section-title">2. Desglose de Inversión – Piloto 80kW</div>
+  <p class="section-sub">Todos los rubros con transformador dedicado y conexión en media tensión</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-val">$32M</div>
+      <div class="stat-label">Equipo + importación</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">$52M</div>
+      <div class="stat-label">Infraest. media tensión</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">$12M</div>
+      <div class="stat-label">Instalación BT + obras</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">$15M</div>
+      <div class="stat-label">MO + certificaciones</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">$5M</div>
+      <div class="stat-label">Software + conectividad</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val green">~$160M</div>
+      <div class="stat-label">Inversión total media</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Grupo</th><th>Partida</th><th>Mínimo</th><th>Máximo</th><th>Media usada en modelo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td rowspan="4" style="font-weight:700;color:var(--primary)">① Equipo</td><td>Cargador YXD 80kW FOB China</td><td>$28M</td><td>$45M</td><td>$36M</td></tr>
+        <tr><td>Flete marítimo + seguro</td><td>$2M</td><td>$4M</td><td>$3M</td></tr>
+        <tr><td>Agente de aduanas + DIAN</td><td>$1.5M</td><td>$3M</td><td>$2M</td></tr>
+        <tr><td>Transporte interno Buenaventura–Cali</td><td>$0.5M</td><td>$1M</td><td>$0.8M</td></tr>
+        <tr style="background:#f0fdf4;font-weight:700"><td colspan="2">Subtotal ① Equipo e importación</td><td>$32M</td><td>$53M</td><td>$41.8M</td></tr>
+
+        <tr><td rowspan="5" style="font-weight:700;color:var(--primary)">② MT</td><td>Celda de media tensión (11–13.2kV)</td><td>$12M</td><td>$20M</td><td>$16M</td></tr>
+        <tr><td>Transformador seco 150 kVA 13.2kV/380V</td><td>$15M</td><td>$25M</td><td>$20M</td></tr>
+        <tr><td>Obra civil caseta/subestación</td><td>$5M</td><td>$12M</td><td>$8M</td></tr>
+        <tr><td>Puesta a tierra MT (malla + varillas + Cu desnudo)</td><td>$3M</td><td>$6M</td><td>$4.5M</td></tr>
+        <tr><td>Acometida MT desde red EMCALI</td><td>$4M</td><td>$10M</td><td>$6M</td></tr>
+        <tr style="background:#f0fdf4;font-weight:700"><td colspan="2">Subtotal ② Infraestructura media tensión</td><td>$39M</td><td>$73M</td><td>$54.5M</td></tr>
+
+        <tr><td rowspan="4" style="font-weight:700;color:var(--primary)">③ Elect. BT</td><td>Tablero distribución BT + protecciones</td><td>$3M</td><td>$6M</td><td>$4M</td></tr>
+        <tr><td>Cableado BT Cu THW (trafo → cargador)</td><td>$2M</td><td>$5M</td><td>$3M</td></tr>
+        <tr><td>Diferencial Tipo B (obligatorio DC)</td><td>$1.5M</td><td>$3M</td><td>$2M</td></tr>
+        <tr><td>Puesta a tierra BT TN-S del cargador</td><td>$1M</td><td>$2M</td><td>$1.5M</td></tr>
+        <tr style="background:#f0fdf4;font-weight:700"><td colspan="2">Subtotal ③ Instalación eléctrica BT</td><td>$7.5M</td><td>$16M</td><td>$10.5M</td></tr>
+
+        <tr><td rowspan="4" style="font-weight:700;color:var(--primary)">④ Civil</td><td>Base cargador (losa concreto reforzado)</td><td>$1.5M</td><td>$3M</td><td>$2M</td></tr>
+        <tr><td>Señalización normativa</td><td>$0.5M</td><td>$1.5M</td><td>$1M</td></tr>
+        <tr><td>Cubierta/marquesina (protección lluvia Cali)</td><td>$2M</td><td>$5M</td><td>$3M</td></tr>
+        <tr><td>Cerramiento y seguridad del punto</td><td>$1M</td><td>$3M</td><td>$2M</td></tr>
+        <tr style="background:#f0fdf4;font-weight:700"><td colspan="2">Subtotal ④ Obras civiles</td><td>$5M</td><td>$12.5M</td><td>$8M</td></tr>
+
+        <tr><td rowspan="4" style="font-weight:700;color:var(--primary)">⑤ MO</td><td>Ing. eléctrico matriculado (diseño + supervisión)</td><td>$3M</td><td>$6M</td><td>$4.5M</td></tr>
+        <tr><td>Técnicos MT certificados (mín. 2 personas)</td><td>$3M</td><td>$7M</td><td>$5M</td></tr>
+        <tr><td>Técnicos BT (instalación tablero + cargador)</td><td>$2M</td><td>$4M</td><td>$3M</td></tr>
+        <tr><td>Gestor trámites (EMCALI, Planeación, RETIE)</td><td>$1.5M</td><td>$3M</td><td>$2M</td></tr>
+        <tr style="background:#f0fdf4;font-weight:700"><td colspan="2">Subtotal ⑤ Mano de obra especializada</td><td>$9.5M</td><td>$20M</td><td>$14.5M</td></tr>
+
+        <tr><td rowspan="4" style="font-weight:700;color:var(--primary)">⑥ Certs.</td><td>RETIE Producto (CIDET / ODIR / Bureau Veritas)</td><td>$3M</td><td>$8M</td><td>$5M</td></tr>
+        <tr><td>RETIE Instalación (inspector matriculado)</td><td>$2M</td><td>$5M</td><td>$3M</td></tr>
+        <tr><td>Trámites EMCALI (viabilidad + energización)</td><td>$0.5M</td><td>$2M</td><td>$1M</td></tr>
+        <tr><td>Licencia uso del suelo – Planeación Cali</td><td>$0.5M</td><td>$2M</td><td>$1M</td></tr>
+        <tr style="background:#f0fdf4;font-weight:700"><td colspan="2">Subtotal ⑥ Certificaciones y trámites</td><td>$6M</td><td>$17M</td><td>$10M</td></tr>
+
+        <tr><td rowspan="4" style="font-weight:700;color:var(--primary)">⑦ Software</td><td>Plataforma OCPP / backend gestión</td><td>$1.5M</td><td>$4M</td><td>$2.5M</td></tr>
+        <tr><td>App / RFID / QR + configuración</td><td>$1M</td><td>$3M</td><td>$2M</td></tr>
+        <tr><td>Pasarela de pago (Wompi/PSE)</td><td>$0.5M</td><td>$1.5M</td><td>$1M</td></tr>
+        <tr><td>SIM 4G + conectividad (1er año)</td><td>$0.5M</td><td>$1M</td><td>$0.7M</td></tr>
+        <tr style="background:#f0fdf4;font-weight:700"><td colspan="2">Subtotal ⑦ Software y conectividad</td><td>$3.5M</td><td>$9.5M</td><td>$6.2M</td></tr>
+
+        <tr><td style="font-weight:700;color:var(--primary)">⑧ Capital</td><td>Capital de trabajo (reserva 3 meses operación)</td><td>$8M</td><td>$15M</td><td>$12M</td></tr>
+
+        <tr style="background:var(--primary);color:#fff">
+          <td colspan="2"><strong>INVERSIÓN TOTAL – PILOTO YXD 80kW CON MT DEDICADA</strong></td>
+          <td><strong>$110.5M</strong></td>
+          <td><strong>$216M</strong></td>
+          <td><strong style="font-size:1.05rem">~$157.5M COP</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <span class="sup-note">* Modelo financiero usa $160M COP como inversión base (redondeado conservadoramente). Valores en pesos colombianos 2025. TRM referencia: $4.100 COP/USD.</span>
+</section>
+
+
+<!-- ══════════════════════
+  3. SUPUESTOS DEL MODELO
+══════════════════════ -->
+<section class="section">
+  <div class="section-title">3. Supuestos del Modelo Financiero</div>
+  <p class="section-sub">Parámetros utilizados en las proyecciones. Cada supuesto se puede ajustar según negociación real.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Parámetros de ingresos</div>
+      <div class="table-wrap" style="margin-bottom:0">
+        <table>
+          <tr><td><strong>Precio de venta al usuario</strong></td><td>$1.700 COP/kWh</td></tr>
+          <tr><td>— Competencia Terpel Voltex DC</td><td>$1.750 COP/kWh</td></tr>
+          <tr><td>— Competencia Enel X DC</td><td>$1.690 COP/kWh</td></tr>
+          <tr><td><strong>Posicionamiento INCOSERTEC</strong></td><td>Competitivo (–3% vs Terpel)</td></tr>
+          <tr><td><strong>Horas de operación/día</strong></td><td>16 horas (6am – 10pm)</td></tr>
+          <tr><td><strong>Días operación/mes</strong></td><td>30 días</td></tr>
+          <tr><td><strong>Capacidad máxima/día (100%)</strong></td><td>80 kW × 16 h = 1.280 kWh</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Parámetros de costos</div>
+      <div class="table-wrap" style="margin-bottom:0">
+        <table>
+          <tr><td><strong>Costo energía EMCALI (industrial)</strong></td><td>$500 COP/kWh</td></tr>
+          <tr><td><strong>Margen bruto por kWh</strong></td><td>$1.200 COP/kWh (70.6%)</td></tr>
+          <tr><td>Arriendo del sitio (2 parqueaderos)</td><td>$2.5M COP/mes</td></tr>
+          <tr><td>Mantenimiento preventivo</td><td>$1.5M COP/mes</td></tr>
+          <tr><td>Software OCPP + conectividad 4G</td><td>$0.6M COP/mes</td></tr>
+          <tr><td>Seguros + administración</td><td>$1M COP/mes</td></tr>
+          <tr><td>Contingencias (10% OPEX)</td><td>$0.6M COP/mes</td></tr>
+          <tr><td><strong>OPEX total mensual fijo</strong></td><td><strong>$6.2M COP/mes</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Punto de Equilibrio (Break-even)</div>
+    <div class="grid-3">
+      <div style="text-align:center; padding:16px; border-right:1px solid var(--border)">
+        <div style="font-size:2rem; font-weight:800; color:var(--danger)">14%</div>
+        <div style="font-size:.82rem; color:var(--muted); margin-top:4px">Utilización mínima para cubrir OPEX</div>
+      </div>
+      <div style="text-align:center; padding:16px; border-right:1px solid var(--border)">
+        <div style="font-size:2rem; font-weight:800; color:var(--warning)">180 kWh/día</div>
+        <div style="font-size:.82rem; color:var(--muted); margin-top:4px">Energía mínima diaria para no perder dinero</div>
+      </div>
+      <div style="text-align:center; padding:16px">
+        <div style="font-size:2rem; font-weight:800; color:var(--secondary)">~11 sesiones</div>
+        <div style="font-size:.82rem; color:var(--muted); margin-top:4px">Sesiones/día de 16 kWh promedio para break-even</div>
+      </div>
+    </div>
+    <div class="breakeven-visual" style="margin-top:16px">
+      <div style="display:flex; justify-content:space-between; font-size:.8rem; color:#555; font-weight:600">
+        <span>0%</span>
+        <span style="color:var(--danger); font-weight:800">▲ Break-even: 14%</span>
+        <span>35% (base)</span>
+        <span>55% (optimista)</span>
+        <span>100%</span>
+      </div>
+      <div style="position:relative; height:32px; background:linear-gradient(90deg,#fee2e2 0%,#fef3c7 14%,#dcfce7 35%,#bbf7d0 100%); border-radius:6px; margin-top:8px">
+        <div style="position:absolute;left:14%;top:0;bottom:0;width:2px;background:#c62828"></div>
+        <div style="position:absolute;left:35%;top:0;bottom:0;width:2px;background:var(--info)"></div>
+        <div style="position:absolute;left:55%;top:0;bottom:0;width:2px;background:var(--secondary)"></div>
+      </div>
+      <div style="font-size:.78rem; color:var(--muted); margin-top:8px">Con solo el 14% de utilización el punto no pierde dinero. Con 35% genera ~$9.8M/mes neto.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════
+  4. TRES ESCENARIOS
+══════════════════════ -->
+<section class="section">
+  <div class="section-title">4. Proyecciones por Escenario de Utilización</div>
+  <p class="section-sub">Mensualidades proyectadas a estado estable (a partir del mes 5 aproximadamente)</p>
+
+  <!-- CONSERVADOR -->
+  <div class="scenario conservador">
+    <div class="scenario-name" style="color:var(--warning)">📊 Escenario Conservador — 20% de utilización (256 kWh/día)</div>
+    <div class="fin-row"><span>Energía vendida/mes</span><span class="fin-val">256 kWh/día × 30 = 7.680 kWh</span></div>
+    <div class="fin-row"><span>Ingresos brutos</span><span class="fin-val pos">$13.1M COP</span></div>
+    <div class="fin-row"><span>Costo energía EMCALI</span><span class="fin-val neg">– $3.8M COP</span></div>
+    <div class="fin-row"><span>Margen bruto</span><span class="fin-val pos">$9.3M COP (71%)</span></div>
+    <div class="fin-row"><span>OPEX fijo (arriendo, mant., software, admin.)</span><span class="fin-val neg">– $6.2M COP</span></div>
+    <div class="fin-row"><span>Utilidad operativa neta/mes</span><span class="fin-val pos">$3.1M COP</span></div>
+    <div class="fin-row"><span><strong>ROI sobre $160M invertidos</strong></span><span class="fin-val strong">~52 meses (4,3 años)</span></div>
+    <span class="sup-note">Factible aunque lento. Corresponde a ~11 cargas de vehículo/día de 23 kWh promedio. Es el piso realista del negocio.</span>
+  </div>
+
+  <!-- BASE -->
+  <div class="scenario base">
+    <div class="scenario-name" style="color:var(--info)">📊 Escenario Base — 35% de utilización (448 kWh/día) ← REFERENCIA PRINCIPAL</div>
+    <div class="fin-row"><span>Energía vendida/mes</span><span class="fin-val">448 kWh/día × 30 = 13.440 kWh</span></div>
+    <div class="fin-row"><span>Ingresos brutos</span><span class="fin-val pos">$22.8M COP</span></div>
+    <div class="fin-row"><span>Costo energía EMCALI</span><span class="fin-val neg">– $6.7M COP</span></div>
+    <div class="fin-row"><span>Margen bruto</span><span class="fin-val pos">$16.1M COP (70.6%)</span></div>
+    <div class="fin-row"><span>OPEX fijo</span><span class="fin-val neg">– $6.2M COP</span></div>
+    <div class="fin-row"><span>Utilidad operativa neta/mes</span><span class="fin-val pos">$9.9M COP</span></div>
+    <div class="fin-row"><span><strong>ROI sobre $160M invertidos</strong></span><span class="fin-val strong">~16 meses (1,3 años)</span></div>
+    <span class="sup-note">35% equivale a ~19 cargas/día de 23 kWh promedio, o el cargador activo ~5,6 horas de las 16 disponibles. Muy alcanzable en zona sur de Cali con 884 VE registrados y creciendo.</span>
+  </div>
+
+  <!-- OPTIMISTA -->
+  <div class="scenario optimista">
+    <div class="scenario-name" style="color:var(--secondary)">📊 Escenario Optimista — 55% de utilización (704 kWh/día)</div>
+    <div class="fin-row"><span>Energía vendida/mes</span><span class="fin-val">704 kWh/día × 30 = 21.120 kWh</span></div>
+    <div class="fin-row"><span>Ingresos brutos</span><span class="fin-val pos">$35.9M COP</span></div>
+    <div class="fin-row"><span>Costo energía EMCALI</span><span class="fin-val neg">– $10.6M COP</span></div>
+    <div class="fin-row"><span>Margen bruto</span><span class="fin-val pos">$25.3M COP (70.5%)</span></div>
+    <div class="fin-row"><span>OPEX fijo</span><span class="fin-val neg">– $6.2M COP</span></div>
+    <div class="fin-row"><span>Utilidad operativa neta/mes</span><span class="fin-val pos">$19.1M COP</span></div>
+    <div class="fin-row"><span><strong>ROI sobre $160M invertidos</strong></span><span class="fin-val strong">~8,4 meses</span></div>
+    <span class="sup-note">Alcanzable si se posiciona como único punto de carga rápida DC en la zona y se tienen alianzas con concesionarios BYD y Kia. Probable en meses 8–12 de operación.</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════
+  5. FLUJO DE CAJA PROYECTADO
+══════════════════════ -->
+<section class="section">
+  <div class="section-title">5. Flujo de Caja Proyectado — 18 Meses</div>
+  <p class="section-sub">Basado en escenario base (35% utilización a régimen). Meses 1–3: instalación/ramp-up. Mes 4: primer ingreso operativo. Acumulado = capital recuperado.</p>
+
+  <div class="card">
+    <div class="card-title">Flujo mensual neto (escenario base)</div>
+    <div class="cf-bar-wrap">
+
+      <div class="cf-month">
+        <span class="cf-month-name">Mes 0</span>
+        <div class="cf-bar-container"><div class="cf-bar neg" style="width:100%">Inversión inicial</div></div>
+        <span class="cf-amount neg">–$160M</span>
+      </div>
+      <div class="cf-month">
+        <span class="cf-month-name">Mes 1</span>
+        <div class="cf-bar-container"><div class="cf-bar neg" style="width:8%"></div></div>
+        <span class="cf-amount neg">–$6.2M</span>
+      </div>
+      <div class="cf-month">
+        <span class="cf-month-name">Mes 2</span>
+        <div class="cf-bar-container"><div class="cf-bar neg" style="width:8%"></div></div>
+        <span class="cf-amount neg">–$6.2M</span>
+      </div>
+      <div class="cf-month">
+        <span class="cf-month-name">Mes 3</span>
+        <div class="cf-bar-container"><div class="cf-bar neg" style="width:8%"></div></div>
+        <span class="cf-amount neg">–$6.2M</span>
+      </div>
+      <div class="cf-month">
+        <span class="cf-month-name">Mes 4</span>
+        <div class="cf-bar-container"><div class="cf-bar pos" style="width:10%">Inicio operación 15%</div></div>
+        <span class="cf-amount pos">+$1.5M</span>
+      </div>
+      <div class="cf-month">
+        <span class="cf-month-name">Mes 5</span>
+        <div class="cf-bar-container"><div class="cf-bar pos" style="width:20%">25% util.</div></div>
+        <span class="cf-amount pos">+$5.1M</span>
+      </div>
+      <div class="cf-month">
+        <span class="cf-month-name">Mes 6</span>
+        <div class="cf-bar-container"><div class="cf-bar pos" style="width:30%">30% util.</div></div>
+        <span class="cf-amount pos">+$7.5M</span>
+      </div>
+      <div class="cf-month">
+        <span class="cf-month-name">Mes 7–12</span>
+        <div class="cf-bar-container"><div class="cf-bar pos" style="width:40%">35% util. × 6 meses</div></div>
+        <span class="cf-amount pos">+$9.9M/mes</span>
+      </div>
+      <div class="cf-month">
+        <span class="cf-month-name">Mes 13–18</span>
+        <div class="cf-bar-container"><div class="cf-bar pos" style="width:55%">45–55% util. × 6 meses</div></div>
+        <span class="cf-amount pos">+$14–19M/mes</span>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:20px; margin-bottom:0">
+      <table>
+        <thead>
+          <tr><th>Período</th><th>Flujo mensual neto</th><th>Acumulado</th><th>Estado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mes 0 (inversión)</td><td style="color:var(--danger)">–$160M</td><td style="color:var(--danger)">–$160M</td><td><span class="tag" style="background:#fee2e2;color:#991b1b">Desembolso</span></td></tr>
+          <tr><td>Mes 1–3 (obra/trámites)</td><td style="color:var(--danger)">–$6.2M/mes</td><td style="color:var(--danger)">–$178.6M</td><td><span class="tag tag-warn">Sin ingresos</span></td></tr>
+          <tr><td>Mes 4 (apertura 15%)</td><td style="color:var(--secondary)">+$1.5M</td><td style="color:var(--danger)">–$177.1M</td><td><span class="tag tag-info">Ramp-up</span></td></tr>
+          <tr><td>Mes 5 (25%)</td><td style="color:var(--secondary)">+$5.1M</td><td style="color:var(--danger)">–$172M</td><td><span class="tag tag-info">Creciendo</span></td></tr>
+          <tr><td>Mes 6 (30%)</td><td style="color:var(--secondary)">+$7.5M</td><td style="color:var(--danger)">–$164.5M</td><td><span class="tag tag-info">Creciendo</span></td></tr>
+          <tr><td>Mes 7–12 (35% × 6)</td><td style="color:var(--secondary)">+$9.9M/mes</td><td style="color:var(--danger)">–$105.1M</td><td><span class="tag tag-ok">Régimen estable</span></td></tr>
+          <tr><td>Mes 13–18 (45–55% × 6)</td><td style="color:var(--secondary)">+$14–19M/mes</td><td style="color:var(--secondary)">–$15M → +$84M</td><td><span class="tag tag-ok">Alta demanda</span></td></tr>
+          <tr style="background:var(--primary);color:#fff"><td><strong>Mes ~16–17</strong></td><td><strong>ROI alcanzado</strong></td><td><strong>$0 (punto de equilibrio total)</strong></td><td><span class="tag" style="background:var(--secondary);color:#fff">Break-even</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="sup-note">* El acumulado del mes 18 en escenario optimista supera +$80M COP. La operación queda libre de deuda de inversión entre el mes 16 y 18 según el comportamiento real de demanda.</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════
+  6. COMPARATIVA 80kW vs 160kW
+══════════════════════ -->
+<section class="section">
+  <div class="section-title">6. Comparativa de Inversión: 80kW vs 160kW</div>
+  <p class="section-sub">¿Vale la pena esperar y poner el 160kW directamente, o es mejor empezar con el 80kW?</p>
+
+  <div class="comp-grid">
+    <div class="comp-card recommended">
+      <div class="comp-header" style="color:var(--secondary)">✅ YXD 80 kW — Piloto recomendado</div>
+      <div class="comp-row"><span>Inversión total</span><span class="fw-7">~$160M COP</span></div>
+      <div class="comp-row"><span>Certificación IEC</span><span class="fw-7" style="color:var(--secondary)">YA TIENE ✓</span></div>
+      <div class="comp-row"><span>Compatibilidad 60Hz</span><span class="fw-7" style="color:var(--secondary)">CONFIRMADA ✓</span></div>
+      <div class="comp-row"><span>Tiempo hasta operar</span><span class="fw-7">~6 meses</span></div>
+      <div class="comp-row"><span>Riesgo regulatorio</span><span class="fw-7" style="color:var(--secondary)">BAJO</span></div>
+      <div class="comp-row"><span>ROI escenario base (35%)</span><span class="fw-7">~16 meses</span></div>
+      <div class="comp-row"><span>Ingresos mes 12</span><span class="fw-7">~$9.9M/mes neto</span></div>
+      <div class="comp-row"><span>Capacidad máxima/día</span><span class="fw-7">1.280 kWh</span></div>
+      <div class="comp-row"><span>Sesiones posibles/día (30 kWh prom.)</span><span class="fw-7">~43 sesiones</span></div>
+      <div class="comp-row"><span>Tiempo de carga BYD Yuan (62 kWh)</span><span class="fw-7">~47 min</span></div>
+      <div style="margin-top:14px; font-size:.85rem; color:#166534; font-weight:600">Genera caja desde el mes 4. Valida el modelo antes de escalar.</div>
+    </div>
+
+    <div class="comp-card alternative">
+      <div class="comp-header" style="color:var(--muted)">AF 160 kW — Mayor potencia, más riesgo</div>
+      <div class="comp-row"><span>Inversión total</span><span class="fw-7">~$230M COP</span></div>
+      <div class="comp-row"><span>Certificación IEC</span><span class="fw-7" style="color:var(--danger)">NO CONFIRMADA ✗</span></div>
+      <div class="comp-row"><span>Compatibilidad 60Hz</span><span class="fw-7" style="color:var(--danger)">50±1Hz EN FICHA ✗</span></div>
+      <div class="comp-row"><span>Tiempo hasta operar</span><span class="fw-7" style="color:var(--danger)">~9–12 meses</span></div>
+      <div class="comp-row"><span>Riesgo regulatorio</span><span class="fw-7" style="color:var(--danger)">ALTO</span></div>
+      <div class="comp-row"><span>ROI escenario base (35%)</span><span class="fw-7">~12 meses (si opera)</span></div>
+      <div class="comp-row"><span>Ingresos mes 12</span><span class="fw-7" style="color:var(--warning)">~$0 (aún en trámites)</span></div>
+      <div class="comp-row"><span>Capacidad máxima/día</span><span class="fw-7">2.560 kWh</span></div>
+      <div class="comp-row"><span>Sesiones posibles/día (30 kWh prom.)</span><span class="fw-7">~85 sesiones</span></div>
+      <div class="comp-row"><span>Tiempo de carga BYD Yuan (62 kWh)</span><span class="fw-7">~23 min</span></div>
+      <div style="margin-top:14px; font-size:.85rem; color:#78350f; font-weight:600">$70M más de inversión. Sin arrancar a los 12 meses si los trámites se demoran.</div>
+    </div>
+  </div>
+
+  <div class="alert alert-info" style="margin-top:4px">
+    <strong>💡 Estrategia óptima:</strong> Iniciar con el <strong>YXD 80kW</strong> y en el mes 6–8 de operación (cuando ya hay flujo de caja positivo), iniciar en paralelo el proceso de certificación del AF 160kW. El segundo punto se puede financiar parcialmente con los ingresos del primero. Este enfoque reduce el riesgo financiero total en ~30% y acorta el tiempo al primer ingreso en 5 meses.
+  </div>
+</section>
+
+
+<!-- ══════════════════════
+  7. RESUMEN PARA INVERSIONISTAS
+══════════════════════ -->
+<section class="section">
+  <div class="section-title">7. Resumen Ejecutivo para la Reunión</div>
+  <p class="section-sub">Los números clave en una sola vista</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-val">$160M</div>
+      <div class="stat-label">Inversión total piloto 80kW</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">6 m</div>
+      <div class="stat-label">Meses hasta operar</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">14%</div>
+      <div class="stat-label">Utilización mínima para no perder</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val green">$9.9M</div>
+      <div class="stat-label">Ingresos netos/mes (escenario base)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val blue">16 m</div>
+      <div class="stat-label">Meses para recuperar inversión (base)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val green">$1.700</div>
+      <div class="stat-label">COP por kWh vendido</div>
+    </div>
+  </div>
+
+  <div class="card" style="border:2px solid var(--secondary)">
+    <div class="card-title">Mensaje clave para los inversionistas</div>
+    <p style="line-height:1.85; font-size:.95rem">
+      El piloto con el <strong>YXD 80kW</strong> representa la opción con <strong>menor riesgo y más rápida ejecución</strong> para validar el modelo de electrolineras de INCOSERTEC en Cali. Con una inversión de <strong>~$160M COP</strong> y una utilización del 35%, el punto opera con <strong>utilidad neta de ~$9.9M por mes</strong> y <strong>recupera la inversión en ~16 meses</strong> — sin depender de trámites inciertos de certificación del equipo AF.
+    </p>
+    <p style="line-height:1.85; font-size:.95rem; margin-top:12px">
+      El break-even operativo se alcanza con apenas el <strong>14% de utilización</strong> — es decir, si el cargador está activo solo <strong>2,2 horas al día</strong>, ya cubre todos los gastos. Dado que Cali tiene solo 23 puntos de carga para 884 vehículos eléctricos y creciendo al <strong>+115% anual</strong>, ese umbral es extremadamente conservador.
+    </p>
+    <p style="line-height:1.85; font-size:.95rem; margin-top:12px">
+      El modelo PPA permite a los inversionistas recibir <strong>renta mensual recurrente desde el mes 4</strong> de operación, con una proyección sólida de retorno a 16–18 meses y capacidad de reinversión para escalar al segundo punto (160kW) usando los propios ingresos del primero.
+    </p>
+  </div>
+</section>
+
+</div><!-- /.container -->
+
+<footer>
+  <strong>INCOSERTEC S.A.S.</strong> – Análisis Económico Piloto YXD 80kW – Cali, Colombia<br>
+  Elaborado por <strong>Ing. Victor Manuel Mina</strong> · <a href="https://manuelmina.com">manuelmina.com</a><br>
+  <div style="margin-top:10px; opacity:.5; font-size:.78rem">Versión 1.0 · Mayo 2025 · <a href="reporte_electrolinera_cali.html" style="color:rgba(255,255,255,.5)">← Volver al reporte general</a></div>
+</footer>
+
+</body>
+</html>
