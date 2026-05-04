@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Referencias — Proyecto Electrolinera Cali | INCOSERTEC</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f8; color: #1a1a2e; line-height: 1.6; }
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: white; padding: 2.5rem 2rem; text-align: center;
+    }
+    header h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    header p { opacity: 0.8; font-size: 0.95rem; }
+    .badge {
+      display: inline-block; background: #00d2ff; color: #1a1a2e;
+      padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.75rem;
+      font-weight: 700; margin-top: 0.8rem; letter-spacing: 0.05em;
+    }
+    .container { max-width: 960px; margin: 2rem auto; padding: 0 1.5rem; }
+    .nav-back {
+      display: inline-block; margin-bottom: 1.5rem;
+      color: #0f3460; text-decoration: none; font-weight: 600;
+      padding: 0.5rem 1rem; border: 2px solid #0f3460; border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .nav-back:hover { background: #0f3460; color: white; }
+    .section { background: white; border-radius: 10px; padding: 1.8rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .section h2 {
+      font-size: 1.15rem; color: #0f3460; border-bottom: 2px solid #00d2ff;
+      padding-bottom: 0.5rem; margin-bottom: 1.2rem;
+    }
+    .ref-item {
+      display: flex; gap: 1rem; padding: 0.75rem 0;
+      border-bottom: 1px solid #eee; align-items: flex-start;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num {
+      flex-shrink: 0; width: 28px; height: 28px; background: #0f3460;
+      color: white; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 0.75rem; font-weight: 700; margin-top: 2px;
+    }
+    .ref-content { flex: 1; }
+    .ref-title { font-weight: 600; color: #1a1a2e; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .ref-desc { font-size: 0.85rem; color: #555; margin-bottom: 0.3rem; }
+    .ref-link a {
+      font-size: 0.82rem; color: #0f3460; text-decoration: none;
+      word-break: break-all;
+    }
+    .ref-link a:hover { text-decoration: underline; }
+    .tag {
+      display: inline-block; font-size: 0.7rem; padding: 0.1rem 0.5rem;
+      border-radius: 10px; font-weight: 600; margin-left: 0.4rem; vertical-align: middle;
+    }
+    .tag-norm { background: #fff3cd; color: #856404; }
+    .tag-tech { background: #d1e7dd; color: #0a5c36; }
+    .tag-market { background: #cfe2ff; color: #084298; }
+    .tag-gov { background: #f8d7da; color: #721c24; }
+    .tag-equip { background: #e2d9f3; color: #432874; }
+    footer {
+      text-align: center; padding: 2rem; color: #777; font-size: 0.85rem;
+      border-top: 1px solid #ddd; margin-top: 2rem;
+    }
+    footer a { color: #0f3460; text-decoration: none; }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.3rem; }
+      .section { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Referencias del Proyecto</h1>
+  <p>Electrolinera DC Fast Charging — Cali, Colombia</p>
+  <span class="badge">INCOSERTEC S.A.S.</span>
+</header>
+
+<div class="container">
+  <a href="reporte_electrolinera_cali.html" class="nav-back">← Volver al Reporte Principal</a>
+
+  <!-- SECCIÓN 1: NORMATIVA COLOMBIANA -->
+  <div class="section">
+    <h2>Normativa y Regulación Colombiana <span class="tag tag-norm">Normativa</span></h2>
+
+    <div class="ref-item">
+      <div class="ref-num">1</div>
+      <div class="ref-content">
+        <div class="ref-title">Ley 1964 de 2019 — Movilidad Eléctrica</div>
+        <div class="ref-desc">Marco legal principal para vehículos eléctricos en Colombia. Define incentivos tributarios, IVA 0%, arancel 0%, deducción del 50% en renta para infraestructura de carga pública. Clasifica el servicio de carga como "servicio de carga" (no comercialización de energía).</div>
+        <div class="ref-link"><a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=95946" target="_blank">https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=95946</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">2</div>
+      <div class="ref-content">
+        <div class="ref-title">RETIE — Reglamento Técnico de Instalaciones Eléctricas</div>
+        <div class="ref-desc">Resolución 90708 de 2013 y actualizaciones. Define requisitos técnicos para instalaciones eléctricas en Colombia. Frecuencia nominal 60 Hz (rango 58–62 Hz). Obligatorio para toda instalación eléctrica industrial/comercial. Exige certificación de producto y de instalación.</div>
+        <div class="ref-link"><a href="https://www.minenergia.gov.co/es/misional/energia-electrica-2/reglamentos-tecnicos/reglamento-tecnico-de-instalaciones-electricas-retie/" target="_blank">https://www.minenergia.gov.co/es/misional/energia-electrica-2/reglamentos-tecnicos/reglamento-tecnico-de-instalaciones-electricas-retie/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">3</div>
+      <div class="ref-content">
+        <div class="ref-title">Resolución 40123 de 2024 — Plataforma CárgaME</div>
+        <div class="ref-desc">MinEnergía. Hace obligatorio el registro en la plataforma nacional CárgaME para todos los operadores de infraestructura de carga pública. Requiere protocolo OCPP 1.6J o superior para interoperabilidad.</div>
+        <div class="ref-link"><a href="https://www.minenergia.gov.co/es/misional/energia-electrica-2/vehiculos-electricos/cargame/" target="_blank">https://www.minenergia.gov.co/es/misional/energia-electrica-2/vehiculos-electricos/cargame/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">4</div>
+      <div class="ref-content">
+        <div class="ref-title">RETILAP — Reglamento Técnico de Iluminación y Alumbrado Público</div>
+        <div class="ref-desc">Aplica a la iluminación de la electrolinera (zona de carga y estación). Resolución 180540 de 2010 y sus modificaciones.</div>
+        <div class="ref-link"><a href="https://www.minenergia.gov.co/es/misional/energia-electrica-2/reglamentos-tecnicos/reglamento-tecnico-de-iluminacion-y-alumbrado-publico-retilap/" target="_blank">https://www.minenergia.gov.co/es/misional/energia-electrica-2/reglamentos-tecnicos/reglamento-tecnico-de-iluminacion-y-alumbrado-publico-retilap/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">5</div>
+      <div class="ref-content">
+        <div class="ref-title">Resolución CREG 015 de 2018 — Distribución y Acceso a Redes</div>
+        <div class="ref-desc">Comisión de Regulación de Energía y Gas. Define condiciones de acceso a redes de distribución para cargas especiales como electrolineras. Relevante para la conexión en media tensión con EMCALI.</div>
+        <div class="ref-link"><a href="https://www.creg.gov.co/phocadownload/Publicaciones/Publicaciones2018/Res015-2018.pdf" target="_blank">https://www.creg.gov.co/phocadownload/Publicaciones/Publicaciones2018/Res015-2018.pdf</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">6</div>
+      <div class="ref-content">
+        <div class="ref-title">NTC 2050 — Código Eléctrico Colombiano</div>
+        <div class="ref-desc">ICONTEC. Equivalente al NEC americano adaptado para Colombia. Artículo 625 específico para equipos de carga de vehículos eléctricos: acometidas, protecciones, interruptores diferenciales Tipo B para circuitos DC.</div>
+        <div class="ref-link"><a href="https://www.icontec.org/normas-tecnicas/ntc-2050/" target="_blank">https://www.icontec.org/normas-tecnicas/ntc-2050/</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: ESTÁNDARES INTERNACIONALES -->
+  <div class="section">
+    <h2>Estándares Técnicos Internacionales <span class="tag tag-tech">Técnico</span></h2>
+
+    <div class="ref-item">
+      <div class="ref-num">7</div>
+      <div class="ref-content">
+        <div class="ref-title">IEC 61851-1:2017 — Sistemas de Carga Conductiva para VE</div>
+        <div class="ref-desc">International Electrotechnical Commission. Estándar global para infraestructura de carga conductiva. Define modos de carga (Modo 4 = DC rápida), requisitos de seguridad, protocolos de comunicación básica. El equipo YXD 80kW cumple este estándar.</div>
+        <div class="ref-link"><a href="https://webstore.iec.ch/publication/33644" target="_blank">https://webstore.iec.ch/publication/33644</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">8</div>
+      <div class="ref-content">
+        <div class="ref-title">IEC 62196-3 — Conectores para Carga DC (CCS2)</div>
+        <div class="ref-desc">Define el estándar Combined Charging System (CCS) Tipo 2. CCS2 es el conector mandatorio para carga DC pública en Colombia según RETIE y recomendación MinEnergía. Compatible con vehículos europeos y la mayoría de modelos en Colombia.</div>
+        <div class="ref-link"><a href="https://webstore.iec.ch/publication/68483" target="_blank">https://webstore.iec.ch/publication/68483</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">9</div>
+      <div class="ref-content">
+        <div class="ref-title">OCPP 1.6J — Open Charge Point Protocol</div>
+        <div class="ref-desc">Open Charge Alliance. Protocolo de comunicación estándar entre cargadores y sistemas de gestión (CSMS/backend). Versión 1.6J es la mínima requerida por la plataforma CárgaME (Resolución 40123/2024). Permite monitoreo remoto, facturación y telemetría en tiempo real.</div>
+        <div class="ref-link"><a href="https://www.openchargealliance.org/protocols/ocpp-16/" target="_blank">https://www.openchargealliance.org/protocols/ocpp-16/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">10</div>
+      <div class="ref-content">
+        <div class="ref-title">ISO 15118 — Comunicación Vehículo-Infraestructura (V2G)</div>
+        <div class="ref-desc">Estándar para comunicación bidireccional entre vehículo eléctrico y cargador. Habilita Plug &amp; Charge (autenticación automática) y Vehicle-to-Grid. Relevante para evolución futura del proyecto hacia servicios premium.</div>
+        <div class="ref-link"><a href="https://www.iso.org/standard/69113.html" target="_blank">https://www.iso.org/standard/69113.html</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">11</div>
+      <div class="ref-content">
+        <div class="ref-title">IEC 62955:2018 — Interruptor Diferencial Tipo B (RCD Tipo B)</div>
+        <div class="ref-desc">Estándar que define los requisitos del diferencial Tipo B, capaz de detectar corrientes de falta DC además de AC. Obligatorio en circuitos de carga DC rápida según NTC 2050 Art. 625 y buenas prácticas RETIE.</div>
+        <div class="ref-link"><a href="https://webstore.iec.ch/publication/29168" target="_blank">https://webstore.iec.ch/publication/29168</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: MERCADO Y OPERADORES -->
+  <div class="section">
+    <h2>Mercado Colombiano y Operadores de Referencia <span class="tag tag-market">Mercado</span></h2>
+
+    <div class="ref-item">
+      <div class="ref-num">12</div>
+      <div class="ref-content">
+        <div class="ref-title">Terpel Mueve — Red de Carga Eléctrica</div>
+        <div class="ref-desc">Operador líder en Colombia. Referencia de precio de mercado: ~$1,750 COP/kWh para carga DC rápida (2024-2025). Presente en estaciones de servicio en principales ciudades.</div>
+        <div class="ref-link"><a href="https://www.terpel.com/mueve/" target="_blank">https://www.terpel.com/mueve/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">13</div>
+      <div class="ref-content">
+        <div class="ref-title">Enel X Way Colombia</div>
+        <div class="ref-desc">Operador internacional con presencia en Colombia. Referencia de precio: ~$1,690 COP/kWh para DC rápida. Modelo de negocio por suscripción y por uso. Referencia para benchmarking de tarifas y servicios.</div>
+        <div class="ref-link"><a href="https://www.enelxway.com/co/es/" target="_blank">https://www.enelxway.com/co/es/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">14</div>
+      <div class="ref-content">
+        <div class="ref-title">Plataforma CárgaME — MinEnergía Colombia</div>
+        <div class="ref-desc">Plataforma nacional obligatoria de registro y monitoreo de infraestructura de carga pública. Registro requerido antes de operación comercial. Integración vía OCPP 1.6J.</div>
+        <div class="ref-link"><a href="https://www.minenergia.gov.co/es/misional/energia-electrica-2/vehiculos-electricos/cargame/" target="_blank">https://www.minenergia.gov.co/es/misional/energia-electrica-2/vehiculos-electricos/cargame/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">15</div>
+      <div class="ref-content">
+        <div class="ref-title">EMCALI — Empresas Municipales de Cali</div>
+        <div class="ref-desc">Operador de red eléctrica en Cali. Referencia para costo de energía industrial en media tensión: ~$450–550 COP/kWh (tarifa industrial MT, 2024). Trámites de conexión MT: solicitud de factibilidad, diseño de acometida, aprobación RETIE.</div>
+        <div class="ref-link"><a href="https://www.emcali.com.co/web/energia-electrica" target="_blank">https://www.emcali.com.co/web/energia-electrica</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">16</div>
+      <div class="ref-content">
+        <div class="ref-title">ANDEMOS — Asociación Nacional de Movilidad Sostenible</div>
+        <div class="ref-desc">Datos de ventas de vehículos eléctricos en Colombia. Referencia para proyección de demanda: crecimiento anual ~40% en vehículos eléctricos (2023-2024). Estadísticas de flota eléctrica por ciudad.</div>
+        <div class="ref-link"><a href="https://andemos.org/estadisticas/" target="_blank">https://andemos.org/estadisticas/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">17</div>
+      <div class="ref-content">
+        <div class="ref-title">Vehículo Colombia — Informe Sector Automotor</div>
+        <div class="ref-desc">Estadísticas de matriculaciones de vehículos eléctricos en Colombia por año y ciudad. Dato clave: Cali es la segunda ciudad con mayor crecimiento en VE después de Bogotá (2024).</div>
+        <div class="ref-link"><a href="https://www.vehiculoscolombia.com/" target="_blank">https://www.vehiculoscolombia.com/</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: EQUIPOS Y FABRICANTES -->
+  <div class="section">
+    <h2>Especificaciones de Equipos <span class="tag tag-equip">Equipos</span></h2>
+
+    <div class="ref-item">
+      <div class="ref-num">18</div>
+      <div class="ref-content">
+        <div class="ref-title">YXD 80kW DC Fast Charger — Ficha Técnica</div>
+        <div class="ref-desc">Fabricante chino YXD. Modelo analizado en detalle para el piloto. Especificaciones clave: entrada 380Vac ±15%, 50Hz/60Hz ✓, salida 200-1000Vdc 200A, CCS2 Dual, OCPP 1.6J, IEC 61851-1/2017, IP54, -20~50°C, eficiencia 97%, 335kg. Compatible con Colombia (60Hz confirmado).</div>
+        <div class="ref-link"><a href="https://yxd-charger.com/product/80kw-dc-fast-charger/" target="_blank">https://yxd-charger.com/product/80kw-dc-fast-charger/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">19</div>
+      <div class="ref-content">
+        <div class="ref-title">Especificaciones Transformadores Seco Encapsulado 200 kVA (MT)</div>
+        <div class="ref-desc">Referencia de mercado para transformadores de media tensión 13.2kV/380V encapsulados en resina epóxica. Proveedores colombianos: ABB, Schneider Electric Colombia, Siemens. Rango de precio: $80–120M COP (200 kVA, incluye celda de protección). Requerido para CADA punto de carga según diseño del proyecto.</div>
+        <div class="ref-link"><a href="https://www.abb.com/transformers/co" target="_blank">https://www.abb.com/transformers/co</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">20</div>
+      <div class="ref-content">
+        <div class="ref-title">Schneider Electric — Celdas MT y Cuadros de Baja Tensión</div>
+        <div class="ref-desc">Referencia para celdas de media tensión RM6/SM6 y tableros de distribución BT con diferencial Tipo B. Presencia en Colombia con soporte técnico local. Relevante para diseño de la subestación de la electrolinera.</div>
+        <div class="ref-link"><a href="https://www.se.com/co/es/product-subcategory/2750-medium-voltage-switchgear/" target="_blank">https://www.se.com/co/es/product-subcategory/2750-medium-voltage-switchgear/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">21</div>
+      <div class="ref-content">
+        <div class="ref-title">Legrand / Bticino — Interruptores Diferenciales Tipo B</div>
+        <div class="ref-desc">Referencia para diferenciales Tipo B 63A/300mA requeridos en circuitos de carga DC. Diferencial Tipo B detecta corrientes de falta DC + AC, a diferencia del Tipo A (solo AC). Obligatorio para carga DC rápida según NTC 2050. Precio referencia: $800K–1.2M COP/unidad.</div>
+        <div class="ref-link"><a href="https://www.legrand.com.co/catalogo/proteccion-diferencial" target="_blank">https://www.legrand.com.co/catalogo/proteccion-diferencial</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5: MODELOS DE NEGOCIO -->
+  <div class="section">
+    <h2>Modelos de Negocio y Financiamiento <span class="tag tag-market">Negocio</span></h2>
+
+    <div class="ref-item">
+      <div class="ref-num">22</div>
+      <div class="ref-content">
+        <div class="ref-title">Power Purchase Agreement (PPA) — Modelo para Electrolineras</div>
+        <div class="ref-desc">Estructura contractual donde el operador instala y mantiene la infraestructura, y el propietario del predio recibe un porcentaje del ingreso. Modelo identificado como preferido por los inversionistas del proyecto (reunión 24/04). Ventaja: no requiere capex del propietario del predio.</div>
+        <div class="ref-link"><a href="https://www.iea.org/reports/global-ev-outlook-2024" target="_blank">https://www.iea.org/reports/global-ev-outlook-2024</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">23</div>
+      <div class="ref-content">
+        <div class="ref-title">IEA Global EV Outlook 2024 — Infraestructura de Carga</div>
+        <div class="ref-desc">International Energy Agency. Referencia global sobre utilización de cargadores DC fast (~20-35% en mercados maduros), tiempos de retorno de inversión (3-5 años), y modelos de negocio emergentes. Benchmarks para el modelo financiero del proyecto.</div>
+        <div class="ref-link"><a href="https://www.iea.org/reports/global-ev-outlook-2024" target="_blank">https://www.iea.org/reports/global-ev-outlook-2024</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">24</div>
+      <div class="ref-content">
+        <div class="ref-title">DIAN — Beneficios Tributarios Ley 1964/2019</div>
+        <div class="ref-desc">Dirección de Impuestos y Aduanas Nacionales. Concepto oficial sobre aplicación de IVA 0% y deducción del 50% en renta para inversión en infraestructura de carga pública (Ley 1964, Art. 3 y concordantes). Concepto DIAN 21362 de 2020.</div>
+        <div class="ref-link"><a href="https://www.dian.gov.co/normatividad/Conceptos%20Generales/21362.pdf" target="_blank">https://www.dian.gov.co/normatividad/Conceptos%20Generales/21362.pdf</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">25</div>
+      <div class="ref-content">
+        <div class="ref-title">Bloomberg NEF — Costos Cargadores DC Fast Charging (2024)</div>
+        <div class="ref-desc">Referencia para benchmarking de costos de equipos a nivel global. Precio promedio cargador DC 50-150 kW en mercado asiático: USD 8,000–25,000 por unidad (sin instalación). Referencia para validar cotizaciones de equipos chinos.</div>
+        <div class="ref-link"><a href="https://about.bnef.com/electric-vehicle-outlook/" target="_blank">https://about.bnef.com/electric-vehicle-outlook/</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6: GOBIERNO Y TRÁMITES -->
+  <div class="section">
+    <h2>Entidades Gubernamentales y Trámites <span class="tag tag-gov">Gobierno</span></h2>
+
+    <div class="ref-item">
+      <div class="ref-num">26</div>
+      <div class="ref-content">
+        <div class="ref-title">MinEnergía — Vehículos Eléctricos e Infraestructura de Carga</div>
+        <div class="ref-desc">Ministerio de Minas y Energía. Portal oficial con normativa vigente, resoluciones, y plataforma CárgaME. Punto de contacto para registro de operadores de carga pública.</div>
+        <div class="ref-link"><a href="https://www.minenergia.gov.co/es/misional/energia-electrica-2/vehiculos-electricos/" target="_blank">https://www.minenergia.gov.co/es/misional/energia-electrica-2/vehiculos-electricos/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">27</div>
+      <div class="ref-content">
+        <div class="ref-title">ONAC — Organismo Nacional de Acreditación de Colombia</div>
+        <div class="ref-desc">Entidad que acredita laboratorios y organismos de certificación para RETIE. Para la certificación de producto del cargador importado, se requiere un laboratorio acreditado por ONAC que valide el cumplimiento del equipo con RETIE.</div>
+        <div class="ref-link"><a href="https://onac.org.co/" target="_blank">https://onac.org.co/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">28</div>
+      <div class="ref-content">
+        <div class="ref-title">ICONTEC — Instituto Colombiano de Normas Técnicas</div>
+        <div class="ref-desc">Organismo nacional de normalización. Emite las NTC (Normas Técnicas Colombianas) que complementan el RETIE. NTC 2050 (Código Eléctrico) es la principal referencia para instalaciones de carga VE. También ofrece servicios de certificación de producto.</div>
+        <div class="ref-link"><a href="https://www.icontec.org/" target="_blank">https://www.icontec.org/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">29</div>
+      <div class="ref-content">
+        <div class="ref-title">Alcaldía de Santiago de Cali — Licencias de Construcción</div>
+        <div class="ref-desc">Trámites para construcción de infraestructura eléctrica en Cali. Licencia de construcción requerida para obras civiles de la electrolinera (cimentación de cargadores, canalizaciones, caseta de transformador). Tiempo estimado: 4-8 semanas.</div>
+        <div class="ref-link"><a href="https://www.cali.gov.co/planeacion/publicaciones/143823/tramites-licencias-urbanismo/" target="_blank">https://www.cali.gov.co/planeacion/publicaciones/143823/tramites-licencias-urbanismo/</a></div>
+      </div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-num">30</div>
+      <div class="ref-content">
+        <div class="ref-title">Superintendencia de Industria y Comercio (SIC) — Metrología Legal</div>
+        <div class="ref-desc">Regula los requisitos de medición para facturación de energía en servicios públicos. Los medidores de energía de la electrolinera deben estar calibrados y aprobados por metrología legal para facturación comercial al usuario final.</div>
+        <div class="ref-link"><a href="https://www.sic.gov.co/metrologia-legal" target="_blank">https://www.sic.gov.co/metrologia-legal</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTA METODOLÓGICA -->
+  <div class="section">
+    <h2>Nota Metodológica</h2>
+    <p style="color:#555; font-size:0.9rem; line-height:1.7;">
+      Las referencias aquí listadas fueron consultadas durante la elaboración del análisis técnico-normativo del proyecto Electrolinera DC Fast Charging para la ciudad de Cali, Colombia (2025). Los documentos fuente del proyecto incluyen la ficha técnica YXD 80kW, el análisis técnico elaborado con Gemini AI, y la transcripción de la reunión técnica del 24 de abril de 2025 con el equipo INCOSERTEC.<br><br>
+      Los precios de referencia (energía, equipos, servicios) corresponden a valores de mercado colombiano del primer semestre 2025 y pueden variar. Se recomienda actualizar cotizaciones antes de la toma de decisión de inversión.<br><br>
+      <strong>Links marcados como referencia pueden requerir registro o suscripción para acceso completo.</strong> En caso de indisponibilidad, contactar directamente a las entidades gubernamentales colombianas o usar el portal <a href="https://www.funcionpublica.gov.co/" target="_blank">funcionpublica.gov.co</a> para normativa oficial.
+    </p>
+  </div>
+</div>
+
+<footer>
+  <p>Proyecto Electrolinera DC Fast Charging — Cali, Colombia</p>
+  <p>Elaborado por <strong>Ing. Victor Manuel Mina</strong> para <strong>INCOSERTEC S.A.S.</strong></p>
+  <p><a href="https://manuelmina.com" target="_blank">manuelmina.com</a> &nbsp;|&nbsp; 2025</p>
+</footer>
+</body>
+</html>
