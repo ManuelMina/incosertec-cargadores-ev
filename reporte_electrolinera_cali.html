@@ -230,7 +230,7 @@
   <div class="hero-inner">
     <div class="badge">⚡ Informe Ejecutivo – Versión 1.0</div>
     <h1>Viabilidad de <span>Electrolineras DC</span><br>en Cali, Colombia</h1>
-    <p class="lead">Análisis técnico, normativo, financiero y de ejecución para la implementación de estaciones de carga rápida de 60–160 kW en Cali. Elaborado para inversionistas y equipo técnico de INCOSERTEC / IMPOSORTEC.</p>
+    <p class="lead">Análisis técnico, normativo, financiero y de ejecución para la implementación de estaciones de carga rápida de 60–160 kW en Cali. Elaborado para el equipo técnico de <strong>INCOSERTEC S.A.S.</strong> por <strong>Ing. Victor Manuel Mina</strong>.</p>
     <div class="hero-meta">
       <span><strong>Fecha:</strong> Mayo 2025</span>
       <span><strong>Ciudad piloto:</strong> Cali – Valle del Cauca</span>
@@ -513,7 +513,7 @@
             <strong>Estructura jurídica</strong>
             <ul class="flow-step-list">
               <li>Constituir SAS o formalizar sociedad</li>
-              <li>Definir % participación inversionistas vs IMPOSORTEC</li>
+              <li>Definir % participación entre socios e INCOSERTEC</li>
               <li>Contrato de operación y garantías</li>
             </ul>
           </div>
@@ -771,45 +771,48 @@
   <div class="section-title">5. Infraestructura Eléctrica Requerida</div>
   <p class="section-sub">Análisis técnico de conexión eléctrica para cada nivel de potencia en Cali – EMCALI</p>
 
+  <div class="alert alert-info" style="margin-bottom:16px">
+    <strong>📌 Decisión técnica de INCOSERTEC:</strong> Todos los puntos de carga, independiente de la potencia, operarán con <strong>transformador nuevo dedicado y conexión en media tensión (MT)</strong>. No se compartirán transformadores existentes ni se usará conexión en baja tensión. Esto garantiza calidad de energía, escalabilidad, cumplimiento RETIE y autonomía operativa en cada punto.
+  </div>
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
           <th>Potencia</th>
           <th>Corriente trifásica @380V</th>
-          <th>Tipo conexión requerida</th>
-          <th>Infraestructura necesaria</th>
-          <th>Costo estimado infraest.</th>
+          <th>Transformador dedicado requerido</th>
+          <th>Infraestructura de MT necesaria</th>
+          <th>Costo estimado infraest. MT</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><strong>60 kW</strong></td>
           <td>~92 A trifásico</td>
-          <td><span class="tag tag-ok">Baja Tensión (BT)</span></td>
-          <td>Transformador ≥100 kVA disponible, tablero, protecciones</td>
-          <td>$15–30M COP</td>
+          <td>100 kVA (margen 40%)</td>
+          <td>Celda MT + Trafo 100 kVA + tablero BT + protecciones</td>
+          <td>$35–55M COP</td>
         </tr>
         <tr>
           <td><strong>80 kW</strong></td>
           <td>~123 A trifásico</td>
-          <td><span class="tag tag-ok">BT (si transf. disponible)</span></td>
-          <td>Verificar capacidad transf. existente. Si no: nuevo transf. 150 kVA</td>
-          <td>$20–45M COP</td>
+          <td>150 kVA (margen 40%)</td>
+          <td>Celda MT + Trafo 150 kVA + tablero BT + protecciones</td>
+          <td>$45–65M COP</td>
         </tr>
         <tr>
           <td><strong>120 kW</strong></td>
           <td>~185 A trifásico</td>
-          <td><span class="tag tag-warn">BT o MT (según zona)</span></td>
-          <td>Transformador nuevo 200 kVA. EMCALI puede exigir MT</td>
-          <td>$40–80M COP</td>
+          <td>200 kVA (margen 30%)</td>
+          <td>Celda MT + Trafo 200 kVA + tablero BT + protecciones</td>
+          <td>$60–85M COP</td>
         </tr>
         <tr>
           <td><strong>160 kW</strong></td>
           <td>~246 A trifásico</td>
-          <td><span class="tag tag-fail">Media Tensión (MT)</span></td>
-          <td>Celda MT + Transformador 250 kVA + Subestación. Ingeniería MT</td>
-          <td>$70–120M COP</td>
+          <td>250–315 kVA (margen 30%)</td>
+          <td>Celda MT + Trafo 315 kVA + tablero BT + protecciones</td>
+          <td>$80–120M COP</td>
         </tr>
       </tbody>
     </table>
@@ -941,7 +944,7 @@
         <tr><td><strong>TOTAL</strong></td><td><strong>$146M</strong></td><td><strong>$258M</strong></td><td><strong>Media: ~$200M COP</strong></td></tr>
       </table>
     </div>
-    <span class="sup-note">* Si se opta por el YXD 80kW en BT (sin media tensión), la inversión puede reducirse a $100–150M COP con menor ROI por menor facturación.</span>
+    <span class="sup-note">* Todos los puntos usan transformador dedicado en MT. La diferencia entre modelos está en el tamaño del equipo y el transformador requerido.</span>
   </div>
 
   <div class="card">
@@ -949,9 +952,9 @@
     <div class="table-wrap" style="margin-bottom:0">
       <table>
         <tr><th>Aspecto</th><th>Modelo PPA (recomendado)</th><th>Modelo EPC (venta directa)</th></tr>
-        <tr><td>Inversión inicial</td><td>IMPOSORTEC/inversionistas ponen capital</td><td>Cliente paga el equipo + instalación</td></tr>
+        <tr><td>Inversión inicial</td><td>Inversión estructurada entre socios – INCOSERTEC lidera la operación</td><td>Cliente paga el equipo + instalación</td></tr>
         <tr><td>Flujo de caja</td><td>Renta mensual recurrente (estable)</td><td>Un solo pago (alta, pero única)</td></tr>
-        <tr><td>Riesgo operativo</td><td>IMPOSORTEC asume operación y mantenimiento</td><td>Cliente asume operación</td></tr>
+        <tr><td>Riesgo operativo</td><td>INCOSERTEC asume operación y mantenimiento</td><td>Cliente asume operación</td></tr>
         <tr><td>Escalabilidad</td><td>Alta – réplica en múltiples puntos</td><td>Media – depende de ventas</td></tr>
         <tr><td>Retorno</td><td>Largo plazo, predecible</td><td>Corto plazo, variable</td></tr>
         <tr><td>Retención de cliente</td><td>Alta – contrato plurianual</td><td>Baja – una vez vendido, se fue</td></tr>
@@ -964,10 +967,192 @@
 
 
 <!-- ══════════════════════════════════
+     6.2 PRESUPUESTO DETALLADO POR PARTIDA
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">6.2 Presupuesto Detallado por Partida</div>
+  <p class="section-sub">Desglose real de inversión para un punto de carga con transformador dedicado y conexión en media tensión. Valores en COP, estimados de mercado Cali 2025 — deben cotizarse con proveedores locales antes de presentar propuesta final.</p>
+
+  <div class="alert alert-info">
+    <strong>ℹ️ Nota sobre el análisis del mensaje recibido:</strong> Se identificó una estructura de costos base de ~$60M COP (equipo $24M + nacionalización $6M + transformador $15M + instalación $5M + materiales $15M). Este desglose amplía y profesionaliza esa base, separando cada partida para presentarla a los socios inversores con mayor precisión.
+  </div>
+
+  <!-- TABLA PILOTO 80kW -->
+  <div class="card">
+    <div class="card-title">Opción A – Piloto YXD 80 kW con MT Dedicada (Escenario de menor riesgo)</div>
+    <div class="table-wrap" style="margin-bottom:0">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">PARTIDA</th>
+            <th>Mínimo</th>
+            <th>Máximo</th>
+            <th>Referencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">① EQUIPO E IMPORTACIÓN</td></tr>
+          <tr><td></td><td>Cargador 80kW YXD (precio FOB China)</td><td>$28M</td><td>$45M</td><td>USD $7.000–11.000 × ~$4.100</td></tr>
+          <tr><td></td><td>Flete marítimo + seguro (China → Buenaventura)</td><td>$2M</td><td>$4M</td><td>Aprox. 30–45 días tránsito</td></tr>
+          <tr><td></td><td>Agente de aduana + trámites DIAN</td><td>$1.5M</td><td>$3M</td><td>Arancel 0% – solo servicios</td></tr>
+          <tr><td></td><td>Transporte interno Buenaventura → Cali</td><td>$0.5M</td><td>$1M</td><td>~150 km, carga pesada</td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Equipo e Importación</td><td>$32M</td><td>$53M</td><td></td></tr>
+
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">② INFRAESTRUCTURA MEDIA TENSIÓN (MT)</td></tr>
+          <tr><td></td><td>Celda de media tensión (acometida + protección + maniobra)</td><td>$12M</td><td>$20M</td><td>Celda prefabricada 11–13.2kV</td></tr>
+          <tr><td></td><td>Transformador seco 150 kVA 13.2kV/380V (dedicado)</td><td>$15M</td><td>$25M</td><td>Marca ABB, Schneider o similar</td></tr>
+          <tr><td></td><td>Obra civil caseta / cuarto de subestación</td><td>$5M</td><td>$12M</td><td>Estructura metálica o mampostería</td></tr>
+          <tr><td></td><td>Puesta a tierra MT (malla, varillas, cable Cu desnudo)</td><td>$3M</td><td>$6M</td><td>Normativa NTC 2050 / RETIE</td></tr>
+          <tr><td></td><td>Acometida MT desde red EMCALI hasta celda</td><td>$4M</td><td>$10M</td><td>Depende distancia poste/canalización</td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Media Tensión</td><td>$39M</td><td>$73M</td><td></td></tr>
+
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">③ INSTALACIÓN ELÉCTRICA BT (transformador → cargador)</td></tr>
+          <tr><td></td><td>Tablero de distribución principal BT (con protecciones)</td><td>$3M</td><td>$6M</td><td>Incluye breakers, diferencial Tipo B</td></tr>
+          <tr><td></td><td>Cableado BT (Cu THW calibre según corriente, ductos)</td><td>$2M</td><td>$5M</td><td>Aprox. 15–30 ml desde trafo al cargador</td></tr>
+          <tr><td></td><td>Diferencial Tipo B (obligatorio para DC)</td><td>$1.5M</td><td>$3M</td><td>Hager, ABB o Schneider – uso DC</td></tr>
+          <tr><td></td><td>Puesta a tierra BT independiente del cargador</td><td>$1M</td><td>$2M</td><td>TN-S según RETIE</td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Instalación Eléctrica BT</td><td>$7.5M</td><td>$16M</td><td></td></tr>
+
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">④ OBRAS CIVILES Y ADECUACIÓN DEL SITIO</td></tr>
+          <tr><td></td><td>Adecuación piso / base del cargador (concreto reforzado)</td><td>$1.5M</td><td>$3M</td><td>Losa para equipo de 335 kg</td></tr>
+          <tr><td></td><td>Señalización vertical y horizontal (normativa)</td><td>$0.5M</td><td>$1.5M</td><td>Demarcación, avisos, pictogramas</td></tr>
+          <tr><td></td><td>Cubierta/marquesina para el cargador</td><td>$2M</td><td>$5M</td><td>Protección lluvia – recomendado en Cali</td></tr>
+          <tr><td></td><td>Cerramiento / seguridad del punto</td><td>$1M</td><td>$3M</td><td>Depende del sitio</td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Obras Civiles</td><td>$5M</td><td>$12.5M</td><td></td></tr>
+
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">⑤ MANO DE OBRA ESPECIALIZADA</td></tr>
+          <tr><td></td><td>Ingeniero eléctrico matriculado (diseño + supervisión)</td><td>$3M</td><td>$6M</td><td>Incluye memorias, planos, aval RETIE</td></tr>
+          <tr><td></td><td>Técnicos instaladores MT (personal certificado)</td><td>$3M</td><td>$7M</td><td>Mín. 2 técnicos con licencia MT</td></tr>
+          <tr><td></td><td>Técnicos instaladores BT (eléctricos certificados)</td><td>$2M</td><td>$4M</td><td>Instalación tablero, cableado, cargador</td></tr>
+          <tr><td></td><td>Gestor de trámites (EMCALI, Planeación, RETIE)</td><td>$1.5M</td><td>$3M</td><td>Puede ser interno INCOSERTEC</td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Mano de Obra</td><td>$9.5M</td><td>$20M</td><td></td></tr>
+
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">⑥ CERTIFICACIONES Y TRÁMITES LEGALES</td></tr>
+          <tr><td></td><td>Certificado RETIE Producto (organismo acreditado ONAC)</td><td>$3M</td><td>$8M</td><td>CIDET, ODIR, Bureau Veritas</td></tr>
+          <tr><td></td><td>Certificado RETIE Instalación (inspector matriculado)</td><td>$2M</td><td>$5M</td><td>Inspección obra completa post-instalación</td></tr>
+          <tr><td></td><td>Trámites EMCALI (viabilidad, diseño, energización)</td><td>$0.5M</td><td>$2M</td><td>Tasas y tiempos con EMCALI</td></tr>
+          <tr><td></td><td>Licencia uso del suelo – Planeación Municipal Cali</td><td>$0.5M</td><td>$2M</td><td>Trámite ante Curaduría o Planeación</td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Certificaciones</td><td>$6M</td><td>$17M</td><td></td></tr>
+
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">⑦ SOFTWARE, CONECTIVIDAD Y SISTEMA DE PAGO</td></tr>
+          <tr><td></td><td>Plataforma OCPP / backend de gestión (licencia anual)</td><td>$1.5M</td><td>$4M</td><td>EV.energy, ChargePoint Cloud u otros</td></tr>
+          <tr><td></td><td>App usuario / RFID / QR (configuración y desarrollo)</td><td>$1M</td><td>$3M</td><td>Integración con sistema del fabricante</td></tr>
+          <tr><td></td><td>Pasarela de pagos (Wompi, PSE, tarjeta)</td><td>$0.5M</td><td>$1.5M</td><td>Integración inicial + configuración</td></tr>
+          <tr><td></td><td>SIM 4G + conectividad primer año</td><td>$0.5M</td><td>$1M</td><td>~$40–80k/mes plan datos industrial</td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Software y Conectividad</td><td>$3.5M</td><td>$9.5M</td><td></td></tr>
+
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">⑧ CAPITAL DE TRABAJO (reserva 3 meses operación)</td></tr>
+          <tr><td></td><td>Reserva para gastos operativos antes de flujo positivo</td><td>$8M</td><td>$15M</td><td>Arriendo sitio, personal, servicios</td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Capital de Trabajo</td><td>$8M</td><td>$15M</td><td></td></tr>
+
+          <tr style="background:var(--primary); color:#fff">
+            <td colspan="2"><strong>INVERSIÓN TOTAL ESTIMADA – PILOTO 80kW CON MT</strong></td>
+            <td><strong>$110.5M</strong></td>
+            <td><strong>$216M</strong></td>
+            <td><strong>Media: ~$160M COP</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="sup-note">* Todos los valores incluyen IVA donde aplica. El rango refleja variación por proveedor, ubicación del sitio y condiciones de EMCALI. Se recomienda cotizar los ítems de MT con mínimo 2 proveedores locales certificados.</span>
+  </div>
+
+  <!-- TABLA 160kW -->
+  <div class="card">
+    <div class="card-title">Opción B – Piloto AF 160 kW con MT Dedicada (Mayor impacto comercial)</div>
+    <div class="table-wrap" style="margin-bottom:0">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">PARTIDA</th>
+            <th>Mínimo</th>
+            <th>Máximo</th>
+            <th>Referencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">① EQUIPO E IMPORTACIÓN</td></tr>
+          <tr><td></td><td>Cargador 160kW AF (precio FOB China)</td><td>$55M</td><td>$100M</td><td>USD $13.000–25.000 × ~$4.100</td></tr>
+          <tr><td></td><td>Flete marítimo + seguro</td><td>$2.5M</td><td>$5M</td><td></td></tr>
+          <tr><td></td><td>Agente de aduana + trámites DIAN</td><td>$2M</td><td>$4M</td><td></td></tr>
+          <tr><td></td><td>Transporte interno</td><td>$1M</td><td>$2M</td><td></td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Equipo e Importación</td><td>$60.5M</td><td>$111M</td><td></td></tr>
+
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">② INFRAESTRUCTURA MEDIA TENSIÓN (MT)</td></tr>
+          <tr><td></td><td>Celda de media tensión</td><td>$15M</td><td>$25M</td><td></td></tr>
+          <tr><td></td><td>Transformador seco 315 kVA 13.2kV/380V</td><td>$22M</td><td>$38M</td><td>Mayor kVA = mayor costo</td></tr>
+          <tr><td></td><td>Obra civil caseta subestación</td><td>$6M</td><td>$15M</td><td></td></tr>
+          <tr><td></td><td>Puesta a tierra MT + acometida EMCALI</td><td>$6M</td><td>$14M</td><td></td></tr>
+          <tr style="font-weight:700"><td colspan="2">Subtotal Media Tensión</td><td>$49M</td><td>$92M</td><td></td></tr>
+
+          <tr><td colspan="5" style="background:#f0f4f8; font-weight:700; color:var(--primary)">③ al ⑧ Instalación, Obras, MO, Certs, Software, Cap. Trabajo</td></tr>
+          <tr><td></td><td>Instalación eléctrica BT (tablero, cableado, protecciones)</td><td>$9M</td><td>$20M</td><td>Mayor corriente = mayor calibre de cable</td></tr>
+          <tr><td></td><td>Obras civiles (base, señalización, cubierta, cerramiento)</td><td>$6M</td><td>$15M</td><td></td></tr>
+          <tr><td></td><td>Mano de obra especializada (Ing + técnicos MT/BT + gestor)</td><td>$12M</td><td>$25M</td><td></td></tr>
+          <tr><td></td><td>Certificaciones y trámites (RETIE producto + instalación)</td><td>$7M</td><td>$18M</td><td></td></tr>
+          <tr><td></td><td>Software, conectividad y pasarela de pago</td><td>$4M</td><td>$10M</td><td></td></tr>
+          <tr><td></td><td>Capital de trabajo (3 meses)</td><td>$10M</td><td>$18M</td><td></td></tr>
+
+          <tr style="background:var(--primary); color:#fff">
+            <td colspan="2"><strong>INVERSIÓN TOTAL ESTIMADA – PILOTO 160kW CON MT</strong></td>
+            <td><strong>$157.5M</strong></td>
+            <td><strong>$309M</strong></td>
+            <td><strong>Media: ~$230M COP</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="border:2px solid var(--secondary)">
+    <div class="card-title" style="color:var(--primary)">📊 Resumen Comparativo – Piso de Inversión por Modelo</div>
+    <div class="table-wrap" style="margin-bottom:0">
+      <table>
+        <thead>
+          <tr>
+            <th>Modelo</th>
+            <th>Inversión mínima</th>
+            <th>Inversión media</th>
+            <th>Inversión máxima</th>
+            <th>ROI base (35% util.)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>80 kW (YXD) + MT</strong></td>
+            <td>$110M COP</td>
+            <td><span style="font-weight:700;color:var(--secondary)">$160M COP</span></td>
+            <td>$216M COP</td>
+            <td>~18–22 meses</td>
+          </tr>
+          <tr>
+            <td><strong>120 kW (AF) + MT</strong></td>
+            <td>$135M COP</td>
+            <td><span style="font-weight:700;color:var(--info)">$195M COP</span></td>
+            <td>$260M COP</td>
+            <td>~14–18 meses</td>
+          </tr>
+          <tr>
+            <td><strong>160 kW (AF) + MT</strong></td>
+            <td>$157M COP</td>
+            <td><span style="font-weight:700;color:var(--info)">$230M COP</span></td>
+            <td>$309M COP</td>
+            <td>~10–15 meses</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="sup-note">* El ROI mejora a mayor potencia porque se facturan más kWh en el mismo tiempo con costos fijos similares. El 160kW tiene mejor retorno a largo plazo si el sitio tiene suficiente demanda.</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
      7. ANÁLISIS DE RIESGOS
 ══════════════════════════════════ -->
 <section class="section">
   <div class="section-title">7. Matriz de Riesgos y Mitigaciones</div>
+
   <p class="section-sub">Clasificación por probabilidad e impacto de los riesgos identificados en el proyecto piloto</p>
 
   <div class="card">
@@ -993,8 +1178,8 @@
     <div class="risk-item">
       <div class="risk-badge risk-alto">ALTO</div>
       <div class="risk-body">
-        <div class="risk-title">EMCALI no tiene capacidad disponible en el transformador del punto piloto (14 Alfaguara)</div>
-        <div class="risk-desc">La zona sur de Cali es residencial de alto consumo. El transformador cercano puede estar al límite de capacidad. Para 160kW se requería conexión MT propia.</div>
+        <div class="risk-title">EMCALI no tiene capacidad disponible en el transformador del punto piloto seleccionado</div>
+        <div class="risk-desc">Las zonas de alto consumo en Cali pueden tener los transformadores existentes al límite de capacidad. Para 160kW se requeriría conexión en media tensión propia.</div>
         <div class="risk-mit">✔ Mitigación: Radicar solicitud de viabilidad técnica ante EMCALI en semana 1. Tener plan B: punto alternativo o reducir potencia a 80kW mientras se resuelve la MT. El estudio de EMCALI es gratuito.</div>
       </div>
     </div>
@@ -1069,7 +1254,7 @@
             <li>Decisión final: YXD 80kW vs AF 120/160kW según respuesta proveedor</li>
             <li>Firma del contrato de inversión (PPA / sociedad)</li>
             <li>Inicio trámite RETIE de producto con organismo acreditado</li>
-            <li>Negociación del sitio piloto (14 Alfaguara u otro)</li>
+            <li>Evaluación y negociación del sitio piloto (zona sur de Cali)</li>
             <li>Registro ante DIAN como prestador de servicio de carga</li>
           </ul>
         </div>
@@ -1151,7 +1336,7 @@
           <tr><td><strong>Enel X</strong></td><td>$1.690/kWh</td><td>Limitada</td></tr>
           <tr><td><strong>EMCALI</strong></td><td>No publicado</td><td>10 estaciones</td></tr>
           <tr><td><strong>Celsia</strong></td><td>No publicado</td><td>Sin presencia</td></tr>
-          <tr><td><strong>IMPOSORTEC</strong></td><td>$1.700/kWh <span class="tag tag-ok">propuesto</span></td><td>1er piloto</td></tr>
+          <tr><td><strong>INCOSERTEC</strong></td><td>$1.700/kWh <span class="tag tag-ok">propuesto</span></td><td>1er piloto</td></tr>
         </table>
       </div>
     </div>
@@ -1172,7 +1357,7 @@
 
   <div class="alert alert-success">
     <strong>💡 Ventana de oportunidad:</strong><br>
-    Cali tiene un déficit estructural de infraestructura de carga. El mercado crece a +115% anual y los operadores nacionales (Terpel, Enel X) están priorizando Bogotá y Medellín. IMPOSORTEC tiene la ventaja de <strong>pionero en carga rápida DC en el sur de Cali</strong>, con know-how local (100+ instalaciones residenciales) y alianza con capital extranjero. Esta ventaja dura aproximadamente <strong>6–12 meses</strong> antes de que llegue competencia significativa.
+    Cali tiene un déficit estructural de infraestructura de carga. El mercado crece a +115% anual y los operadores nacionales (Terpel, Enel X) están priorizando Bogotá y Medellín. INCOSERTEC tiene la ventaja de <strong>pionero en carga rápida DC en el sur de Cali</strong>, con know-how local (100+ instalaciones residenciales) y respaldo de inversión sólido. Esta ventaja dura aproximadamente <strong>6–12 meses</strong> antes de que llegue competencia significativa.
   </div>
 </section>
 
@@ -1195,8 +1380,8 @@
           <li>Cali con déficit severo de infraestructura de carga</li>
           <li>YXD 80kW ya cuenta con certificación IEC 61851-1/2017</li>
           <li>Modelo de negocio PPA validado (mercado lo conoce)</li>
-          <li>IMPOSORTEC tiene credibilidad técnica y track record local</li>
-          <li>Capital disponible del lado de los inversionistas</li>
+          <li>INCOSERTEC tiene credibilidad técnica y track record local (100+ instalaciones)</li>
+          <li>Inversión respaldada por socios con capital sólido y compromiso real</li>
         </ul>
       </div>
     </div>
@@ -1231,12 +1416,12 @@
       <div class="tl-item">
         <div class="tl-dot active">3</div>
         <div class="tl-title">Radicar estudio de carga ante EMCALI (Semana 1)</div>
-        <div class="tl-desc">Presentar la solicitud de viabilidad técnica con la potencia requerida y la dirección del punto piloto (14 Alfaguara). Determinar si hay capacidad para 80kW en BT o si se necesita MT para 160kW.</div>
+        <div class="tl-desc">Presentar la solicitud de viabilidad técnica con la potencia requerida y la dirección del punto piloto seleccionado. Todos los puntos operarán en media tensión con transformador dedicado.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot active">4</div>
         <div class="tl-title">Formalizar el acuerdo de inversión (Semanas 1–3)</div>
-        <div class="tl-desc">Constituir la sociedad o firmar el acuerdo de inversión entre IMPOSORTEC y los inversionistas. Definir exactamente el modelo PPA, la distribución de utilidades y el rol operativo de cada parte.</div>
+        <div class="tl-desc">Constituir la sociedad o firmar el acuerdo de inversión entre INCOSERTEC y los socios. Definir exactamente el modelo PPA, la distribución de utilidades y el rol operativo de cada parte.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot pending">5</div>
@@ -1254,12 +1439,13 @@
      FOOTER
 ══════════════════════════════════ -->
 <footer>
-  <strong>INCOSERTEC / IMPOSORTEC</strong> – Análisis Técnico y Viabilidad: Electrolineras DC en Cali, Colombia<br>
-  Elaborado con información de: Leyes colombianas (Ley 1964/2019, Res. 40117/2024, Res. 40123/2024, RETIE), fichas técnicas de proveedores YXD y AF, datos de mercado ANDEMOS 2025, precios Terpel Voltex y Enel X.<br>
+  <strong>INCOSERTEC S.A.S.</strong> – Análisis Técnico y Viabilidad: Electrolineras DC en Cali, Colombia<br>
+  Elaborado por <strong>Ing. Victor Manuel Mina</strong> · <a href="https://manuelmina.com" style="color:var(--secondary); text-decoration:none">manuelmina.com</a> · para <strong>INCOSERTEC S.A.S.</strong><br><br>
+  Fuentes: Leyes colombianas (Ley 1964/2019, Res. 40117/2024, Res. 40123/2024, RETIE 2024), fichas técnicas proveedores YXD y AF, datos ANDEMOS 2025, precios Terpel Voltex y Enel X.<br>
   <div class="disclaimer">
-    <strong>Aviso legal:</strong> Este reporte es un análisis técnico preliminar con fines de planificación. Los costos son estimaciones de mercado. Antes de ejecutar cualquier inversión, consulte con ingenieros eléctricos matriculados, asesores tributarios y organismos certificadores acreditados en Colombia. Las normativas pueden cambiar.
+    <strong>Aviso legal:</strong> Este reporte es un análisis técnico preliminar con fines de planificación. Los costos son estimaciones de mercado que deben validarse con proveedores reales. Antes de ejecutar cualquier inversión, consulte con ingenieros eléctricos matriculados, asesores tributarios y organismos certificadores acreditados en Colombia. Las normativas pueden cambiar.
   </div>
-  <div style="margin-top:16px; opacity:.5">Versión 1.0 · Mayo 2025 · Elaborado con Claude (Anthropic) para INCOSERTEC</div>
+  <div style="margin-top:16px; opacity:.5">Versión 1.1 · Mayo 2025 · INCOSERTEC S.A.S.</div>
 </footer>
 
 </body>
