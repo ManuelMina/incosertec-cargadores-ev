@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INCOSERTEC – Análisis Técnico y Viabilidad: Electrolineras Cali 2025</title>
+  <style>
+    :root {
+      --primary: #0d2137;
+      --secondary: #00c853;
+      --accent: #ff8f00;
+      --danger: #c62828;
+      --warning: #f9a825;
+      --info: #0277bd;
+      --light: #f0f4f8;
+      --card: #ffffff;
+      --text: #1c2a38;
+      --muted: #607d8b;
+      --border: #dde3ea;
+      --grad: linear-gradient(135deg, #0d2137 0%, #1a4a7a 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--light); color: var(--text); line-height: 1.65; }
+
+    /* ── HEADER ── */
+    .hero {
+      background: var(--grad);
+      color: #fff;
+      padding: 60px 40px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      background: rgba(0,200,83,.08);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -60px; left: -60px;
+      width: 240px; height: 240px;
+      background: rgba(0,200,83,.05);
+      border-radius: 50%;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .badge { display: inline-block; background: var(--secondary); color: #fff; font-size: .78rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+    .hero h1 span { color: var(--secondary); }
+    .hero p.lead { font-size: 1.1rem; color: rgba(255,255,255,.8); max-width: 700px; margin-bottom: 28px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 24px; font-size: .88rem; color: rgba(255,255,255,.65); }
+    .hero-meta strong { color: #fff; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 56px 0 36px; }
+    .section-title { font-size: 1.6rem; font-weight: 800; color: var(--primary); margin-bottom: 8px; padding-bottom: 12px; border-bottom: 3px solid var(--secondary); display: inline-block; }
+    .section-sub { color: var(--muted); font-size: .95rem; margin-bottom: 32px; margin-top: 8px; }
+
+    /* ── CARDS ── */
+    .card { background: var(--card); border-radius: 12px; padding: 28px 32px; box-shadow: 0 2px 16px rgba(13,33,55,.07); margin-bottom: 20px; border: 1px solid var(--border); }
+    .card-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+
+    /* ── ALERT BOXES ── */
+    .alert { border-radius: 10px; padding: 16px 20px; margin-bottom: 16px; font-size: .95rem; border-left: 5px solid; }
+    .alert-danger { background: #fff5f5; border-color: var(--danger); color: #7f1d1d; }
+    .alert-warning { background: #fffbeb; border-color: var(--warning); color: #78350f; }
+    .alert-success { background: #f0fdf4; border-color: var(--secondary); color: #14532d; }
+    .alert-info { background: #eff6ff; border-color: var(--info); color: #1e3a5f; }
+    .alert strong { font-weight: 700; }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 10px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    th { background: var(--primary); color: #fff; padding: 12px 16px; text-align: left; font-weight: 600; white-space: nowrap; }
+    td { padding: 11px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: .78rem; font-weight: 700; }
+    .tag-ok { background: #dcfce7; color: #166534; }
+    .tag-warn { background: #fef3c7; color: #92400e; }
+    .tag-fail { background: #fee2e2; color: #991b1b; }
+    .tag-info { background: #dbeafe; color: #1e40af; }
+
+    /* ── STAT BOXES ── */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .stat { background: var(--card); border-radius: 10px; padding: 22px 20px; text-align: center; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .stat-val { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1; }
+    .stat-label { font-size: .8rem; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: .05em; }
+    .stat-trend { font-size: .82rem; color: var(--secondary); font-weight: 600; margin-top: 4px; }
+
+    /* ── FLOWCHART ── */
+    .flow-wrap { overflow-x: auto; padding-bottom: 8px; }
+    .flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      align-items: center;
+      min-width: 700px;
+    }
+    .flow-phase {
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+      gap: 12px;
+      position: relative;
+    }
+    .flow-phase + .flow-phase::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -28px;
+      width: 3px;
+      height: 28px;
+      background: var(--secondary);
+      transform: translateX(-50%);
+    }
+    .flow-connector { height: 28px; width: 3px; background: var(--secondary); margin: 0 auto; }
+    .flow-node {
+      flex: 1;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: .88rem;
+      position: relative;
+    }
+    .flow-node.blocker { border-color: var(--danger); background: #fff5f5; }
+    .flow-node.warning { border-color: var(--warning); background: #fffbeb; }
+    .flow-node.ok { border-color: var(--secondary); background: #f0fdf4; }
+    .flow-label {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 1rem;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+    }
+    .flow-label.phase-1 { background: #0d2137; }
+    .flow-label.phase-2 { background: #1a4a7a; }
+    .flow-label.phase-3 { background: #0277bd; }
+    .flow-label.phase-4 { background: #00796b; }
+    .flow-label.phase-5 { background: #388e3c; }
+    .flow-step-list { margin-top: 8px; padding-left: 0; list-style: none; }
+    .flow-step-list li { padding: 3px 0 3px 18px; position: relative; font-size: .85rem; }
+    .flow-step-list li::before { content: '▸'; position: absolute; left: 0; color: var(--secondary); }
+    .flow-step-list li.blocker::before { color: var(--danger); }
+    .flow-step-list li.warn::before { color: var(--warning); }
+    .phase-icon { font-size: 1.4rem; margin-right: 8px; vertical-align: middle; }
+    .flow-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; width: 100%; }
+    .flow-row-2 { grid-template-columns: 1fr 1fr; }
+
+    /* ── FINANCIAL ── */
+    .scenario { border-radius: 10px; border: 2px solid var(--border); padding: 24px; margin-bottom: 16px; }
+    .scenario.base { border-color: var(--info); }
+    .scenario.optimistic { border-color: var(--secondary); }
+    .scenario.conservative { border-color: var(--warning); }
+    .scenario-name { font-weight: 700; font-size: 1rem; margin-bottom: 14px; }
+    .fin-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
+    .fin-row:last-child { border-bottom: none; font-weight: 700; font-size: 1rem; }
+    .fin-val { font-weight: 600; }
+    .fin-val.pos { color: var(--secondary); }
+    .fin-val.neg { color: var(--danger); }
+    .fin-val.primary { color: var(--primary); font-size: 1.1rem; }
+
+    /* ── RISK MATRIX ── */
+    .risk-item { display: flex; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .risk-item:last-child { border-bottom: none; }
+    .risk-badge { min-width: 72px; text-align: center; border-radius: 6px; padding: 4px 8px; font-size: .78rem; font-weight: 700; }
+    .risk-alto { background: #fee2e2; color: #991b1b; }
+    .risk-medio { background: #fef3c7; color: #92400e; }
+    .risk-bajo { background: #dcfce7; color: #166534; }
+    .risk-body { flex: 1; }
+    .risk-title { font-weight: 600; margin-bottom: 4px; }
+    .risk-desc { font-size: .87rem; color: var(--muted); }
+    .risk-mit { font-size: .85rem; margin-top: 4px; color: var(--info); }
+
+    /* ── ROADMAP ── */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .tl-item { position: relative; margin-bottom: 28px; }
+    .tl-dot { position: absolute; left: -36px; top: 4px; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .78rem; color: #fff; }
+    .tl-dot.done { background: var(--secondary); }
+    .tl-dot.active { background: var(--info); }
+    .tl-dot.pending { background: var(--muted); }
+    .tl-dot.critical { background: var(--danger); }
+    .tl-title { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+    .tl-period { font-size: .8rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+    .tl-desc { font-size: .88rem; color: var(--muted); }
+    .tl-items-list { margin-top: 6px; padding-left: 16px; }
+    .tl-items-list li { font-size: .85rem; margin-bottom: 3px; color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--primary); color: rgba(255,255,255,.6); text-align: center; padding: 32px 24px; font-size: .85rem; margin-top: 60px; }
+    footer strong { color: #fff; }
+    footer .disclaimer { max-width: 700px; margin: 12px auto 0; font-size: .8rem; }
+
+    /* ── PRINT / UTIL ── */
+    .no-print { }
+    .text-center { text-align: center; }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mb-0 { margin-bottom: 0; }
+    .fw-7 { font-weight: 700; }
+    .color-ok { color: #166534; }
+    .color-fail { color: #991b1b; }
+    .color-warn { color: #92400e; }
+    .sup-note { font-size: .75rem; color: var(--muted); font-style: italic; margin-top: 8px; display: block; }
+
+    @media(max-width:600px) {
+      .hero { padding: 36px 20px 32px; }
+      .section { padding: 36px 0 24px; }
+      .card { padding: 20px; }
+      .flow-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     HERO HEADER
+══════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge">⚡ Informe Ejecutivo – Versión 1.0</div>
+    <h1>Viabilidad de <span>Electrolineras DC</span><br>en Cali, Colombia</h1>
+    <p class="lead">Análisis técnico, normativo, financiero y de ejecución para la implementación de estaciones de carga rápida de 60–160 kW en Cali. Elaborado para inversionistas y equipo técnico de INCOSERTEC / IMPOSORTEC.</p>
+    <div class="hero-meta">
+      <span><strong>Fecha:</strong> Mayo 2025</span>
+      <span><strong>Ciudad piloto:</strong> Cali – Valle del Cauca</span>
+      <span><strong>Potencias evaluadas:</strong> 60 kW / 80 kW / 120 kW / 160 kW</span>
+      <span><strong>Modelos de negocio:</strong> PPA / EPC</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     1. RESUMEN EJECUTIVO
+══════════════════════════════════ -->
+<div class="container">
+<section class="section">
+  <div class="section-title">1. Resumen Ejecutivo</div>
+  <p class="section-sub">Estado de viabilidad del proyecto y hallazgos críticos para la toma de decisiones</p>
+
+  <div class="alert alert-success">
+    <strong>✅ VEREDICTO GENERAL: VIABLE CON CONDICIONES</strong><br>
+    Colombia tiene el marco legal, los incentivos económicos y el mercado en crecimiento para soportar una electrolinera de carga rápida DC en Cali. El mercado de vehículos eléctricos creció <strong>+115% en 2025</strong> y Cali tiene solo 23 puntos de carga pública. La oportunidad es real y urgente. Sin embargo, existen condiciones técnicas y normativas que deben resolverse <em>antes</em> de importar los equipos.
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-val">+115%</div>
+      <div class="stat-label">Crecimiento VE en Colombia 2025</div>
+      <div class="stat-trend">↑ Mercado en explosión</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">23</div>
+      <div class="stat-label">Puntos de carga pública en Cali</div>
+      <div class="stat-trend">vs 84 en Bogotá (deficit)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">0%</div>
+      <div class="stat-label">Arancel importación cargadores</div>
+      <div class="stat-trend">Vigente hasta 2027</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">50%</div>
+      <div class="stat-label">Deducción en renta (Ley 1964)</div>
+      <div class="stat-trend">Beneficio tributario activo</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">19.724</div>
+      <div class="stat-label">VE vendidos en Colombia 2025</div>
+      <div class="stat-trend">BYD lidera con 52% del mercado</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">~24 m</div>
+      <div class="stat-label">ROI proyectado (escenario base)</div>
+      <div class="stat-trend">Con 160kW, 35% utilización</div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger">
+    <strong>🚨 ALERTA CRÍTICA #1 – FRECUENCIA DEL EQUIPO (50 Hz vs 60 Hz):</strong><br>
+    La ficha técnica del proveedor AF (60/80/120/160 kW visibles en fotos de la reunión) indica <strong>"Input Frequency: 50±1 Hz"</strong>. Colombia opera a <strong>60 Hz</strong> (rango RETIE: 58–62 Hz). Conectar un equipo certificado solo para 50 Hz a la red colombiana es <strong>ilegal bajo el RETIE</strong> y puede invalidar la garantía. El proveedor YXD (80kW PDF) sí especifica "50/60 Hz" y cuenta con certificación IEC 61851-1/2017.<br>
+    <strong>Acción inmediata:</strong> Exigir por escrito al proveedor de los equipos AF confirmación de operación en 60 Hz y reporte de ensayo a 60 Hz para el proceso RETIE.
+  </div>
+
+  <div class="alert alert-warning">
+    <strong>⚠️ ALERTA CRÍTICA #2 – CERTIFICACIÓN RETIE DE PRODUCTO:</strong><br>
+    Ningún cargador puede instalarse en Colombia sin un <strong>Certificado de Conformidad de Producto RETIE</strong> emitido por un organismo acreditado ONAC (CIDET, ODIR, Bureau Veritas, SGS). Si los equipos del proveedor chino no tienen este certificado vigente para Colombia, debe tramitarse <em>antes</em> de la nacionalización aduanera. El proceso puede tomar 2–6 meses.
+  </div>
+
+  <div class="alert alert-warning">
+    <strong>⚠️ ALERTA CRÍTICA #3 – REGISTRO EN CÁRGAME (Resolución 40123/2024):</strong><br>
+    Desde julio de 2024, toda estación de carga pública nueva debe registrarse en la plataforma CárgaME del MinEnergía mediante protocolo <strong>OCPP</strong>. Sin este registro, la operación comercial pública no está autorizada. Los equipos YXD 80kW cuentan con OCPP 1.6J ✓. Debe verificarse en los otros modelos.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     2. COMPARATIVA TÉCNICA DE EQUIPOS
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">2. Comparativa Técnica de Equipos</div>
+  <p class="section-sub">Análisis de los cuatro modelos propuestos vs. requisitos de Colombia. Fuentes: fichas técnicas del proveedor, manual de usuario, normas RETIE 2024 e IEC 61851-1.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Parámetro</th>
+          <th>60 kW (AF)</th>
+          <th>80 kW (YXD)</th>
+          <th>120 kW (AF)</th>
+          <th>160 kW (AF)</th>
+          <th>Req. Colombia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tipo de carga</strong></td>
+          <td>DC Fast</td>
+          <td>DC Fast</td>
+          <td>DC Ultra-Fast</td>
+          <td>DC Ultra-Fast</td>
+          <td>DC permitido ✓</td>
+        </tr>
+        <tr>
+          <td><strong>Voltaje salida DC</strong></td>
+          <td>200–1000 V</td>
+          <td>200–1000 V</td>
+          <td>200–1000 V</td>
+          <td>200–1000 V</td>
+          <td>Compatible ✓</td>
+        </tr>
+        <tr>
+          <td><strong>Corriente máx.</strong></td>
+          <td>0–90 A</td>
+          <td>200 A</td>
+          <td>0–192 A</td>
+          <td>0–256 A</td>
+          <td>Sin límite fijo</td>
+        </tr>
+        <tr>
+          <td><strong>Frecuencia entrada</strong></td>
+          <td><span class="tag tag-fail">50±1 Hz ✗</span></td>
+          <td><span class="tag tag-ok">50/60 Hz ✓</span></td>
+          <td><span class="tag tag-fail">50±1 Hz ✗</span></td>
+          <td><span class="tag tag-fail">50±1 Hz ✗</span></td>
+          <td>58–62 Hz (60 Hz nominal)</td>
+        </tr>
+        <tr>
+          <td><strong>Voltaje entrada AC</strong></td>
+          <td>AC380V±15%</td>
+          <td>AC380V±15%</td>
+          <td>AC380V±15%</td>
+          <td>AC380V±15%</td>
+          <td>380 V trifásico ✓</td>
+        </tr>
+        <tr>
+          <td><strong>Conector</strong></td>
+          <td>CCS2 Dual</td>
+          <td>CCS2 Dual</td>
+          <td>CCS2 Dual</td>
+          <td>CCS2 Dual</td>
+          <td>CCS2 obligatorio ✓</td>
+        </tr>
+        <tr>
+          <td><strong>Eficiencia</strong></td>
+          <td>≥95%</td>
+          <td>97%</td>
+          <td>≥95%</td>
+          <td>≥95%</td>
+          <td>≥90% (RETIE)</td>
+        </tr>
+        <tr>
+          <td><strong>Factor de potencia</strong></td>
+          <td>≥0.99</td>
+          <td>0.99</td>
+          <td>≥0.99</td>
+          <td>≥0.99</td>
+          <td>≥0.9 (CREG) ✓</td>
+        </tr>
+        <tr>
+          <td><strong>Protección IP</strong></td>
+          <td>IP54</td>
+          <td>IP54</td>
+          <td>IP54</td>
+          <td>IP54</td>
+          <td>Min IP44 ✓</td>
+        </tr>
+        <tr>
+          <td><strong>Protocolo OCPP</strong></td>
+          <td><span class="tag tag-warn">Verificar</span></td>
+          <td><span class="tag tag-ok">OCPP 1.6J ✓</span></td>
+          <td><span class="tag tag-warn">Verificar</span></td>
+          <td><span class="tag tag-warn">Verificar</span></td>
+          <td>OCPP obligatorio (R40123)</td>
+        </tr>
+        <tr>
+          <td><strong>Certificación IEC</strong></td>
+          <td><span class="tag tag-fail">No visible</span></td>
+          <td><span class="tag tag-ok">IEC 61851-1/2017 ✓</span></td>
+          <td><span class="tag tag-fail">No visible</span></td>
+          <td><span class="tag tag-fail">No visible</span></td>
+          <td>IEC 61851 base RETIE</td>
+        </tr>
+        <tr>
+          <td><strong>Cert. RETIE Colombia</strong></td>
+          <td><span class="tag tag-fail">No confirmado</span></td>
+          <td><span class="tag tag-warn">Tramitable (tiene IEC)</span></td>
+          <td><span class="tag tag-fail">No confirmado</span></td>
+          <td><span class="tag tag-fail">No confirmado</span></td>
+          <td>Obligatorio antes de instalar</td>
+        </tr>
+        <tr>
+          <td><strong>Medidor energía</strong></td>
+          <td>Clase 1.0</td>
+          <td>Energy Meter</td>
+          <td>Clase 1.0</td>
+          <td>Clase 1.0</td>
+          <td>Clase 1.0 mín. ✓</td>
+        </tr>
+        <tr>
+          <td><strong>Altitud operación</strong></td>
+          <td>&lt;2000 m</td>
+          <td>&lt;2000 m</td>
+          <td>&lt;2000 m</td>
+          <td>&lt;2000 m</td>
+          <td>Cali: ~1000 m ✓</td>
+        </tr>
+        <tr>
+          <td><strong>Temp. operación</strong></td>
+          <td>-20 a 50°C</td>
+          <td>-20 a 50°C</td>
+          <td>-20 a 50°C</td>
+          <td>-20 a 50°C</td>
+          <td>Cali: 15–28°C ✓</td>
+        </tr>
+        <tr>
+          <td><strong>Tiempo de carga (BYD 62kWh)</strong></td>
+          <td>~62 min</td>
+          <td>~47 min</td>
+          <td>~31 min</td>
+          <td>~23 min</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Conexión eléctrica requerida</strong></td>
+          <td>BT 380V trifásica</td>
+          <td>BT 380V trifásica</td>
+          <td><span class="tag tag-warn">MT probable</span></td>
+          <td><span class="tag tag-fail">MT obligatoria</span></td>
+          <td>Según EMCALI</td>
+        </tr>
+        <tr>
+          <td><strong>Nivel de riesgo técnico</strong></td>
+          <td><span class="tag tag-warn">Medio</span></td>
+          <td><span class="tag tag-ok">Bajo</span></td>
+          <td><span class="tag tag-warn">Medio-Alto</span></td>
+          <td><span class="tag tag-fail">Alto</span></td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert alert-info">
+    <strong>ℹ️ Nota técnica – Por qué el 50Hz importa aunque el equipo "funcione":</strong><br>
+    Los cargadores DC modernos usan rectificadores PFC (Power Factor Correction) activos que en teoría toleran variaciones de frecuencia. Sin embargo: (1) los filtros LC de entrada y los transformadores de aislamiento están diseñados para una frecuencia específica, (2) algunos circuitos de sincronización y protección pueden generar lecturas erróneas a 60 Hz, (3) lo más importante: el RETIE exige certificación del equipo a la frecuencia de operación del país. Un equipo certificado a 50 Hz es ilegalmente instalado a 60 Hz, independiente de si funciona físicamente.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Recomendación de Referencia para el Piloto</div>
+    <p>Dado el análisis, la secuencia recomendada para el piloto en Cali es:</p>
+    <ol style="margin-left:20px; margin-top:10px; line-height:2">
+      <li><strong>Opción 1 – Inicio rápido:</strong> Instalar el <strong>YXD 80 kW</strong> como piloto. Ya tiene IEC 61851-1/2017 y opera a 50/60Hz. Es el que más fácilmente puede obtener certificado RETIE en Colombia. Inversión menor, riesgo mínimo.</li>
+      <li><strong>Opción 2 – Mayor impacto:</strong> Negociar con el proveedor AF de los modelos 120/160kW que garantice y documente operación a <strong>60 Hz con reporte de ensayo IEC</strong>. Luego tramitar RETIE. Tiempo estimado adicional: 3–5 meses.</li>
+      <li><strong>No recomendado:</strong> Importar cualquier equipo con ficha técnica "50±1 Hz" sin documentación adicional de 60 Hz. Riesgo de retención en aduana o prohibición de instalación.</li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     3. DIAGRAMA DE FLUJO – EJECUCIÓN
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">3. Flujo de Ejecución del Proyecto</div>
+  <p class="section-sub">Hoja de ruta visual desde la decisión de inversión hasta la operación comercial del primer piloto</p>
+
+  <div class="flow-wrap">
+    <div class="flow">
+
+      <!-- FASE 0 -->
+      <div class="flow-phase">
+        <div style="width:100%">
+          <div class="flow-label phase-1">⚡ FASE 0: DECISIÓN DE INVERSIÓN Y CONSTITUCIÓN (Semanas 1–2)</div>
+        </div>
+      </div>
+      <div class="flow-connector"></div>
+      <div class="flow-phase">
+        <div class="flow-row">
+          <div class="flow-node warning">
+            <strong>Estructura jurídica</strong>
+            <ul class="flow-step-list">
+              <li>Constituir SAS o formalizar sociedad</li>
+              <li>Definir % participación inversionistas vs IMPOSORTEC</li>
+              <li>Contrato de operación y garantías</li>
+            </ul>
+          </div>
+          <div class="flow-node ok">
+            <strong>Acuerdo comercial</strong>
+            <ul class="flow-step-list">
+              <li>Definir modelo: PPA o EPC</li>
+              <li>Formalizar aportes de capital</li>
+              <li>Apertura cuenta bancaria del proyecto</li>
+            </ul>
+          </div>
+          <div class="flow-node">
+            <strong>Selección de equipos</strong>
+            <ul class="flow-step-list">
+              <li class="blocker">Confirmar 60Hz con fabricante (escrito)</li>
+              <li>Decidir entre YXD 80kW vs AF 120/160kW</li>
+              <li>Solicitar cotización formal FOB</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-connector"></div>
+
+      <!-- FASE 1 -->
+      <div class="flow-phase">
+        <div style="width:100%">
+          <div class="flow-label phase-2">📋 FASE 1: NORMATIVA Y CERTIFICACIONES (Semanas 3–16)</div>
+        </div>
+      </div>
+      <div class="flow-connector"></div>
+      <div class="flow-phase">
+        <div class="flow-row">
+          <div class="flow-node blocker">
+            <strong>🚨 Cert. RETIE Producto</strong>
+            <ul class="flow-step-list">
+              <li class="blocker">Contratar CIDET / ODIR / SGS</li>
+              <li class="blocker">Presentar ficha técnica + ensayos IEC</li>
+              <li class="blocker">Costo estimado: $2–10M COP</li>
+              <li class="blocker">Tiempo: 60–120 días hábiles</li>
+            </ul>
+          </div>
+          <div class="flow-node warning">
+            <strong>⚠️ Registro CárgaME</strong>
+            <ul class="flow-step-list">
+              <li class="warn">Registrar empresa en MinEnergía</li>
+              <li class="warn">Confirmar OCPP 1.6J del equipo</li>
+              <li>Preparar datos técnicos de la estación</li>
+              <li>Obligatorio desde julio 2024</li>
+            </ul>
+          </div>
+          <div class="flow-node">
+            <strong>📍 Permiso de suelo (POT)</strong>
+            <ul class="flow-step-list">
+              <li>Verificar uso del suelo en Planeación Municipal</li>
+              <li>Solicitar licencia de construcción si aplica</li>
+              <li>Verificar categoría: "Electrolinera" en POT Cali</li>
+              <li>Tiempo: 30–60 días</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-connector"></div>
+
+      <!-- FASE 2 -->
+      <div class="flow-phase">
+        <div style="width:100%">
+          <div class="flow-label phase-3">🏗️ FASE 2: INFRAESTRUCTURA ELÉCTRICA (Semanas 8–20)</div>
+        </div>
+      </div>
+      <div class="flow-connector"></div>
+      <div class="flow-phase">
+        <div class="flow-row">
+          <div class="flow-node warning">
+            <strong>Estudio de carga – EMCALI</strong>
+            <ul class="flow-step-list">
+              <li>Solicitar viabilidad técnica formal a EMCALI</li>
+              <li class="warn">Para 160kW: probable conexión MT</li>
+              <li>Presentar diseño eléctrico por Ing. matriculado</li>
+              <li>Tiempo: 30–90 días de respuesta</li>
+            </ul>
+          </div>
+          <div class="flow-node">
+            <strong>Diseño eléctrico</strong>
+            <ul class="flow-step-list">
+              <li>Diseño por ingeniero eléctrico matriculado</li>
+              <li>Incluir: acometida, tableros, protecciones</li>
+              <li>Protecciones diferenciales Tipo B (DC sensibles)</li>
+              <li>Puesta a tierra adecuada para DC</li>
+            </ul>
+          </div>
+          <div class="flow-node warning">
+            <strong>Subestación / Transformador</strong>
+            <ul class="flow-step-list">
+              <li class="warn">Si 160kW: celda MT + transf. 200-250 kVA</li>
+              <li>Si 80kW: puede ir con BT si hay capacidad</li>
+              <li>Costo transformador: $30–60M COP</li>
+              <li>Requiere certificadores con lic. MT</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-connector"></div>
+
+      <!-- FASE 3 -->
+      <div class="flow-phase">
+        <div style="width:100%">
+          <div class="flow-label phase-4">🚢 FASE 3: IMPORTACIÓN E INSTALACIÓN (Semanas 12–22)</div>
+        </div>
+      </div>
+      <div class="flow-connector"></div>
+      <div class="flow-phase">
+        <div class="flow-row">
+          <div class="flow-node ok">
+            <strong>Importación (arancel 0%)</strong>
+            <ul class="flow-step-list">
+              <li>Agente de aduanas con exp. en equipos eléctricos</li>
+              <li>Subpartida 8504.40.90.10</li>
+              <li>Arancel 0% (vigente hasta 2027)</li>
+              <li>Tiempo tránsito China→Colombia: 30–45 días</li>
+            </ul>
+          </div>
+          <div class="flow-node ok">
+            <strong>Obra civil e instalación</strong>
+            <ul class="flow-step-list">
+              <li>Adecuación del punto (piso, señalización)</li>
+              <li>Instalación eléctrica por técnico certificado</li>
+              <li>Instalación del cargador + conexión a red</li>
+              <li>Costo instalación BT: $15–25M COP</li>
+            </ul>
+          </div>
+          <div class="flow-node">
+            <strong>Integración digital</strong>
+            <ul class="flow-step-list">
+              <li>Configurar OCPP con plataforma CárgaME</li>
+              <li>App de usuario / RFID / sistema de pago</li>
+              <li>Monitoreo remoto 24/7</li>
+              <li>Pruebas de funcionamiento</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-connector"></div>
+
+      <!-- FASE 4 -->
+      <div class="flow-phase">
+        <div style="width:100%">
+          <div class="flow-label phase-5">✅ FASE 4: CERTIFICACIÓN FINAL Y OPERACIÓN COMERCIAL (Semanas 20–26)</div>
+        </div>
+      </div>
+      <div class="flow-connector"></div>
+      <div class="flow-phase">
+        <div class="flow-row flow-row-2">
+          <div class="flow-node blocker">
+            <strong>🚨 RETIE de Instalación</strong>
+            <ul class="flow-step-list">
+              <li class="blocker">Inspector RETIE certifica la obra completa</li>
+              <li class="blocker">Revisa: equipo + cableado + transf. + obra</li>
+              <li class="blocker">Sin este certificado NO puede operar</li>
+              <li>Costo: $3–8M COP (incluye inspector)</li>
+            </ul>
+          </div>
+          <div class="flow-node ok">
+            <strong>🟢 Apertura comercial</strong>
+            <ul class="flow-step-list">
+              <li>Registro ante DIAN como prestador de servicio</li>
+              <li>Definir tarifas (libertad de precios – Ley 1964)</li>
+              <li>Estrategia de lanzamiento (PR + redes)</li>
+              <li>Inicio de facturación y operación PPA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.flow -->
+  </div><!-- /.flow-wrap -->
+
+  <span class="sup-note">* Los tiempos son estimaciones basadas en procesos reales de certificación RETIE en Colombia. El tiempo total del proyecto: <strong>6–9 meses</strong> desde la firma del acuerdo hasta la apertura comercial. El cuello de botella más grande es la certificación RETIE de producto.</span>
+</section>
+
+
+<!-- ══════════════════════════════════
+     4. MARCO REGULATORIO
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">4. Marco Regulatorio Colombiano</div>
+  <p class="section-sub">Normas, resoluciones y entidades relevantes para operar una electrolinera pública en Cali</p>
+
+  <div class="grid-2">
+
+    <div class="card">
+      <div class="card-title">🏛️ Leyes Habilitantes</div>
+      <div class="table-wrap" style="margin-bottom:0">
+        <table>
+          <tr><th>Norma</th><th>Relevancia</th></tr>
+          <tr><td><strong>Ley 1964/2019</strong></td><td>Ley de Movilidad Eléctrica. Define servicio de carga (no energía), incentivos IVA/renta, libertad de precios.</td></tr>
+          <tr><td><strong>Res. 40117/2024</strong></td><td>Actualización RETIE. Define requisitos cargadores EV Modo 1–4, normas IEC aplicables.</td></tr>
+          <tr><td><strong>Res. 40123/2024</strong></td><td>Obliga OCPP y registro en CárgaME desde julio 2024. Precios transparentes y pago sin suscripción.</td></tr>
+          <tr><td><strong>RETIE 2013</strong></td><td>Reglamento base para instalaciones eléctricas. Dos certificados: producto + instalación.</td></tr>
+          <tr><td><strong>NTC-IEC 61851</strong></td><td>Norma técnica colombiana para sistemas de carga conductivos. Base para certificación RETIE.</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏢 Entidades y Trámites</div>
+      <div class="table-wrap" style="margin-bottom:0">
+        <table>
+          <tr><th>Entidad</th><th>Trámite</th></tr>
+          <tr><td><strong>MinEnergía</strong></td><td>Registro en CárgaME (gratuito, plataforma digital)</td></tr>
+          <tr><td><strong>ONAC / CIDET / ODIR</strong></td><td>Certificado RETIE de Producto (obligatorio pre-instalación)</td></tr>
+          <tr><td><strong>Inspector RETIE</strong></td><td>Certificado de Instalación (post-obra)</td></tr>
+          <tr><td><strong>EMCALI</strong></td><td>Viabilidad técnica y conexión a red eléctrica en Cali</td></tr>
+          <tr><td><strong>Planeación Municipal Cali</strong></td><td>Licencia de uso del suelo / permiso urbanístico</td></tr>
+          <tr><td><strong>DIAN</strong></td><td>Registro RUT como prestador de servicio de carga + importación</td></tr>
+          <tr><td><strong>SIC</strong></td><td>Supervisa metrología legal de medidores (Clase 1.0)</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <div class="card-title">💰 Incentivos Económicos Vigentes (Colombia 2025)</div>
+    <div class="grid-3">
+      <div style="border-left:4px solid var(--secondary); padding-left:16px">
+        <div class="fw-7">Arancel 0%</div>
+        <div style="font-size:.88rem; color:var(--muted); margin-top:4px">Importación de cargadores y equipos EV. Subpartida 8504.40.90.10. Vigente hasta 2027.</div>
+      </div>
+      <div style="border-left:4px solid var(--secondary); padding-left:16px">
+        <div class="fw-7">IVA excluido (0%)</div>
+        <div style="font-size:.88rem; color:var(--muted); margin-top:4px">Para la compra e importación de equipos de carga eléctrica. Confirmar con DIAN subpartida específica.</div>
+      </div>
+      <div style="border-left:4px solid var(--secondary); padding-left:16px">
+        <div class="fw-7">Deducción renta 50%</div>
+        <div style="font-size:.88rem; color:var(--muted); margin-top:4px">Ley 1715 de Transición Energética. Aplica sobre la inversión en equipos de carga rápida. Reduce carga tributaria significativamente.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-info">
+    <strong>ℹ️ Definición legal del negocio (Ley 1964/2019):</strong><br>
+    La provisión del servicio de carga de vehículos eléctricos <strong>NO se clasifica como comercialización de energía eléctrica</strong>. Esto es fundamental: no requieren licencia de comercializador ante la CREG, pueden fijar precios libremente (por kWh, por tiempo o por sesión), y no están sujetos a regulación tarifaria. Esto hace el modelo de negocio mucho más flexible que una empresa de servicios públicos.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     5. ANÁLISIS DE INFRAESTRUCTURA ELÉCTRICA
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">5. Infraestructura Eléctrica Requerida</div>
+  <p class="section-sub">Análisis técnico de conexión eléctrica para cada nivel de potencia en Cali – EMCALI</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Potencia</th>
+          <th>Corriente trifásica @380V</th>
+          <th>Tipo conexión requerida</th>
+          <th>Infraestructura necesaria</th>
+          <th>Costo estimado infraest.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>60 kW</strong></td>
+          <td>~92 A trifásico</td>
+          <td><span class="tag tag-ok">Baja Tensión (BT)</span></td>
+          <td>Transformador ≥100 kVA disponible, tablero, protecciones</td>
+          <td>$15–30M COP</td>
+        </tr>
+        <tr>
+          <td><strong>80 kW</strong></td>
+          <td>~123 A trifásico</td>
+          <td><span class="tag tag-ok">BT (si transf. disponible)</span></td>
+          <td>Verificar capacidad transf. existente. Si no: nuevo transf. 150 kVA</td>
+          <td>$20–45M COP</td>
+        </tr>
+        <tr>
+          <td><strong>120 kW</strong></td>
+          <td>~185 A trifásico</td>
+          <td><span class="tag tag-warn">BT o MT (según zona)</span></td>
+          <td>Transformador nuevo 200 kVA. EMCALI puede exigir MT</td>
+          <td>$40–80M COP</td>
+        </tr>
+        <tr>
+          <td><strong>160 kW</strong></td>
+          <td>~246 A trifásico</td>
+          <td><span class="tag tag-fail">Media Tensión (MT)</span></td>
+          <td>Celda MT + Transformador 250 kVA + Subestación. Ingeniería MT</td>
+          <td>$70–120M COP</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Proceso con EMCALI – Pasos</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot active">1</div>
+          <div class="tl-period">Semana 1</div>
+          <div class="tl-title">Solicitud de viabilidad técnica</div>
+          <div class="tl-desc">Radicación ante EMCALI del proyecto con potencia requerida y ubicación exacta. EMCALI verifica capacidad del transformador de red en la zona.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot active">2</div>
+          <div class="tl-period">Semanas 4–8</div>
+          <div class="tl-title">Diseño eléctrico aprobado</div>
+          <div class="tl-desc">Ingeniero eléctrico matriculado elabora diseño según normas EMCALI. EMCALI revisa y aprueba el diseño. Incluye diagrama unifilar, memoria de cálculo.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot pending">3</div>
+          <div class="tl-period">Semanas 8–16</div>
+          <div class="tl-title">Instalación bajo supervisión EMCALI</div>
+          <div class="tl-desc">Contratistas ejecutan obra. Para MT: personal con licencia media tensión obligatorio. EMCALI supervisa puntos clave de la instalación.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot pending">4</div>
+          <div class="tl-period">Semanas 14–18</div>
+          <div class="tl-title">Energización y medida</div>
+          <div class="tl-desc">EMCALI instala medidor y energiza el punto. Para MT: medida indirecta con transformadores de corriente (TC). Activación del servicio.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Protecciones Eléctricas Requeridas (RETIE)</div>
+      <ul style="padding-left:20px; line-height:2.1; font-size:.9rem">
+        <li><strong>Diferencial Tipo B:</strong> Obligatorio para circuitos DC. Detecta corrientes de falla en CC (los Tipo A no lo hacen).</li>
+        <li><strong>Interruptor de sobrecorriente:</strong> Calibrado según la potencia del cargador.</li>
+        <li><strong>Puesta a tierra:</strong> Sistema de puesta a tierra TN-S independiente para el cargador.</li>
+        <li><strong>Protección contra sobretensiones (SPD):</strong> Nivel II en tablero principal.</li>
+        <li><strong>Parada de emergencia:</strong> Botón accesible al usuario (los equipos chinos ya lo tienen).</li>
+        <li><strong>Señalización:</strong> Según NTC 1931 y normas de seguridad industrial.</li>
+        <li><strong>Monitoreo de aislamiento:</strong> Para detección de fallos en cable DC.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     6. MODELO FINANCIERO
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">6. Modelo Financiero – Piloto Cali</div>
+  <p class="section-sub">Proyecciones basadas en precios de mercado (Terpel Voltex: $1.750/kWh DC, Enel X: $1.690/kWh DC), costos reales de operación en Colombia y tres escenarios de utilización.</p>
+
+  <div class="card mb-0">
+    <div class="card-title">Supuestos del Modelo – Cargador 160 kW (piloto recomendado)</div>
+    <div class="grid-3" style="margin-top:12px">
+      <div>
+        <div style="font-size:.82rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em">Precio de venta</div>
+        <div style="font-size:1.5rem; font-weight:800; color:var(--primary)">$1.700/kWh</div>
+        <div style="font-size:.82rem; color:var(--muted)">Competitivo vs Terpel ($1.750) y Enel X ($1.690)</div>
+      </div>
+      <div>
+        <div style="font-size:.82rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em">Costo energía EMCALI</div>
+        <div style="font-size:1.5rem; font-weight:800; color:var(--primary)">$500/kWh</div>
+        <div style="font-size:.82rem; color:var(--muted)">Tarifa industrial comercial estimada</div>
+      </div>
+      <div>
+        <div style="font-size:.82rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em">Margen bruto/kWh</div>
+        <div style="font-size:1.5rem; font-weight:800; color:var(--secondary)">$1.200/kWh</div>
+        <div style="font-size:.82rem; color:var(--muted)">Antes de gastos operativos fijos</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px">
+    <!-- CONSERVADOR -->
+    <div class="scenario conservative">
+      <div class="scenario-name" style="color:var(--warning)">📊 Escenario Conservador (20% utilización – 3.2 h/día carga real)</div>
+      <div class="fin-row"><span>Energía vendida/mes</span><span class="fin-val">512 kWh/día × 30 = <strong>15.360 kWh</strong></span></div>
+      <div class="fin-row"><span>Ingresos brutos/mes</span><span class="fin-val pos">$26.1M COP</span></div>
+      <div class="fin-row"><span>Costo energía/mes</span><span class="fin-val neg">–$7.7M COP</span></div>
+      <div class="fin-row"><span>Gastos operativos/mes (arriendo, mant., personal, SW)</span><span class="fin-val neg">–$12M COP</span></div>
+      <div class="fin-row"><span><strong>Utilidad neta/mes</strong></span><span class="fin-val primary">~$6.4M COP</span></div>
+      <div class="fin-row"><span><strong>ROI sobre $200M invertidos</strong></span><span class="fin-val primary">~31 meses</span></div>
+    </div>
+
+    <!-- BASE -->
+    <div class="scenario base">
+      <div class="scenario-name" style="color:var(--info)">📊 Escenario Base (35% utilización – 5.6 h/día carga real) ← REFERENCIA</div>
+      <div class="fin-row"><span>Energía vendida/mes</span><span class="fin-val">896 kWh/día × 30 = <strong>26.880 kWh</strong></span></div>
+      <div class="fin-row"><span>Ingresos brutos/mes</span><span class="fin-val pos">$45.7M COP</span></div>
+      <div class="fin-row"><span>Costo energía/mes</span><span class="fin-val neg">–$13.4M COP</span></div>
+      <div class="fin-row"><span>Gastos operativos/mes</span><span class="fin-val neg">–$14M COP</span></div>
+      <div class="fin-row"><span><strong>Utilidad neta/mes</strong></span><span class="fin-val primary">~$18.3M COP</span></div>
+      <div class="fin-row"><span><strong>ROI sobre $220M invertidos</strong></span><span class="fin-val primary">~12 meses</span></div>
+    </div>
+
+    <!-- OPTIMISTA -->
+    <div class="scenario optimistic">
+      <div class="scenario-name" style="color:var(--secondary)">📊 Escenario Optimista (55% utilización – 8.8 h/día carga real)</div>
+      <div class="fin-row"><span>Energía vendida/mes</span><span class="fin-val">1.408 kWh/día × 30 = <strong>42.240 kWh</strong></span></div>
+      <div class="fin-row"><span>Ingresos brutos/mes</span><span class="fin-val pos">$71.8M COP</span></div>
+      <div class="fin-row"><span>Costo energía/mes</span><span class="fin-val neg">–$21.1M COP</span></div>
+      <div class="fin-row"><span>Gastos operativos/mes</span><span class="fin-val neg">–$16M COP</span></div>
+      <div class="fin-row"><span><strong>Utilidad neta/mes</strong></span><span class="fin-val primary">~$34.7M COP</span></div>
+      <div class="fin-row"><span><strong>ROI sobre $250M invertidos</strong></span><span class="fin-val primary">~7 meses</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:24px">
+    <div class="card-title">Desglose de Inversión Total Estimada (Cargador 160kW con MT)</div>
+    <div class="table-wrap" style="margin-bottom:0">
+      <table>
+        <tr><th>Componente</th><th>Mínimo</th><th>Máximo</th><th>Notas</th></tr>
+        <tr><td>Equipo cargador 160kW (CIF Cali)</td><td>$60M</td><td>$100M</td><td>USD $15.000–25.000 importado</td></tr>
+        <tr><td>Arancel e impuestos importación</td><td>$0M</td><td>$5M</td><td>Arancel 0%, IVA excluido (verificar)</td></tr>
+        <tr><td>Subestación / transformador MT</td><td>$40M</td><td>$60M</td><td>250 kVA + celda MT</td></tr>
+        <tr><td>Obra civil e instalación eléctrica</td><td>$20M</td><td>$35M</td><td>Incluye media tensión</td></tr>
+        <tr><td>Certificación RETIE (producto + inst.)</td><td>$5M</td><td>$15M</td><td>CIDET / SGS + inspector RETIE</td></tr>
+        <tr><td>Adecuación del sitio</td><td>$8M</td><td>$15M</td><td>Piso, señalización, cubierta</td></tr>
+        <tr><td>Software, RFID, conectividad</td><td>$3M</td><td>$8M</td><td>OCPP, app, pasarela de pago</td></tr>
+        <tr><td>Capital de trabajo (3 meses)</td><td>$10M</td><td>$20M</td><td>Costos operativos inicio</td></tr>
+        <tr><td><strong>TOTAL</strong></td><td><strong>$146M</strong></td><td><strong>$258M</strong></td><td><strong>Media: ~$200M COP</strong></td></tr>
+      </table>
+    </div>
+    <span class="sup-note">* Si se opta por el YXD 80kW en BT (sin media tensión), la inversión puede reducirse a $100–150M COP con menor ROI por menor facturación.</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Modelo PPA vs EPC – Comparativa para los inversionistas</div>
+    <div class="table-wrap" style="margin-bottom:0">
+      <table>
+        <tr><th>Aspecto</th><th>Modelo PPA (recomendado)</th><th>Modelo EPC (venta directa)</th></tr>
+        <tr><td>Inversión inicial</td><td>IMPOSORTEC/inversionistas ponen capital</td><td>Cliente paga el equipo + instalación</td></tr>
+        <tr><td>Flujo de caja</td><td>Renta mensual recurrente (estable)</td><td>Un solo pago (alta, pero única)</td></tr>
+        <tr><td>Riesgo operativo</td><td>IMPOSORTEC asume operación y mantenimiento</td><td>Cliente asume operación</td></tr>
+        <tr><td>Escalabilidad</td><td>Alta – réplica en múltiples puntos</td><td>Media – depende de ventas</td></tr>
+        <tr><td>Retorno</td><td>Largo plazo, predecible</td><td>Corto plazo, variable</td></tr>
+        <tr><td>Retención de cliente</td><td>Alta – contrato plurianual</td><td>Baja – una vez vendido, se fue</td></tr>
+        <tr><td>Analogía</td><td>Parabólicas / vending machines</td><td>Venta de electrodomésticos</td></tr>
+        <tr><td><strong>Recomendación</strong></td><td><span class="tag tag-ok">✓ Mejor para escalar</span></td><td><span class="tag tag-info">Complementario</span></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     7. ANÁLISIS DE RIESGOS
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">7. Matriz de Riesgos y Mitigaciones</div>
+  <p class="section-sub">Clasificación por probabilidad e impacto de los riesgos identificados en el proyecto piloto</p>
+
+  <div class="card">
+
+    <div class="risk-item">
+      <div class="risk-badge risk-alto">ALTO</div>
+      <div class="risk-body">
+        <div class="risk-title">Equipos AF no certificables a 60 Hz en Colombia</div>
+        <div class="risk-desc">Si el fabricante no puede proveer documentación de operación a 60 Hz con ensayos IEC, los equipos de 60/120/160kW (marca AF) no podrán obtener certificado RETIE y no podrán instalarse.</div>
+        <div class="risk-mit">✔ Mitigación: Exigir carta y reporte de ensayo a 60 Hz antes de hacer pedido. Como backup: usar YXD 80kW (ya certificado IEC 61851-1/2017 con 50/60Hz). Tiempo: 2–4 semanas para obtener respuesta del proveedor.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <div class="risk-badge risk-alto">ALTO</div>
+      <div class="risk-body">
+        <div class="risk-title">Retraso en certificación RETIE de producto (2–6 meses)</div>
+        <div class="risk-desc">El proceso de homologación en Colombia es lento. Si no se inicia inmediatamente, puede retrasar el proyecto completo hasta 6 meses adicionales.</div>
+        <div class="risk-mit">✔ Mitigación: Iniciar el trámite RETIE de producto simultáneamente con el pedido al proveedor. No esperar a tener el equipo físico. Contactar CIDET u ODIR en los primeros 15 días del proyecto.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <div class="risk-badge risk-alto">ALTO</div>
+      <div class="risk-body">
+        <div class="risk-title">EMCALI no tiene capacidad disponible en el transformador del punto piloto (14 Alfaguara)</div>
+        <div class="risk-desc">La zona sur de Cali es residencial de alto consumo. El transformador cercano puede estar al límite de capacidad. Para 160kW se requería conexión MT propia.</div>
+        <div class="risk-mit">✔ Mitigación: Radicar solicitud de viabilidad técnica ante EMCALI en semana 1. Tener plan B: punto alternativo o reducir potencia a 80kW mientras se resuelve la MT. El estudio de EMCALI es gratuito.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <div class="risk-badge risk-medio">MEDIO</div>
+      <div class="risk-body">
+        <div class="risk-title">Competencia acelerada en los próximos 6–12 meses</div>
+        <div class="risk-desc">Terpel Voltex, Enel X y operadores con cargadores ya certificados en Colombia están expandiéndose agresivamente. La reunión menciona que operadores de alta potencia entrarán al mercado en ~6 meses.</div>
+        <div class="risk-mit">✔ Mitigación: Velocidad de ejecución es clave. Diferenciador por precio competitivo ($1.600–1.700/kWh vs competencia $1.690–1.750) y calidad de servicio. Fidelización con modelo PPA en puntos exclusivos.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <div class="risk-badge risk-medio">MEDIO</div>
+      <div class="risk-body">
+        <div class="risk-title">Cambios regulatorios / incertidumbre de incentivos tributarios</div>
+        <div class="risk-desc">ANDEMOS ha advertido sobre proyectos legislativos que podrían reducir incentivos EV. La Ley 1964/2019 podría verse modificada.</div>
+        <div class="risk-mit">✔ Mitigación: Importar equipos antes de cualquier cambio arancelario. Estructurar la deducción de renta correctamente con asesor tributario. Monitorear el Congreso.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <div class="risk-badge risk-medio">MEDIO</div>
+      <div class="risk-body">
+        <div class="risk-title">Falla técnica / mantenimiento del equipo importado</div>
+        <div class="risk-desc">Cargadores de alta potencia tienen componentes que requieren mantenimiento especializado. Repuestos desde China pueden tardar 30–60 días.</div>
+        <div class="risk-mit">✔ Mitigación: Negociar garantía 3 años con soporte remoto (el YXD lo ofrece). Pedir kit de repuestos críticos en el mismo pedido. Contratar proveedor de mantenimiento eléctrico local como backup.</div>
+      </div>
+    </div>
+
+    <div class="risk-item">
+      <div class="risk-badge risk-bajo">BAJO</div>
+      <div class="risk-body">
+        <div class="risk-title">Baja demanda inicial en el punto piloto</div>
+        <div class="risk-desc">El mercado EV en Cali aún es pequeño (884 vehículos en 2025 acumulado). La utilización inicial puede ser baja.</div>
+        <div class="risk-mit">✔ Mitigación: Elegir el punto con mayor concentración de vehículos EV (sur de Cali es correcto). Alianzas con concesionarios BYD, Kia. Programa de usuarios frecuentes. El mercado crece 115% anual – el tiempo juega a favor.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     8. ROADMAP EJECUTIVO
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">8. Roadmap Ejecutivo – Próximos 9 Meses</div>
+  <p class="section-sub">Plan de acción con hitos críticos y responsables para el piloto en Cali</p>
+
+  <div class="grid-2">
+    <div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot critical">!</div>
+          <div class="tl-period">Semana 1–2 (Mayo 2025)</div>
+          <div class="tl-title">Acciones Críticas Inmediatas</div>
+          <ul class="tl-items-list">
+            <li>📧 Enviar solicitud formal al proveedor AF confirmando operación 60Hz + reporte ensayo IEC</li>
+            <li>📋 Radicar solicitud de viabilidad técnica ante EMCALI para el punto piloto</li>
+            <li>⚖️ Iniciar proceso de constitución de sociedad o acuerdo formal con inversionistas</li>
+            <li>📞 Contactar CIDET u ODIR para cotización de certificación RETIE</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot active">1</div>
+          <div class="tl-period">Semanas 3–6 (Junio 2025)</div>
+          <div class="tl-title">Definición y Contratos</div>
+          <ul class="tl-items-list">
+            <li>Decisión final: YXD 80kW vs AF 120/160kW según respuesta proveedor</li>
+            <li>Firma del contrato de inversión (PPA / sociedad)</li>
+            <li>Inicio trámite RETIE de producto con organismo acreditado</li>
+            <li>Negociación del sitio piloto (14 Alfaguara u otro)</li>
+            <li>Registro ante DIAN como prestador de servicio de carga</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot pending">2</div>
+          <div class="tl-period">Semanas 7–12 (Jul–Ago 2025)</div>
+          <div class="tl-title">Pedido y Tramitología</div>
+          <ul class="tl-items-list">
+            <li>Hacer pedido formal al proveedor (FOB). Tiempo de fabricación: 30–45 días</li>
+            <li>Iniciar diseño eléctrico con Ing. matriculado</li>
+            <li>Respuesta viabilidad EMCALI y planificación de obra</li>
+            <li>Registro en plataforma CárgaME (MinEnergía)</li>
+            <li>Permiso de uso del suelo – Planeación Municipal Cali</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot pending">3</div>
+          <div class="tl-period">Semanas 13–18 (Sep–Oct 2025)</div>
+          <div class="tl-title">Obra e Instalación</div>
+          <ul class="tl-items-list">
+            <li>Llegada del equipo a Colombia (tránsito marítimo 30–45 días)</li>
+            <li>Nacionalización aduanera (arancel 0%)</li>
+            <li>Obra civil: adecuación del punto, obra eléctrica</li>
+            <li>Instalación de subestación / transformador (si aplica)</li>
+            <li>Instalación del cargador y conexión a red</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot pending">4</div>
+          <div class="tl-period">Semanas 19–22 (Nov 2025)</div>
+          <div class="tl-title">Certificación Final</div>
+          <ul class="tl-items-list">
+            <li>🚨 Obtención Certificado RETIE de Instalación (inspector)</li>
+            <li>Energización por EMCALI y pruebas de carga</li>
+            <li>Configuración OCPP y sincronización CárgaME</li>
+            <li>Pruebas de usuario, pagos, facturación</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot pending">5</div>
+          <div class="tl-period">Semanas 23–26 (Dic 2025)</div>
+          <div class="tl-title">🟢 Apertura Comercial</div>
+          <ul class="tl-items-list">
+            <li>Lanzamiento oficial de la primera electrolinera</li>
+            <li>Campaña de marketing digital (redes sociales, Google Maps)</li>
+            <li>Inicio de modelo PPA: facturación recurrente</li>
+            <li>Monitoreo de KPIs: sesiones/día, kWh/mes, utilización %</li>
+            <li>Evaluación de segundo punto para expansión</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     9. ANÁLISIS COMPARATIVO CON MERCADO
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">9. Contexto de Mercado y Competencia</div>
+  <p class="section-sub">Posicionamiento competitivo y oportunidad de mercado en Cali vs. Colombia</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Competidores activos en Colombia</div>
+      <div class="table-wrap" style="margin-bottom:0">
+        <table>
+          <tr><th>Operador</th><th>Precio DC</th><th>Presencia Cali</th></tr>
+          <tr><td><strong>Terpel Voltex</strong></td><td>$1.750/kWh</td><td>Limitada</td></tr>
+          <tr><td><strong>Enel X</strong></td><td>$1.690/kWh</td><td>Limitada</td></tr>
+          <tr><td><strong>EMCALI</strong></td><td>No publicado</td><td>10 estaciones</td></tr>
+          <tr><td><strong>Celsia</strong></td><td>No publicado</td><td>Sin presencia</td></tr>
+          <tr><td><strong>IMPOSORTEC</strong></td><td>$1.700/kWh <span class="tag tag-ok">propuesto</span></td><td>1er piloto</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Oportunidad de Mercado en Cali</div>
+      <ul style="padding-left:20px; line-height:2.2; font-size:.9rem">
+        <li>884 VE matriculados en Cali en 2025 (acumulado)</li>
+        <li>Solo 23 puntos de carga pública (+258% en 1 mes en 2024)</li>
+        <li>Sur de Cali: mayor concentración de VE (Mercedes, BMW, BYD)</li>
+        <li>BYD Yuan Up y Seagull dominan: compatibles con CCS2 ✓</li>
+        <li>Proyección 2025: +200 VE/mes en Cali (estimado conservador)</li>
+        <li>Déficit de carga: 23 puntos para 884 vehículos = 38 VE/punto</li>
+        <li>Benchmark Bogotá: 84 puntos para 5.000+ VE = 60 VE/punto</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert alert-success">
+    <strong>💡 Ventana de oportunidad:</strong><br>
+    Cali tiene un déficit estructural de infraestructura de carga. El mercado crece a +115% anual y los operadores nacionales (Terpel, Enel X) están priorizando Bogotá y Medellín. IMPOSORTEC tiene la ventaja de <strong>pionero en carga rápida DC en el sur de Cali</strong>, con know-how local (100+ instalaciones residenciales) y alianza con capital extranjero. Esta ventaja dura aproximadamente <strong>6–12 meses</strong> antes de que llegue competencia significativa.
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     10. CONCLUSIONES Y RECOMENDACIONES
+══════════════════════════════════ -->
+<section class="section">
+  <div class="section-title">10. Conclusiones y Recomendaciones Finales</div>
+  <p class="section-sub">Síntesis ejecutiva para la toma de decisiones</p>
+
+  <div class="grid-2">
+    <div>
+      <div class="card">
+        <div class="card-title" style="color:var(--secondary)">✅ Lo que está a favor del proyecto</div>
+        <ul style="padding-left:20px; line-height:2.1; font-size:.9rem">
+          <li>Mercado EV colombiano creciendo a ritmo explosivo (+115%)</li>
+          <li>Marco legal claro y favorable (Ley 1964/2019)</li>
+          <li>Incentivos tributarios significativos (arancel 0%, deducción renta 50%)</li>
+          <li>Cali con déficit severo de infraestructura de carga</li>
+          <li>YXD 80kW ya cuenta con certificación IEC 61851-1/2017</li>
+          <li>Modelo de negocio PPA validado (mercado lo conoce)</li>
+          <li>IMPOSORTEC tiene credibilidad técnica y track record local</li>
+          <li>Capital disponible del lado de los inversionistas</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title" style="color:var(--danger)">🚨 Lo que puede detener el proyecto</div>
+        <ul style="padding-left:20px; line-height:2.1; font-size:.9rem">
+          <li>Equipos AF con "50±1 Hz" en ficha técnica – ilegales en Colombia sin corrección</li>
+          <li>Certificación RETIE de producto: proceso largo (2–6 meses) si no se inicia YA</li>
+          <li>Conexión a EMCALI para 160kW requiere media tensión y puede demorar 3–6 meses</li>
+          <li>Sin registro en CárgaME (Res. 40123/2024) no pueden operar comercialmente</li>
+          <li>Permiso de uso del suelo en municipio de Cali (tiempo variable)</li>
+          <li>La competencia ya está en movimiento (Terpel, Enel X expandiéndose)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border: 2px solid var(--primary); margin-top: 4px">
+    <div class="card-title" style="font-size:1.2rem">🎯 Recomendación Final – Las 5 Decisiones Clave</div>
+    <div class="timeline" style="margin-top:16px">
+      <div class="tl-item">
+        <div class="tl-dot critical">1</div>
+        <div class="tl-title">Confirmar la frecuencia de los equipos (ESTA SEMANA)</div>
+        <div class="tl-desc">Enviar hoy mismo al proveedor la solicitud formal de confirmación de operación a 60Hz con reporte de ensayo IEC. Esto define si se puede avanzar con los equipos AF o si hay que usar el YXD 80kW como equipo del piloto.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot critical">2</div>
+        <div class="tl-title">Iniciar certificación RETIE de producto (Semana 1)</div>
+        <div class="tl-desc">Contactar CIDET o ODIR Certificaciones esta semana. Comenzar el proceso en paralelo con la selección del equipo. Es el cuello de botella más largo del proyecto.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot active">3</div>
+        <div class="tl-title">Radicar estudio de carga ante EMCALI (Semana 1)</div>
+        <div class="tl-desc">Presentar la solicitud de viabilidad técnica con la potencia requerida y la dirección del punto piloto (14 Alfaguara). Determinar si hay capacidad para 80kW en BT o si se necesita MT para 160kW.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot active">4</div>
+        <div class="tl-title">Formalizar el acuerdo de inversión (Semanas 1–3)</div>
+        <div class="tl-desc">Constituir la sociedad o firmar el acuerdo de inversión entre IMPOSORTEC y los inversionistas. Definir exactamente el modelo PPA, la distribución de utilidades y el rol operativo de cada parte.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot pending">5</div>
+        <div class="tl-title">Elegir el primer piloto conservador: YXD 80kW</div>
+        <div class="tl-desc">Si los tiempos de certificación para los modelos AF son inciertos, iniciar con el YXD 80kW que ya tiene IEC 61851-1/2017. Menor inversión (~$120–160M), menor riesgo, más rápida ejecución (~5 meses). Luego escalar a 160kW con la experiencia adquirida.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.container -->
+
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+  <strong>INCOSERTEC / IMPOSORTEC</strong> – Análisis Técnico y Viabilidad: Electrolineras DC en Cali, Colombia<br>
+  Elaborado con información de: Leyes colombianas (Ley 1964/2019, Res. 40117/2024, Res. 40123/2024, RETIE), fichas técnicas de proveedores YXD y AF, datos de mercado ANDEMOS 2025, precios Terpel Voltex y Enel X.<br>
+  <div class="disclaimer">
+    <strong>Aviso legal:</strong> Este reporte es un análisis técnico preliminar con fines de planificación. Los costos son estimaciones de mercado. Antes de ejecutar cualquier inversión, consulte con ingenieros eléctricos matriculados, asesores tributarios y organismos certificadores acreditados en Colombia. Las normativas pueden cambiar.
+  </div>
+  <div style="margin-top:16px; opacity:.5">Versión 1.0 · Mayo 2025 · Elaborado con Claude (Anthropic) para INCOSERTEC</div>
+</footer>
+
+</body>
+</html>
