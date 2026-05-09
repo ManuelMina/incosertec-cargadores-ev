@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis Comparativo — Granjas Solares Fotovoltaicas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g1:#1b5e20;--g2:#2e7d32;--g3:#4caf50;--g4:#a5d6a7;--gf:#e8f5e9;--gt:#f1f8e9;
+  --b1:#0d47a1;--b2:#1565c0;--bf:#e3f2fd;
+  --w:#fff;--bg:#f0f4f0;--gr:#f5f5f5;--bd:#e0e0e0;
+  --tx:#212121;--ts:#616161;
+  --or:#f57c00;--orbg:#fff3e0;--rd:#c62828;--rdbg:#ffebee;--am:#ff8f00;
+}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+.page{max-width:1200px;margin:0 auto;background:var(--w);box-shadow:0 4px 24px rgba(0,0,0,.12)}
+
+/* HEADER */
+.hdr{background:linear-gradient(135deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);color:#fff;padding:52px 60px;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;top:-60px;right:-60px;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.05)}
+.hdr::after{content:'';position:absolute;bottom:-90px;right:80px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.07)}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px}
+.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:5px 15px;border-radius:20px;font-size:11px;letter-spacing:1.2px;text-transform:uppercase}
+.hdr-co{text-align:right;font-size:13px;opacity:.85}
+.hdr-co strong{font-size:15px;display:block}
+.hdr h1{font-size:36px;font-weight:300;letter-spacing:-.5px;margin-bottom:6px}
+.hdr h1 strong{font-weight:700;display:block;font-size:40px}
+.hdr-sub{font-size:15px;opacity:.8;margin-bottom:28px}
+.hdr-meta{display:flex;gap:28px;font-size:12px;opacity:.7}
+.hdr-meta span::before{content:'• '}
+
+/* SECTIONS */
+section{padding:48px 60px;border-bottom:1px solid var(--bd)}
+section:last-of-type{border-bottom:none}
+.sec-title{font-size:21px;font-weight:700;color:var(--g1);padding-bottom:10px;border-bottom:3px solid var(--g3);display:inline-block;margin-bottom:6px}
+.sec-sub{font-size:13px;color:var(--ts);margin-bottom:28px}
+
+/* SUMMARY CARDS */
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:24px}
+.card{background:var(--gf);border:1px solid var(--g4);border-radius:12px;padding:22px 18px;text-align:center}
+.card .lbl{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--g2);margin-bottom:6px}
+.card .val{font-size:24px;font-weight:700;color:var(--g1)}
+.card .sub{font-size:11px;color:var(--ts);margin-top:4px}
+
+/* COHERENCE SECTION */
+.coh-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+.coh-card{border-radius:12px;overflow:hidden;border:1px solid var(--bd)}
+.coh-head{padding:14px 20px;color:#fff;font-weight:700;font-size:14px}
+.coh-body{padding:18px 20px}
+.coh-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px}
+.coh-row:last-child{border-bottom:none}
+.coh-label{color:var(--ts)}
+.coh-val{font-weight:700}
+.gcr-bar-wrap{margin-top:16px}
+.gcr-label{font-size:12px;color:var(--ts);margin-bottom:5px;display:flex;justify-content:space-between}
+.gcr-track{height:10px;background:#e0e0e0;border-radius:5px;overflow:hidden}
+.gcr-fill{height:100%;border-radius:5px}
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+.inv-card{background:var(--gf);border:1px solid var(--g4);border-radius:12px;padding:20px}
+.inv-card h4{font-size:13px;color:var(--g1);margin-bottom:12px;font-weight:700}
+.inv-stat{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--bd)}
+.inv-stat:last-child{border-bottom:none}
+.inv-stat .is-v{font-weight:700}
+.coh-warn{margin-top:18px;padding:12px 16px;background:var(--orbg);border-left:3px solid var(--or);border-radius:6px;font-size:12px;color:#6d4c00}
+.coh-note{margin-top:18px;padding:12px 16px;background:var(--gf);border-left:3px solid var(--g3);border-radius:6px;font-size:12px;color:var(--g1)}
+
+/* PROPOSAL PROFILES — COMPACT */
+.props2{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+.prop-card{border-radius:12px;overflow:hidden;border:1px solid var(--bd)}
+.ph{padding:20px 22px;color:#fff}
+.ph1{background:linear-gradient(135deg,var(--g1),var(--g2))}
+.ph2{background:linear-gradient(135deg,var(--b1),var(--b2))}
+.ph .ptag{font-size:11px;opacity:.75;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.ph h2{font-size:18px;font-weight:600;margin-bottom:14px}
+.ph .total{font-size:26px;font-weight:700}
+.ph .total small{font-size:12px;font-weight:400;opacity:.8}
+.ph .metodologia{margin-top:8px;font-size:11px;opacity:.75;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:10px;display:inline-block}
+.pb{padding:16px 22px 18px}
+.si{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px;gap:12px}
+.si:last-child{border-bottom:none}
+.sl{color:var(--ts);font-size:12px;flex-shrink:0}
+.sv{font-weight:600;text-align:right}
+.ok{background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;display:inline-block}
+.ok2{background:#e3f2fd;color:#1565c0}
+.no{color:#bdbdbd;font-style:italic;font-size:12px}
+.warn-txt{color:var(--or);font-size:12px;font-weight:600}
+
+/* CHIPS INCLUDE/EXCLUDE */
+.chip-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.chip-si{background:#e8f5e9;color:#2e7d32}
+.chip-no{background:#fce4ec;color:#c62828}
+.chip-b{background:#e3f2fd;color:#1565c0}
+
+/* COMPARISON TABLE */
+.ctbl{width:100%;border-collapse:collapse;margin-top:28px;font-size:13px}
+.ctbl th{padding:12px 14px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.ctbl th:first-child{background:var(--gr);color:var(--ts);width:34%}
+.ctbl th.tc1{background:var(--g1);color:#fff;width:26%}
+.ctbl th.tc2{background:var(--b2);color:#fff;width:26%}
+.ctbl th.tcd{background:#424242;color:#fff;width:14%;text-align:center}
+.ctbl td{padding:10px 14px;border-bottom:1px solid var(--bd);vertical-align:top}
+.ctbl td small{display:block;font-size:11px;color:var(--ts);margin-top:2px;line-height:1.5}
+.ctbl tr:hover td{background:var(--gt)}
+.catrow td{background:var(--gf)!important;font-weight:700;color:var(--g1);font-size:11px;text-transform:uppercase;letter-spacing:.6px}
+.totrow td{background:var(--g1)!important;color:#fff!important;font-weight:700;font-size:14px}
+.kprow td{background:#f9fbe7!important;font-weight:700}
+.tc{text-align:center}
+
+/* MISSING ITEMS */
+.mGrid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+.mCard{border-radius:12px;overflow:hidden}
+.mHead{padding:14px 20px;color:#fff;font-weight:700;font-size:14px}
+.mBody{border:1px solid var(--bd);border-top:none;border-radius:0 0 12px 12px}
+.mi{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 18px;border-bottom:1px solid var(--bd);font-size:13px;gap:16px}
+.mi:last-child{border-bottom:none}
+.mi-n{flex:1}
+.mi-t{font-weight:600}
+.mi-s{font-size:11px;color:var(--ts);margin-top:2px}
+.mi-c{font-weight:700;color:var(--or);white-space:nowrap}
+.mTot{padding:12px 18px;background:var(--orbg);display:flex;justify-content:space-between;font-weight:700;font-size:13px;color:var(--or)}
+.mNote{padding:9px 18px;font-size:11px;color:var(--ts);background:#fafafa}
+.adjBox{margin-top:28px;padding:22px;background:var(--gf);border-radius:12px;border:1px solid var(--g4)}
+.adjBox h3{color:var(--g1);font-size:14px;margin-bottom:14px}
+.adj3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.adjCard{text-align:center;padding:18px;background:#fff;border-radius:10px}
+.adjCard .al{font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.adjCard .av{font-size:24px;font-weight:700;margin:4px 0}
+.adjCard .as{font-size:11px;color:var(--ts)}
+
+/* ALERTS */
+.alert{border-radius:8px;padding:14px 18px;margin-bottom:13px;display:flex;gap:12px;align-items:flex-start}
+.al-w{background:var(--orbg);border-left:4px solid var(--or)}
+.al-i{background:var(--gf);border-left:4px solid var(--g3)}
+.al-am{background:#fff8e1;border-left:4px solid var(--am)}
+.al-ico{font-size:16px;flex-shrink:0;margin-top:2px}
+.al-cnt strong{display:block;font-size:13px;margin-bottom:3px}
+.al-cnt p{font-size:12px;color:var(--ts);line-height:1.7}
+
+/* DISCLAIMER BOX */
+.disclaimer{background:linear-gradient(135deg,#37474f,#546e7a);color:#fff;border-radius:12px;padding:28px 32px;margin-top:28px}
+.disclaimer h4{font-size:15px;margin-bottom:12px}
+.disclaimer p{font-size:13px;opacity:.9;line-height:1.8}
+.disclaimer ul{font-size:13px;opacity:.9;line-height:2;padding-left:18px;margin-top:8px}
+
+/* CONCLUSION */
+.concBox{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border-radius:14px;padding:36px;margin-top:28px}
+.concBox h3{font-size:20px;margin-bottom:16px}
+.concBox p{font-size:13px;opacity:.92;line-height:1.85;margin-bottom:12px}
+.concBox p:last-child{margin-bottom:0}
+.rec2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.recCard{padding:20px;border-radius:12px}
+.recCard .rl{font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.recCard h4{font-size:14px;font-weight:700;margin-bottom:10px}
+.recCard ul{font-size:12px;padding-left:14px;line-height:2}
+.rc1{background:var(--gf);border:2px solid var(--g4)}
+.rc1 .rl{color:var(--g2)}
+.rc1 h4{color:var(--g1)}
+.rc2{background:var(--bf);border:2px solid #90caf9}
+.rc2 .rl{color:var(--b2)}
+.rc2 h4{color:var(--b1)}
+
+/* FOOTER */
+.footer{background:var(--gr);padding:26px 60px;text-align:center;border-top:1px solid var(--bd)}
+.footer .co{font-size:15px;font-weight:700;color:var(--g1)}
+.footer .au{font-size:13px;color:var(--ts);margin-top:4px}
+.footer .dt{font-size:11px;color:#9e9e9e;margin-top:6px}
+.footer .disc{margin-top:14px;padding-top:14px;border-top:1px solid var(--bd);font-size:10px;color:#bdbdbd;line-height:1.7}
+
+/* DIVIDER */
+.divider{height:3px;background:linear-gradient(90deg,var(--g1),var(--g3),var(--g1));opacity:.12;margin:0 60px}
+
+@media print{.page{box-shadow:none}section{page-break-inside:avoid}}
+@media(max-width:768px){
+  section,.hdr,.footer{padding:28px 18px}
+  .cards4,.props2,.coh-grid,.mGrid,.adj3,.rec2,.inv-grid{grid-template-columns:1fr}
+  .ctbl{font-size:11px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ HEADER ═══ -->
+<div class="hdr">
+  <div class="hdr-top">
+    <span class="badge">Informe Ejecutivo Técnico · 2026</span>
+    <div class="hdr-co"><strong>INCOSERTEC SAS</strong>Energías Renovables</div>
+  </div>
+  <h1>Análisis Comparativo de Presupuestos<strong>Granja Solar Fotovoltaica</strong></h1>
+  <p class="hdr-sub">Evaluación técnica y financiera de dos propuestas para el mismo emplazamiento — Venta de energía a red</p>
+  <div class="hdr-meta">
+    <span>Mayo 2026</span><span>Confidencial</span><span>2 Propuestas Evaluadas</span><span>Proyecto Fotovoltaico On-Grid</span>
+  </div>
+</div>
+
+<!-- ═══ RESUMEN EJECUTIVO ═══ -->
+<section>
+  <div class="sec-title">Resumen Ejecutivo</div>
+  <p class="sec-sub">Indicadores clave de ambas propuestas para comparación inmediata</p>
+
+  <div class="cards4">
+    <div class="card">
+      <div class="lbl">Capacidad — P1</div>
+      <div class="val">1.105 kWp</div>
+      <div class="sub">1.512 paneles · 730 W</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Capacidad — P2</div>
+      <div class="val">924 kWp</div>
+      <div class="sub">1.275 paneles · 725 W</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Inversión Total — P1</div>
+      <div class="val" style="font-size:18px;">$3.151 M</div>
+      <div class="sub">COP · Presentación AIU</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Inversión Total — P2</div>
+      <div class="val" style="font-size:18px;">$3.604 M</div>
+      <div class="sub">COP · IVA pleno + margen</div>
+    </div>
+  </div>
+
+  <div class="cards4">
+    <div class="card">
+      <div class="lbl">Costo / kWp — P1</div>
+      <div class="val" style="font-size:20px;">$2.852 K</div>
+      <div class="sub">COP por kWp instalado</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Costo / kWp — P2</div>
+      <div class="val" style="font-size:20px;">$3.898 K</div>
+      <div class="sub">COP por kWp instalado</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Mayor Capacidad</div>
+      <div class="val">+181 kWp</div>
+      <div class="sub">P1 supera a P2 en +19,5 %</div>
+    </div>
+    <div class="card">
+      <div class="lbl">P1 más económico en</div>
+      <div class="val" style="color:var(--or);">$453 M</div>
+      <div class="sub">P2 es 37 % más caro/kWp</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ COHERENCIA TÉCNICA: ÁREA Y EQUIPOS ═══ -->
+<section>
+  <div class="sec-title">Coherencia Técnica — Área vs. Paneles e Inversores</div>
+  <p class="sec-sub">Verificación de si la cantidad de paneles e inversores propuestos es coherente con el área disponible de 96 m × 78 m = 7.488 m²</p>
+
+  <div class="coh-grid">
+    <!-- P1 Area -->
+    <div class="coh-card">
+      <div class="coh-head ph1">Propuesta 1 — Análisis de Área</div>
+      <div class="coh-body">
+        <div class="coh-row"><span class="coh-label">Área total del predio</span><span class="coh-val">7.488 m²</span></div>
+        <div class="coh-row"><span class="coh-label">Área estimada panel (≈ 2,60 m²/ud)</span><span class="coh-val">1.512 × 2,60 = <strong>3.931 m²</strong></span></div>
+        <div class="coh-row"><span class="coh-label">Área no usable (CT, pasillos, setbacks)</span><span class="coh-val">≈ 1.500 m²</span></div>
+        <div class="coh-row"><span class="coh-label">Área efectiva disponible</span><span class="coh-val">≈ 5.988 m²</span></div>
+        <div class="coh-row"><span class="coh-label">GCR estimado</span><span class="coh-val" style="color:var(--or);">0,66 — Muy denso</span></div>
+        <div class="gcr-bar-wrap">
+          <div class="gcr-label"><span>GCR — Densidad de ocupación</span><span>0,66</span></div>
+          <div class="gcr-track"><div class="gcr-fill" style="width:66%;background:linear-gradient(90deg,var(--g3),var(--or));"></div></div>
+        </div>
+        <div class="coh-warn" style="margin-top:14px;">
+          <strong>Ajustado para el área disponible.</strong> Un GCR de 0,66 implica pasillos de mantenimiento muy reducidos entre filas. En Colombia (latitud ≈ 5° N) las sombras inter-fila son mínimas por la alta posición solar, lo que lo hace técnicamente viable, pero debe confirmarse con layout de ingeniería de detalle.
+        </div>
+      </div>
+    </div>
+
+    <!-- P2 Area -->
+    <div class="coh-card">
+      <div class="coh-head ph2">Propuesta 2 — Análisis de Área</div>
+      <div class="coh-body">
+        <div class="coh-row"><span class="coh-label">Área total del predio</span><span class="coh-val">7.488 m²</span></div>
+        <div class="coh-row"><span class="coh-label">Área estimada panel (≈ 2,60 m²/ud)</span><span class="coh-val">1.275 × 2,60 = <strong>3.315 m²</strong></span></div>
+        <div class="coh-row"><span class="coh-label">Área no usable (CT, pasillos, setbacks)</span><span class="coh-val">≈ 1.500 m²</span></div>
+        <div class="coh-row"><span class="coh-label">Área efectiva disponible</span><span class="coh-val">≈ 5.988 m²</span></div>
+        <div class="coh-row"><span class="coh-label">GCR estimado</span><span class="coh-val" style="color:var(--g2);">0,55 — Razonable</span></div>
+        <div class="gcr-bar-wrap">
+          <div class="gcr-label"><span>GCR — Densidad de ocupación</span><span>0,55</span></div>
+          <div class="gcr-track"><div class="gcr-fill" style="width:55%;background:linear-gradient(90deg,var(--g3),var(--g2));"></div></div>
+        </div>
+        <div class="coh-note" style="margin-top:14px;">
+          <strong>Cómodo para el área disponible.</strong> Un GCR de 0,55 permite pasillos adecuados para mantenimiento y limpieza. Las 17 mesas hincadas tienen una distribución más espaciada y ordenada que favorece el acceso operativo.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inverter Coherence -->
+  <div style="margin-top:32px;">
+    <h3 style="font-size:15px;color:var(--g1);margin-bottom:6px;">Coherencia de Inversores</h3>
+    <p style="font-size:13px;color:var(--ts);margin-bottom:16px;">El ratio DC/AC relaciona la potencia pico de los paneles con la potencia nominal del inversor. El rango óptimo es 1,10 – 1,30.</p>
+    <div class="inv-grid">
+      <div class="inv-card">
+        <h4>Propuesta 1</h4>
+        <div class="inv-stat"><span>Potencia DC</span><span class="is-v">1.105 kWp</span></div>
+        <div class="inv-stat"><span>Inversores</span><span class="is-v">3 × 330 kW = 990 kW AC</span></div>
+        <div class="inv-stat"><span>Ratio DC/AC</span><span class="is-v" style="color:var(--g2);">1,116 <span class="ok">Óptimo</span></span></div>
+        <div class="inv-stat"><span>Configuración</span><span class="is-v">Simétrica — 3 equipos iguales</span></div>
+        <div class="inv-stat"><span>Redundancia</span><span class="is-v">Si 1 falla: 67 % operativo</span></div>
+      </div>
+      <div class="inv-card" style="background:var(--bf);border-color:#90caf9">
+        <h4 style="color:var(--b1);">Propuesta 2</h4>
+        <div class="inv-stat"><span>Potencia DC</span><span class="is-v">924 kWp</span></div>
+        <div class="inv-stat"><span>Inversores</span><span class="is-v">2×330 kW + 1×100 kW = 760 kW AC</span></div>
+        <div class="inv-stat"><span>Ratio DC/AC</span><span class="is-v" style="color:var(--b2);">1,216 <span class="ok ok2">Óptimo</span></span></div>
+        <div class="inv-stat"><span>Configuración</span><span class="is-v">Asimétrica — 2 tamaños diferentes</span></div>
+        <div class="inv-stat"><span>Nota</span><span class="is-v warn-txt">Diseño de strings más complejo</span></div>
+      </div>
+    </div>
+    <div class="coh-note" style="margin-top:16px;">
+      Ambas propuestas presentan ratios DC/AC dentro del rango óptimo. La configuración asimétrica de P2 (dos inversores de 330 kW + uno de 100 kW) requiere un diseño cuidadoso de la distribución de strings para balancear correctamente las cargas — esto debe estar contemplado en la ingeniería de detalle.
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PERFIL TÉCNICO — COMPACTO ═══ -->
+<section>
+  <div class="sec-title">Perfil Técnico de Cada Propuesta</div>
+  <p class="sec-sub">Resumen de tecnología, equipos principales, metodología y alcances incluidos / excluidos</p>
+
+  <div class="props2">
+    <!-- P1 -->
+    <div class="prop-card">
+      <div class="ph ph1">
+        <div class="ptag">Propuesta 1</div>
+        <h2>CrossRail Tilt-Up Multi-Row</h2>
+        <div class="total">$3.151.154.612 <small>COP</small></div>
+        <div class="metodologia">Presentación: AIU (Adm. 15% + Impr. 2% + Util. 10%)</div>
+      </div>
+      <div class="pb">
+        <div class="si"><span class="sl">Tecnología panel</span><span class="sv">Monocristalino PERC Half-Cell TIER 1</span></div>
+        <div class="si"><span class="sl">Panel / Cantidad / Total</span><span class="sv">730 W · 1.512 ud · <strong>1.105 kWp</strong></span></div>
+        <div class="si"><span class="sl">Garantía paneles</span><span class="sv">12 años prod. · ≥90% a 12 a · ≥80% a 25 a</span></div>
+        <div class="si"><span class="sl">Inversores</span><span class="sv">3 × 330 kW · 6 MPPT · 800 V nom. <span class="warn-txt">(marca no especificada)</span></span></div>
+        <div class="si"><span class="sl">Estructura</span><span class="sv">CrossRail sobre zapatas concreto 21 MPa</span></div>
+        <div class="si"><span class="sl">Centro de transformación</span><span class="sv">$500 M global (alcance a verificar)</span></div>
+        <div style="margin-top:14px;margin-bottom:6px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--g2);font-weight:700;">Incluye</div>
+        <div class="chip-grid">
+          <span class="chip chip-si">Apantallamiento $43 M</span>
+          <span class="chip chip-si">Iluminación solar exterior</span>
+          <span class="chip chip-si">Iluminación interior</span>
+          <span class="chip chip-si">Geotextil 8.000 m²</span>
+          <span class="chip chip-si">Cunetas concreto 400 ml</span>
+          <span class="chip chip-si">Grava 1.500 m³</span>
+          <span class="chip chip-si">Componente ambiental</span>
+          <span class="chip chip-si">Cerramiento 400 ml</span>
+          <span class="chip chip-si">RETIE $25 M</span>
+        </div>
+        <div style="margin-top:12px;margin-bottom:6px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--rd);font-weight:700;">No incluye</div>
+        <div class="chip-grid">
+          <span class="chip chip-no">Ingeniería de detalle</span>
+          <span class="chip chip-no">Monitoreo remoto</span>
+          <span class="chip chip-no">UPME Ley 1715</span>
+          <span class="chip chip-no">Seguros TRC</span>
+          <span class="chip chip-no">Marca inversores</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- P2 -->
+    <div class="prop-card">
+      <div class="ph ph2">
+        <div class="ptag">Propuesta 2</div>
+        <h2>Estructura de Mesas Hincadas</h2>
+        <div class="total">$3.603.551.361 <small>COP</small></div>
+        <div class="metodologia">Presentación: IVA 19% por ítem + margen comercial 13,5%</div>
+      </div>
+      <div class="pb">
+        <div class="si"><span class="sl">Tecnología panel</span><span class="sv">N-type TOPCon <span class="ok ok2">Nueva generación</span></span></div>
+        <div class="si"><span class="sl">Panel / Cantidad / Total</span><span class="sv">Trina 725 W · 1.275 ud · <strong>924 kWp</strong></span></div>
+        <div class="si"><span class="sl">Garantía paneles</span><span class="sv"><span class="warn-txt">No especificada en el documento</span></span></div>
+        <div class="si"><span class="sl">Inversores</span><span class="sv">Huawei SUN2000: 2×330kW + 1×100kW <span class="ok ok2">Marca líder</span></span></div>
+        <div class="si"><span class="sl">Estructura</span><span class="sv">17 mesas hincadas en suelo</span></div>
+        <div class="si"><span class="sl">Centro de transformación</span><span class="sv">CT $451,7 M + Relevo desconexión $178,5 M</span></div>
+        <div style="margin-top:14px;margin-bottom:6px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--b2);font-weight:700;">Incluye</div>
+        <div class="chip-grid">
+          <span class="chip chip-b">Ingeniería detalle + PVSyst $119 M</span>
+          <span class="chip chip-b">Monitoreo Huawei SmartLogger</span>
+          <span class="chip chip-b">Sensores irradiancia/temp.</span>
+          <span class="chip chip-b">UPME Ley 1715 $9,5 M</span>
+          <span class="chip chip-b">Seguros TRC $45 M</span>
+          <span class="chip chip-b">Relevo desconexión $178,5 M</span>
+          <span class="chip chip-b">Iluminación interior</span>
+          <span class="chip chip-b">Componente ambiental</span>
+          <span class="chip chip-b">RETIE $26,2 M</span>
+        </div>
+        <div style="margin-top:12px;margin-bottom:6px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--rd);font-weight:700;">No incluye</div>
+        <div class="chip-grid">
+          <span class="chip chip-no">Apantallamiento</span>
+          <span class="chip chip-no">Iluminación exterior solar</span>
+          <span class="chip chip-no">Geotextil / control terreno</span>
+          <span class="chip chip-no">Cunetas en concreto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ COMPARATIVO DE COSTOS ═══ -->
+<section>
+  <div class="sec-title">Comparativo de Costos por Componente</div>
+  <p class="sec-sub">Desglose ítem a ítem con el valor total cotizado por cada proponente</p>
+
+  <table class="ctbl">
+    <thead>
+      <tr>
+        <th>Componente</th>
+        <th class="tc1">Propuesta 1 — Valor cotizado</th>
+        <th class="tc2">Propuesta 2 — Valor cotizado</th>
+        <th class="tcd">Ventaja</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="catrow"><td colspan="4">PANELES Y COMPONENTES DC</td></tr>
+      <tr>
+        <td>Paneles solares (suministro + instalación)</td>
+        <td>$918.287.496<small>1.512 ud · 730W · incluye estructura CrossRail completa</small></td>
+        <td>$600.138.621<small>1.275 ud · 725W Trina · suministro + mano de obra instalación</small></td>
+        <td class="tc"><span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">P2 precio</span></td>
+      </tr>
+      <tr>
+        <td>Inversores (suministro + instalación)</td>
+        <td>$135.000.000<small>3 × 330 kW = 990 kW AC · marca no especificada</small></td>
+        <td>$106.424.000<small>Huawei: 2×330kW + 1×100kW = 760kW · incluye MO</small></td>
+        <td class="tc"><span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">P2 precio</span></td>
+      </tr>
+      <tr>
+        <td>String Box / Combiner Box DC</td>
+        <td>$30.909.396<small>3 unidades</small></td>
+        <td>$44.625.000<small>3 unidades · con medidor, data logger y monitoreo incluidos</small></td>
+        <td class="tc"><span class="ok">P1</span></td>
+      </tr>
+      <tr>
+        <td>Cableado DC (strings, bandejas, conectores MC4)</td>
+        <td>$82.099.011<small>Cableado strings global</small></td>
+        <td>≈ $189.000.000<small>Cable solar 1,5kV + bandejas + conectores MC4 + MO 30 días</small></td>
+        <td class="tc"><span class="ok">P1</span></td>
+      </tr>
+      <tr>
+        <td>Sistema de monitoreo remoto</td>
+        <td>—<small>No incluido</small></td>
+        <td>$13.589.800<small>SmartLogger + sensores irrad./temp. + router 4G + medidor industrial</small></td>
+        <td class="tc"><span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">P2 alcance</span></td>
+      </tr>
+
+      <tr class="catrow"><td colspan="4">SISTEMA AC E INTERCONEXIÓN</td></tr>
+      <tr>
+        <td>Centro de transformación (CT)</td>
+        <td>$500.000.000<small>Suministro + instalación global — incluye relevo de desconexión (por verificar)</small></td>
+        <td>$451.708.547<small>CT Amaranzero 800V / 13,2 kV únicamente</small></td>
+        <td class="tc"><span style="background:#fff3e0;color:var(--or);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">Verificar P1</span></td>
+      </tr>
+      <tr>
+        <td>Relevo de desconexión de red</td>
+        <td>—<small>Posiblemente en CT ($500M) — sin discriminar</small></td>
+        <td>$178.500.000<small>Sistema de conexión/desconexión red · cotizado por separado</small></td>
+        <td class="tc"><span style="background:#fff3e0;color:var(--or);padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">Verificar P1</span></td>
+      </tr>
+      <tr>
+        <td>Puesta a tierra (SPT)</td>
+        <td>$22.491.669<small>Varillas 5/8" cobre · cable 2 AWG · soldadura exotérmica</small></td>
+        <td>$29.750.000<small>Cable 2/0 + varillas + exotérmica + cable #6 bandejas</small></td>
+        <td class="tc"><span class="ok">P1</span></td>
+      </tr>
+      <tr>
+        <td>Alimentador inversor → tablero AC</td>
+        <td>$33.183.660<small>3×(4/0 AWG THHN) + tierra · ducto Ø 2"</small></td>
+        <td>≈ $30.464.000<small>Cable 500 MCM Al + tubo PVC DB-120 + MO cableado AC</small></td>
+        <td class="tc" style="font-size:11px;color:var(--ts);">Similar</td>
+      </tr>
+      <tr>
+        <td>Apantallamiento (protección rayos)</td>
+        <td>$43.461.775<small>Sistema completo incluido</small></td>
+        <td>—<small>No incluido</small></td>
+        <td class="tc"><span class="ok">P1 alcance</span></td>
+      </tr>
+      <tr>
+        <td>Certificación RETIE</td>
+        <td>$25.000.000</td>
+        <td>$26.180.000</td>
+        <td class="tc"><span class="ok">P1</span></td>
+      </tr>
+      <tr>
+        <td>UPME — Ley 1715 (beneficios tributarios)</td>
+        <td>—<small>No incluido</small></td>
+        <td>$9.520.000<small>Trámites certificación beneficios tributarios renovables</small></td>
+        <td class="tc"><span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">P2 alcance</span></td>
+      </tr>
+
+      <tr class="catrow"><td colspan="4">ESTRUCTURA Y OBRA CIVIL</td></tr>
+      <tr>
+        <td>Estructura soporte paneles</td>
+        <td>$95.502.616<small>Zapatas + pedestales concreto 21 MPa · 88 m³ · elementos galvanizados</small></td>
+        <td>$283.220.000<small>17 mesas hincadas × $14 M/ud</small></td>
+        <td class="tc"><span class="ok">P1 −$188M</span></td>
+      </tr>
+      <tr>
+        <td>Cerramiento perimetral</td>
+        <td>$228.574.400<small>400 ml · malla eslabonada PVC + concreto + hilos de púas</small></td>
+        <td>$114.240.000<small>180 ml nuevo + 120 ml demolición cerramiento existente</small></td>
+        <td class="tc"><span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">P2 precio</span></td>
+      </tr>
+      <tr>
+        <td>Drenajes y cunetas</td>
+        <td>$104.990.800<small>400 ml cuneta trapezoidal concreto 21 MPa</small></td>
+        <td>$21.420.000<small>400 ml adecuación básica de drenaje</small></td>
+        <td class="tc"><span class="ok">P1 calidad</span></td>
+      </tr>
+      <tr>
+        <td>Geotextil NT-2000 + grava triturada</td>
+        <td>$116.484.500<small>8.000 m² geotextil + 1.500 m³ grava 1/2"</small></td>
+        <td>—<small>No incluido</small></td>
+        <td class="tc"><span class="ok">P1 alcance</span></td>
+      </tr>
+
+      <tr class="catrow"><td colspan="4">SERVICIOS, INGENIERÍA Y GESTIÓN</td></tr>
+      <tr>
+        <td>Iluminación solar exterior perimetral</td>
+        <td>$32.774.966<small>14 × LED 150W IP65 autónomas</small></td>
+        <td>—<small>No incluida</small></td>
+        <td class="tc"><span class="ok">P1 alcance</span></td>
+      </tr>
+      <tr>
+        <td>Ingeniería de detalle</td>
+        <td>—<small>No especificada</small></td>
+        <td>$119.000.000<small>RETIE, PVSyst, subestación, ing. civil, estudio de conexión</small></td>
+        <td class="tc"><span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">P2 alcance</span></td>
+      </tr>
+      <tr>
+        <td>Componente ambiental</td>
+        <td>$8.774.200<small>RAEE · RESPEL · residuos · almacenamiento</small></td>
+        <td>Incluido en gestión constructiva<small>Dentro del ítem de gestión $24,9 M</small></td>
+        <td class="tc" style="font-size:11px;color:var(--ts);">Ambos</td>
+      </tr>
+      <tr>
+        <td>Transporte y logística</td>
+        <td>$10.400.000<small>Movilización · suministro ya incluye transporte de fábrica</small></td>
+        <td>$148.898.750<small>Logística nacional/internacional · montacargas · personal</small></td>
+        <td class="tc"><span class="ok">P1</span></td>
+      </tr>
+      <tr>
+        <td>Seguros todo riesgo construcción (TRC)</td>
+        <td>—<small>No especificado</small></td>
+        <td>$45.000.000<small>Pólizas TRC 1,5 %</small></td>
+        <td class="tc"><span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">P2 alcance</span></td>
+      </tr>
+
+      <tr class="catrow"><td colspan="4">COSTOS INDIRECTOS Y MARGEN</td></tr>
+      <tr>
+        <td>Administración</td>
+        <td>15 % = $361.620.438</td>
+        <td>10 % = $280.817.291</td>
+        <td class="tc"><span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">P2</span></td>
+      </tr>
+      <tr>
+        <td>Imprevistos</td>
+        <td>2 % = $48.216.058</td>
+        <td>1 % = $28.081.729</td>
+        <td class="tc"><span style="background:#e3f2fd;color:#1565c0;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;">P2</span></td>
+      </tr>
+      <tr>
+        <td>Utilidad / Margen comercial</td>
+        <td>10 % = $241.080.292</td>
+        <td>13,5 % = $486.479.433</td>
+        <td class="tc"><span class="ok">P1</span></td>
+      </tr>
+      <tr>
+        <td>Póliza contribuyente + GMF</td>
+        <td>$43.629.650</td>
+        <td>—</td>
+        <td class="tc" style="font-size:11px;color:var(--ts);">—</td>
+      </tr>
+
+      <tr class="totrow">
+        <td>COSTO TOTAL DEL PROYECTO</td>
+        <td>$3.151.154.612 COP</td>
+        <td>$3.603.551.361 COP</td>
+        <td class="tc">P1 −$452 M</td>
+      </tr>
+      <tr class="kprow">
+        <td><strong>Costo por kWp instalado</strong></td>
+        <td style="color:var(--g1);"><strong>$2.851.709 / kWp</strong></td>
+        <td style="color:var(--b2);"><strong>$3.898.365 / kWp</strong></td>
+        <td class="tc" style="color:var(--g1);font-weight:700;">P1 −37%</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ ÍTEMS AUSENTES ═══ -->
+<section>
+  <div class="sec-title">Análisis de Ítems Ausentes</div>
+  <p class="sec-sub">Ítems que cada propuesta no contempla y su impacto estimado sobre el costo final del proyecto</p>
+
+  <div class="mGrid">
+    <!-- P1 Faltante -->
+    <div class="mCard">
+      <div class="mHead ph1">Propuesta 1 — Ítems No Incluidos</div>
+      <div class="mBody">
+        <div class="mi">
+          <div class="mi-n">
+            <div class="mi-t">Ingeniería de detalle</div>
+            <div class="mi-s">Diseño eléctrico RETIE, PVSyst, ing. civil, estudio de conexión a red. Obligatoria — sin esta, el proyecto no puede iniciar obras.</div>
+          </div>
+          <div class="mi-c">~$110 M</div>
+        </div>
+        <div class="mi">
+          <div class="mi-n">
+            <div class="mi-t">Seguros todo riesgo construcción (TRC)</div>
+            <div class="mi-s">Póliza obligatoria para proyectos de esta magnitud. Estimado 1,5 % del proyecto.</div>
+          </div>
+          <div class="mi-c">~$45 M</div>
+        </div>
+        <div class="mi">
+          <div class="mi-n">
+            <div class="mi-t">Registro UPME — Ley 1715 de 2014</div>
+            <div class="mi-s">Acceso a beneficios tributarios (exclusión IVA, deducción renta). Los ahorros pueden superar $300 M.</div>
+          </div>
+          <div class="mi-c">~$9 M</div>
+        </div>
+        <div class="mi">
+          <div class="mi-n">
+            <div class="mi-t">Sistema de monitoreo remoto</div>
+            <div class="mi-s">Data Logger, sensores irradiancia/temperatura, router industrial 4G, medidor de energía industrial.</div>
+          </div>
+          <div class="mi-c">~$15 M</div>
+        </div>
+        <div class="mi">
+          <div class="mi-n">
+            <div class="mi-t">Relevo de desconexión de red</div>
+            <div class="mi-s">No queda claro si está en el CT ($500 M). Si no está incluido, se adicionan hasta $178 M.</div>
+          </div>
+          <div class="mi-c">Por verificar</div>
+        </div>
+        <div class="mTot">
+          <span>Costo adicional mínimo estimado</span>
+          <span>~$179 M COP</span>
+        </div>
+        <div class="mNote">P1 ajustado estimado: <strong>~$3.330 M COP · $3.013 K/kWp</strong></div>
+      </div>
+    </div>
+
+    <!-- P2 Faltante -->
+    <div class="mCard">
+      <div class="mHead ph2">Propuesta 2 — Ítems No Incluidos</div>
+      <div class="mBody">
+        <div class="mi">
+          <div class="mi-n">
+            <div class="mi-t">Apantallamiento (protección contra rayos)</div>
+            <div class="mi-s">Sistema requerido en zonas de alta actividad eléctrica. Normativa RETIE exige análisis de riesgo de rayos para esta instalación.</div>
+          </div>
+          <div class="mi-c">~$43 M</div>
+        </div>
+        <div class="mi">
+          <div class="mi-n">
+            <div class="mi-t">Iluminación solar exterior perimetral</div>
+            <div class="mi-s">14 luminarias LED 150W IP65 autónomas para vigilancia nocturna del perímetro.</div>
+          </div>
+          <div class="mi-c">~$33 M</div>
+        </div>
+        <div class="mi">
+          <div class="mi-n">
+            <div class="mi-t">Geotextil NT-2000 + grava (control terreno)</div>
+            <div class="mi-s">Depende de condiciones del suelo. P1 incluye 8.000 m² geotextil + 1.500 m³ grava. Puede ser necesario para control de maleza y erosión bajo los paneles.</div>
+          </div>
+          <div class="mi-c">~$116 M</div>
+        </div>
+        <div class="mi">
+          <div class="mi-n">
+            <div class="mi-t">Cunetas en concreto (drenaje pluvial robusto)</div>
+            <div class="mi-s">P2 cotiza solo adecuación básica ($21,4 M). P1 incluye cunetas trapezoidales en concreto 21 MPa, más durable a largo plazo.</div>
+          </div>
+          <div class="mi-c">~$83 M</div>
+        </div>
+        <div class="mTot">
+          <span>Costo adicional mínimo (sin obras civiles)</span>
+          <span>~$76 M COP</span>
+        </div>
+        <div class="mNote">
+          P2 ajustado mínimo: <strong>~$3.680 M COP · $3.981 K/kWp</strong><br>
+          P2 ajustado máximo (con obras civiles): <strong>~$3.879 M COP · $4.196 K/kWp</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="adjBox">
+    <h3>Comparativo Ajustado — Incluyendo ítems faltantes estimados</h3>
+    <div class="adj3">
+      <div class="adjCard" style="border:1px solid var(--g4);">
+        <div class="al" style="color:var(--g2);">P1 Ajustado</div>
+        <div class="av" style="color:var(--g1);">~$3.330 M</div>
+        <div class="as">$3.013 K / kWp · 1.105 kWp</div>
+      </div>
+      <div class="adjCard" style="border:1px solid #90caf9;">
+        <div class="al" style="color:var(--b2);">P2 Ajustado</div>
+        <div class="av" style="color:var(--b1);">~$3.680 M+</div>
+        <div class="as">$3.981 K / kWp mín. · 924 kWp</div>
+      </div>
+      <div class="adjCard" style="border:1px solid var(--g4);">
+        <div class="al" style="color:var(--or);">Diferencia Final</div>
+        <div class="av" style="color:var(--or);">~$350 M+</div>
+        <div class="as">P1 sigue siendo más económico incluso ajustado</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ ALERTAS ═══ -->
+<section>
+  <div class="sec-title">Alertas y Puntos Críticos</div>
+  <p class="sec-sub">Aspectos que deben resolverse antes de tomar la decisión final</p>
+
+  <div class="alert al-am">
+    <div class="al-ico" style="color:var(--am);">⚖</div>
+    <div class="al-cnt">
+      <strong>Metodología de presentación diferente — P1 usa AIU, P2 incluye IVA pleno</strong>
+      <p>Las dos propuestas no se pueden comparar directamente a nivel de precios unitarios porque usan metodologías distintas. <strong>P1 (AIU)</strong> presenta sus costos directos sin IVA en materiales y mano de obra, y aplica los costos indirectos como porcentaje del total (Administración 15% + Imprevistos 2% + Utilidad 10%), siendo el IVA solo sobre la utilidad. <strong>P2 (IVA pleno)</strong> incluye el IVA del 19% en cada línea de equipos y materiales, más un margen comercial del 13,5% sobre el subtotal total. Esto hace que los precios unitarios de P2 parezcan más altos, pero son más transparentes. Para una comparación equitativa, se requeriría normalizar ambas ofertas a la misma metodología. Los totales finales cotizados sí son comparables entre sí como precio de venta al cliente.</p>
+    </div>
+  </div>
+
+  <div class="alert al-w">
+    <div class="al-ico" style="color:var(--or);">!</div>
+    <div class="al-cnt">
+      <strong>Centro de Transformación — Alcances no comparables directamente</strong>
+      <p>P1 cotiza su CT en $500 M de forma global, sin discriminar si incluye el relevo de desconexión. P2 desglosa: CT $451,7 M + Relevo de desconexión $178,5 M = $630,2 M total. Si el CT de P1 no incluye el relevo, se adicionan hasta $178,5 M a su presupuesto, reduciendo significativamente la ventaja de costo. Debe solicitarse a P1 una aclaración formal sobre el alcance exacto del ítem de transformación.</p>
+    </div>
+  </div>
+
+  <div class="alert al-w">
+    <div class="al-ico" style="color:var(--or);">!</div>
+    <div class="al-cnt">
+      <strong>Propuesta 1 — Garantías de paneles no verificables sin marca especificada</strong>
+      <p>P1 declara garantías de 12 años de producto y rendimiento ≥ 80% a 25 años, pero no especifica la marca ni modelo exacto del panel. Sin marca definida contractualmente, las garantías no tienen respaldo exigible. Se recomienda incluir marca, modelo y número de certificación del panel en el contrato, antes de la firma.</p>
+    </div>
+  </div>
+
+  <div class="alert al-w">
+    <div class="al-ico" style="color:var(--or);">!</div>
+    <div class="al-cnt">
+      <strong>Propuesta 1 — Ingeniería de detalle ausente</strong>
+      <p>Un proyecto de 1,1 MWp conectado a red requiere obligatoriamente ingeniería de detalle (diseño eléctrico, simulación PVSyst, estudio de conexión, RETIE formal y layout del campo). Sin esta, el proyecto no puede iniciar obras. Este costo (~$110 M) debe sumarse al P1 antes de cualquier comparación. Adicionalmente, sin ingeniería no hay simulación de producción que respalde la cantidad de paneles propuesta.</p>
+    </div>
+  </div>
+
+  <div class="alert al-i">
+    <div class="al-ico" style="color:var(--g2);">i</div>
+    <div class="al-cnt">
+      <strong>UPME Ley 1715 — Beneficio tributario significativo ausente en P1</strong>
+      <p>El registro ante la UPME permite acceder a: exclusión del IVA en equipos importados, deducción del 50% de la inversión en renta, y depreciación acelerada de activos. El trámite cuesta ~$9 M (ya incluido en P2) pero el beneficio tributario puede superar $300–500 M dependiendo de la estructura fiscal del proyecto. P1 no lo menciona, lo que puede indicar desconocimiento en esta área regulatoria.</p>
+    </div>
+  </div>
+
+  <div class="alert al-i">
+    <div class="al-ico" style="color:var(--g2);">i</div>
+    <div class="al-cnt">
+      <strong>Tecnología de Paneles — PERC vs TOPCon N-type</strong>
+      <p>P1 usa PERC (P-type): consolidado, confiable, ≥20% eficiencia, degradación ~0,55%/año. P2 usa TOPCon N-type (Trina Vertex N): mayor eficiencia (~22%), degradación ~0,35%/año, mejor rendimiento a alta temperatura y baja irradiancia. P1 compensa con 181 kWp adicionales instalados, logrando mayor producción total anual desde el primer día de operación.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ CONCLUSIÓN ═══ -->
+<section>
+  <div class="sec-title">Conclusión y Recomendación Técnica</div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    <h4>Limitación del análisis — Falta información de ingeniería</h4>
+    <p>Ambas propuestas presentan un alcance general sin planos de detalle, especificaciones técnicas completas ni simulaciones de producción validadas. Esto limita significativamente la profundidad de cualquier análisis comparativo. Para una evaluación global definitiva, se recomienda solicitar a ambos proponentes:</p>
+    <ul>
+      <li>Layout del campo fotovoltaico (distribución real de paneles en los 7.488 m²)</li>
+      <li>Simulación de producción con PVSyst (solo P2 la contempla en su alcance)</li>
+      <li>Especificaciones técnicas completas y fichas de todos los equipos</li>
+      <li>Cronograma de ejecución detallado</li>
+      <li>Aclaración formal del alcance del Centro de Transformación (P1)</li>
+    </ul>
+    <p style="margin-top:10px;"><strong>Sin esta información, el análisis presentado es de carácter preliminar y orientativo.</strong></p>
+  </div>
+
+  <div class="concBox">
+    <h3>Evaluación General</h3>
+    <p>
+      Desde una perspectiva técnico-económica, la <strong>Propuesta 1</strong> ofrece mayor potencia instalada (1.105 kWp vs 924 kWp) a un costo total más bajo ($3.151 M vs $3.604 M), con un costo por kWp un <strong>37% más eficiente</strong>. Incluso sumando los ítems faltantes estimados (~$179 M), el P1 ajustado (~$3.330 M) sigue siendo más económico que el P2 base. Sin embargo, el P1 ocupa el área de manera más densa (GCR ≈ 0,66 vs 0,55 del P2), lo que requiere confirmación con el layout de ingeniería.
+    </p>
+    <p>
+      La <strong>Propuesta 2</strong> es más completa en gestión e ingeniería: incluye PVSyst, UPME, monitoreo Huawei, seguros y marcas especificadas. Su tecnología TOPCon de nueva generación ofrece menor degradación a largo plazo y su configuración de área es más cómoda. No obstante, es la opción más costosa en inversión inicial y en costo por kWp.
+    </p>
+    <p>
+      Se recomienda solicitar a P1 que explicite ingeniería, monitoreo y UPME dentro de sus condiciones. Si P1 puede integrar estos elementos sin perder su ventaja de precio, representa la opción con mejor relación capacidad/inversión. Si no, P2 ofrece una solución más llave en mano, pero a un costo significativamente mayor por unidad de potencia instalada.
+    </p>
+  </div>
+
+  <div class="rec2">
+    <div class="recCard rc1">
+      <div class="rl">Criterio: Mayor capacidad y mejor inversión</div>
+      <h4>Propuesta 1 — Recomendada en costo/kWp</h4>
+      <ul>
+        <li>1.105 kWp instalados — 19,5 % más que P2</li>
+        <li>$453 M más económica en inversión inicial</li>
+        <li>Infraestructura civil robusta y completa</li>
+        <li>Pendiente: agregar ing. detalle + UPME + monitoreo</li>
+        <li>Pendiente: verificar alcance CT y especificar marcas</li>
+      </ul>
+    </div>
+    <div class="recCard rc2">
+      <div class="rl">Criterio: Solución integral y tecnología avanzada</div>
+      <h4>Propuesta 2 — Recomendada en gestión</h4>
+      <ul>
+        <li>TOPCon N-type: menor degradación a 25 años</li>
+        <li>Inversores Huawei + monitoreo integrado desde día 1</li>
+        <li>Ingeniería de detalle, UPME y seguros ya incluidos</li>
+        <li>GCR más cómodo para el área disponible (0,55)</li>
+        <li>Pendiente: agregar apantallamiento + ilum. exterior</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer">
+  <div class="co">INCOSERTEC SAS</div>
+  <div class="au">Desarrollado por Victor Manuel Mina · Especialista en Proyectos de Energía Solar Fotovoltaica</div>
+  <div class="dt">Informe generado: Mayo 2026 &nbsp;·&nbsp; Confidencial — Para uso interno y presentación a clientes</div>
+  <div class="disc">
+    Los valores monetarios están expresados en Pesos Colombianos (COP). Los costos de ítems faltantes son estimaciones con base en precios de mercado y los valores de las propuestas evaluadas. Las dimensiones de paneles y cálculos de área son estimaciones — deben confirmarse con el layout de ingeniería de cada propuesta. Este documento es de carácter preliminar y no reemplaza un estudio de factibilidad técnico-financiera formal.
+  </div>
+</div>
+
+</div>
+</body>
+</html>
