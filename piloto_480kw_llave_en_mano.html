@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piloto YXD 480kW — Presupuesto Llave en Mano | INCOSERTEC</title>
+  <style>
+    :root {
+      --dark: #0d1117;
+      --navy: #0f3460;
+      --blue: #1a4a8a;
+      --accent: #00d2ff;
+      --green: #00c896;
+      --red: #e74c3c;
+      --yellow: #f39c12;
+      --white: #ffffff;
+      --gray: #f0f4f8;
+      --text: #1a1a2e;
+      --muted: #556070;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); color: var(--text); line-height: 1.65; }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #0d1117 0%, #0f3460 60%, #1a4a8a 100%);
+      color: white; padding: 3rem 2rem 2.5rem; position: relative; overflow: hidden;
+    }
+    header::before {
+      content: '480kW'; position: absolute; right: -20px; top: -20px;
+      font-size: 9rem; font-weight: 900; opacity: 0.06; color: white;
+      line-height: 1; pointer-events: none;
+    }
+    .header-content { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+    .header-tag {
+      display: inline-block; background: var(--accent); color: var(--dark);
+      padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.75rem;
+      font-weight: 800; letter-spacing: 0.1em; margin-bottom: 1rem; text-transform: uppercase;
+    }
+    header h1 { font-size: 2rem; margin-bottom: 0.4rem; line-height: 1.2; }
+    header p { opacity: 0.8; font-size: 0.95rem; max-width: 650px; }
+    .header-meta {
+      display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap;
+    }
+    .meta-item { font-size: 0.8rem; opacity: 0.7; }
+    .meta-item strong { display: block; font-size: 1.1rem; opacity: 1; color: var(--accent); }
+
+    /* NAV */
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--navy); text-decoration: none; font-weight: 600;
+      padding: 0.5rem 1rem; border: 2px solid var(--navy); border-radius: 6px;
+      margin-bottom: 1.5rem; font-size: 0.9rem; transition: all 0.2s;
+    }
+    .nav-back:hover { background: var(--navy); color: white; }
+
+    /* CONTAINER */
+    .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+
+    /* VEREDICTO BANNER */
+    .veredicto {
+      background: linear-gradient(135deg, #00c896, #00a87a);
+      color: white; border-radius: 12px; padding: 2rem 2.5rem; margin-bottom: 2rem;
+      display: flex; align-items: flex-start; gap: 1.5rem;
+    }
+    .veredicto-icon { font-size: 3rem; flex-shrink: 0; }
+    .veredicto h2 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .veredicto p { opacity: 0.92; font-size: 0.95rem; line-height: 1.7; }
+
+    /* SECTION */
+    .section {
+      background: white; border-radius: 12px; padding: 2rem;
+      margin-bottom: 1.8rem; box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .section-title {
+      font-size: 1.1rem; font-weight: 700; color: var(--navy);
+      border-bottom: 3px solid var(--accent); padding-bottom: 0.6rem; margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-num {
+      background: var(--navy); color: white; width: 28px; height: 28px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 800; flex-shrink: 0;
+    }
+
+    /* SPEC GRID */
+    .spec-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin-bottom: 1rem;
+    }
+    .spec-card {
+      background: var(--gray); border-radius: 8px; padding: 1rem;
+      border-left: 4px solid var(--accent);
+    }
+    .spec-card .label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+    .spec-card .value { font-size: 1.15rem; font-weight: 700; color: var(--navy); }
+    .spec-card .note { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+    .badge-ok { display: inline-block; background: #d4f5ec; color: #006b4f; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.72rem; font-weight: 700; }
+    .badge-warn { display: inline-block; background: #fff3cd; color: #856404; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.72rem; font-weight: 700; }
+    .badge-info { display: inline-block; background: #cfe2ff; color: #084298; padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.72rem; font-weight: 700; }
+
+    /* MARKET TABLE */
+    .market-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .market-table th { background: var(--navy); color: white; padding: 0.6rem 0.8rem; text-align: left; font-size: 0.8rem; }
+    .market-table td { padding: 0.6rem 0.8rem; border-bottom: 1px solid #eee; }
+    .market-table tr:last-child td { border-bottom: none; }
+    .market-table tr:nth-child(even) td { background: #f8fafb; }
+    .highlight-row td { background: #e8f8ff !important; font-weight: 600; }
+    .pw-high { color: #006b4f; font-weight: 700; }
+
+    /* CRITICAL POINTS */
+    .critical-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .critical-item { border-radius: 10px; overflow: hidden; border: 1px solid #e0e6f0; }
+    .critical-header {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.9rem 1.2rem; font-weight: 700;
+    }
+    .critical-header.blocker { background: #fef2f2; color: #991b1b; border-bottom: 1px solid #fecaca; }
+    .critical-header.warning { background: #fffbeb; color: #92400e; border-bottom: 1px solid #fde68a; }
+    .critical-header.info { background: #eff6ff; color: #1e40af; border-bottom: 1px solid #bfdbfe; }
+    .critical-body { padding: 1rem 1.2rem; background: white; }
+    .critical-body p { font-size: 0.88rem; color: #444; margin-bottom: 0.5rem; }
+    .critical-body .solution {
+      background: #f0fdf4; border-left: 3px solid var(--green); padding: 0.6rem 0.8rem;
+      border-radius: 0 6px 6px 0; font-size: 0.85rem; color: #166534; margin-top: 0.5rem;
+    }
+    .critical-body .solution strong { display: block; margin-bottom: 0.2rem; }
+    .priority-chip { font-size: 0.7rem; padding: 0.15rem 0.5rem; border-radius: 10px; font-weight: 700; margin-left: auto; }
+    .chip-rojo { background: #fee2e2; color: #991b1b; }
+    .chip-naranja { background: #ffedd5; color: #9a3412; }
+    .chip-azul { background: #dbeafe; color: #1e40af; }
+
+    /* BUDGET TABLE */
+    .budget-section { margin-bottom: 1.5rem; }
+    .budget-section-title {
+      font-size: 0.85rem; font-weight: 700; color: var(--navy);
+      background: #eef3f9; padding: 0.5rem 0.8rem; border-radius: 6px;
+      margin-bottom: 0; letter-spacing: 0.03em; text-transform: uppercase;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .budget-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-bottom: 0.5rem; }
+    .budget-table td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #f0f0f0; }
+    .budget-table td:last-child { text-align: right; font-weight: 600; color: var(--navy); white-space: nowrap; }
+    .budget-table td:first-child { color: #333; }
+    .budget-table .sub-note { font-size: 0.75rem; color: var(--muted); padding-top: 0; padding-bottom: 0.2rem; }
+    .budget-table tr.subtotal td { background: #f0f4f8; font-weight: 700; color: var(--navy); border-top: 2px solid #c5d5e8; }
+    .budget-table tr.total-row td { background: var(--navy); color: white; font-weight: 700; font-size: 1rem; border-radius: 0; }
+    .budget-table tr.total-row td:last-child { color: var(--accent); }
+    .range-label { font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-left: 0.3rem; }
+
+    /* OPEX */
+    .opex-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .opex-card { background: var(--gray); border-radius: 8px; padding: 1rem; }
+    .opex-card .op-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.3rem; }
+    .opex-card .op-val { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+    .opex-card .op-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* FINANCIAL SCENARIOS */
+    .scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .scenario-card { border-radius: 10px; padding: 1.4rem; border: 2px solid; }
+    .scenario-card.conservador { border-color: #fde68a; background: #fffbeb; }
+    .scenario-card.base { border-color: var(--accent); background: #e8fafe; }
+    .scenario-card.optimo { border-color: var(--green); background: #f0fdf4; }
+    .scenario-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 0.5rem; }
+    .scenario-card.conservador .scenario-label { color: #92400e; }
+    .scenario-card.base .scenario-label { color: var(--navy); }
+    .scenario-card.optimo .scenario-label { color: #065f46; }
+    .scenario-util { font-size: 1.6rem; font-weight: 800; color: var(--navy); }
+    .scenario-metric { display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); font-size: 0.85rem; }
+    .scenario-metric:last-child { border-bottom: none; }
+    .scenario-metric .val { font-weight: 700; color: var(--navy); }
+    .scenario-metric .val.green { color: #065f46; }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: #c5d5e8; }
+    .tl-item { position: relative; margin-bottom: 1.2rem; }
+    .tl-dot {
+      position: absolute; left: -2.5rem; top: 3px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--navy); border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--navy); display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; color: white; font-weight: 800;
+    }
+    .tl-dot.active { background: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+    .tl-header { font-weight: 700; color: var(--navy); font-size: 0.92rem; }
+    .tl-sub { font-size: 0.83rem; color: var(--muted); margin-top: 0.2rem; }
+    .tl-time { display: inline-block; font-size: 0.72rem; background: #eef3f9; color: var(--navy); padding: 0.1rem 0.5rem; border-radius: 10px; font-weight: 600; margin-top: 0.3rem; }
+
+    /* NEXT STEPS */
+    .next-steps { display: flex; flex-direction: column; gap: 0.8rem; }
+    .next-item { display: flex; gap: 1rem; align-items: flex-start; padding: 0.9rem 1rem; background: var(--gray); border-radius: 8px; }
+    .next-num { width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0; }
+    .next-content { flex: 1; }
+    .next-content strong { display: block; color: var(--navy); font-size: 0.92rem; margin-bottom: 0.2rem; }
+    .next-content span { font-size: 0.82rem; color: var(--muted); }
+
+    /* TOTALS BOX */
+    .totals-box {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: white; border-radius: 12px; padding: 2rem; margin-top: 1rem;
+    }
+    .totals-box h3 { font-size: 1.1rem; margin-bottom: 1.2rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.05em; }
+    .totals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; }
+    .total-item .t-label { font-size: 0.75rem; opacity: 0.7; margin-bottom: 0.2rem; }
+    .total-item .t-val { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+    .total-item .t-note { font-size: 0.75rem; opacity: 0.65; margin-top: 0.2rem; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 2.5rem 1rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid #dce3ec; margin-top: 2rem; }
+    footer a { color: var(--navy); text-decoration: none; font-weight: 600; }
+
+    @media (max-width: 700px) {
+      header h1 { font-size: 1.4rem; }
+      .scenarios { grid-template-columns: 1fr; }
+      .spec-grid { grid-template-columns: 1fr 1fr; }
+      .header-meta { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <div class="header-tag">Análisis Técnico-Financiero · Cargador Ultra-Rápido</div>
+    <h1>YXD 480kW CCS2 Dual — Piloto Cali</h1>
+    <p>Presupuesto llave en mano, viabilidad técnica, puntos críticos y hoja de ruta para implementación en Colombia.</p>
+    <div class="header-meta">
+      <div class="meta-item"><strong>480 kW</strong>Potencia total</div>
+      <div class="meta-item"><strong>2 pistolas</strong>CCS2 simultáneas</div>
+      <div class="meta-item"><strong>10–20 min</strong>Carga en veh. compatibles</div>
+      <div class="meta-item"><strong>50/60 Hz ✓</strong>Colombia compatible</div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <a href="reporte_electrolinera_cali.html" class="nav-back">← Volver al Reporte Principal</a>
+
+  <!-- VEREDICTO -->
+  <div class="veredicto">
+    <div class="veredicto-icon">✅</div>
+    <div>
+      <h2>SÍ SE PUEDE implementar en Cali</h2>
+      <p>El YXD 480kW cumple los requisitos técnicos básicos para Colombia: entrada 380V/60Hz, OCPP 1.6J, CCS2. <strong>Hay cinco puntos críticos resolvibles antes de importar</strong> — ninguno es un impedimento absoluto. El mercado está listo: Celsia ya opera 350kW en Cali, lo que valida la demanda y facilita los trámites. El 480kW + dual-gun sería el punto de carga más potente del país.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: SPECS DEL EQUIPO -->
+  <div class="section">
+    <div class="section-title"><div class="section-num">1</div>Especificaciones técnicas — validación para Colombia</div>
+
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="label">Entrada</div>
+        <div class="value">380Vac ±15%</div>
+        <div class="note">Trifásico · PF 0.99 · Colombia OK <span class="badge-ok">✓</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Frecuencia</div>
+        <div class="value">50 / 60 Hz</div>
+        <div class="note">Colombia 60Hz <span class="badge-ok">Confirmado ✓</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Potencia total</div>
+        <div class="value">480 kW</div>
+        <div class="note">Demanda 485 kVA · Trafo mín. 630 kVA <span class="badge-warn">MT obligatoria</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Corriente entrada</div>
+        <div class="value">~737 A / fase</div>
+        <div class="note">Calculado: 485kVA / (√3 × 380V) · Cable 2×300mm² Cu/fase</div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Salida DC</div>
+        <div class="value">200–1,000 Vdc</div>
+        <div class="note">300A/pistola · 480A rated · Rango amplio <span class="badge-ok">✓</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Conector</div>
+        <div class="value">CCS2 × 2</div>
+        <div class="note">Estándar Colombia/Europa · Dual simultáneo <span class="badge-ok">✓</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Protocolo</div>
+        <div class="value">OCPP 1.6J</div>
+        <div class="note">CárgaME (Res. 40123/2024) <span class="badge-ok">Compatible ✓</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Altitud operación</div>
+        <div class="value">&lt; 2,000 m</div>
+        <div class="note">Cali: ~1,000 m snm <span class="badge-ok">✓</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Temperatura</div>
+        <div class="value">-20 a 50 °C</div>
+        <div class="note">Cali promedio 25°C <span class="badge-ok">✓</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Protección IP</div>
+        <div class="value">IP54</div>
+        <div class="note">Polvo + salpicaduras · Exterior OK <span class="badge-ok">✓</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Autenticación</div>
+        <div class="value">QR · APP · RFID</div>
+        <div class="note">Requiere backend CSMS local <span class="badge-warn">Configurar</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="label">Conectividad</div>
+        <div class="value">4G / RJ45</div>
+        <div class="note">Doble vía · Cobertura 4G en Cali <span class="badge-ok">✓</span></div>
+      </div>
+    </div>
+
+    <p style="font-size:0.85rem; color:var(--muted); margin-top:0.5rem;">
+      <strong>Nota clave:</strong> La corriente de entrada de ~737A por fase exige conductores de muy alta sección (2×300mm² en paralelo por fase) y un diferencial Tipo B de ≥800A — no disponible en stock en Colombia. Ver Punto Crítico #4.
+    </p>
+  </div>
+
+  <!-- SECCIÓN 2: MERCADO COLOMBIA -->
+  <div class="section">
+    <div class="section-title"><div class="section-num">2</div>¿Quién ya implementa ultra-rápidos en Colombia?</div>
+
+    <p style="font-size:0.88rem; color:#444; margin-bottom:1rem;">
+      El mercado colombiano ya tiene operadores con cargadores de alta potencia. El 480kW YXD sería el más potente del país con dual-gun, lo que representa una ventaja competitiva real.
+    </p>
+
+    <table class="market-table">
+      <thead>
+        <tr>
+          <th>Operador</th>
+          <th>Potencia máx.</th>
+          <th>Conector</th>
+          <th>Pistolas</th>
+          <th>Ciudades</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Celsia</strong></td>
+          <td class="pw-high">350 kW</td>
+          <td>CCS2 / CHAdeMO</td>
+          <td>1</td>
+          <td>Bogotá, Medellín, <strong>Cali</strong>, Bga, Armenia, Ibagué</td>
+          <td><span class="badge-ok">Operando</span></td>
+        </tr>
+        <tr>
+          <td><strong>Terpel Voltex</strong></td>
+          <td>180 kW</td>
+          <td>CCS2</td>
+          <td>1–2</td>
+          <td>24 puntos nacionales, Cali incluida</td>
+          <td><span class="badge-ok">Operando</span></td>
+        </tr>
+        <tr>
+          <td><strong>Enel X Way</strong></td>
+          <td>150 kW</td>
+          <td>CCS2 / CHAdeMO</td>
+          <td>1–2</td>
+          <td>Bogotá, Medellín, Cali</td>
+          <td><span class="badge-ok">Operando</span></td>
+        </tr>
+        <tr>
+          <td><strong>ISA Vías</strong></td>
+          <td>120 kW</td>
+          <td>CCS2</td>
+          <td>1–2</td>
+          <td>Corredor Caribe (en instalación)</td>
+          <td><span class="badge-info">En ejecución</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>INCOSERTEC</strong> <span class="badge-info">Propuesto</span></td>
+          <td class="pw-high">480 kW</td>
+          <td>CCS2 Dual</td>
+          <td><strong>2 simultáneas</strong></td>
+          <td>Cali (piloto)</td>
+          <td><span class="badge-warn">En análisis</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:0.82rem; color:var(--muted); margin-top:0.8rem;">
+      Fuentes: El Carro Colombiano (2025), Inpel.com.co, Mobility Portal. Celsia es el referente más directo — su presencia en Cali con 350kW valida que <strong>EMCALI ya tiene precedente de conexiones MT para cargas de esta magnitud.</strong>
+    </p>
+  </div>
+
+  <!-- SECCIÓN 3: PUNTOS CRÍTICOS -->
+  <div class="section">
+    <div class="section-title"><div class="section-num">3</div>Puntos críticos y soluciones</div>
+
+    <div class="critical-list">
+
+      <div class="critical-item">
+        <div class="critical-header blocker">
+          <span>🔴</span>
+          <span>PC-1 · RETIE Certificación de Producto — obligatoria antes de importar</span>
+          <span class="priority-chip chip-rojo">BLOQUEANTE</span>
+        </div>
+        <div class="critical-body">
+          <p>El RETIE (Resolución 40117/2024) exige certificado de producto para todo cargador EV importado <strong>antes de su nacionalización</strong>. Sin este certificado no se puede importar legalmente ni instalar. Para 480kW no hay precedente en Colombia — pero tampoco hay impedimento: el proceso es documental si el fabricante tiene ensayos IEC.</p>
+          <div class="solution">
+            <strong>✅ Solución (20–35 días hábiles):</strong>
+            1. Solicitar a YXD: reportes de ensayo IEC 61851-1/2017 + certificado CE o UL si existe.<br>
+            2. Contratar ODIR Certificaciones o Bureau Veritas Colombia — proceso 100% documental si los ensayos IEC son completos.<br>
+            3. Si faltan ensayos: el laboratorio los realiza en la instalación (30 días adicionales).<br>
+            4. Costo estimado: <strong>$10M–$22M COP</strong>. Este paso se inicia ANTES de importar el equipo.
+          </div>
+        </div>
+      </div>
+
+      <div class="critical-item">
+        <div class="critical-header blocker">
+          <span>🔴</span>
+          <span>PC-2 · EMCALI viabilidad — 485 kVA en Media Tensión define el predio</span>
+          <span class="priority-chip chip-rojo">BLOQUEANTE</span>
+        </div>
+        <div class="critical-body">
+          <p>Un cargador de 480kW consume 485 kVA de la red. Esto requiere conexión en Media Tensión (13.2kV). EMCALI debe confirmar que hay capacidad disponible en el feeder del área seleccionada. Si no la hay, EMCALI exige obras de refuerzo de red <strong>a cargo del solicitante</strong> — costo imprevisible y cronograma largo.</p>
+          <div class="solution">
+            <strong>✅ Solución (30–60 días):</strong>
+            Radicar solicitud de viabilidad técnica en EMCALI <strong>antes de firmar cualquier contrato de predio</strong>. El predio correcto es aquel donde EMCALI confirma capacidad MT disponible. Celsia ya tiene precedente de conexión MT en Cali — esto facilita el proceso. El cargo de conexión (estimado $35M–$70M COP) se paga una vez aprobada la viabilidad.
+          </div>
+        </div>
+      </div>
+
+      <div class="critical-item">
+        <div class="critical-header warning">
+          <span>🟡</span>
+          <span>PC-3 · Diferencial Tipo B de alta corriente — no es stock en Colombia</span>
+          <span class="priority-chip chip-naranja">CRÍTICO TÉCNICO</span>
+        </div>
+        <div class="critical-body">
+          <p>La NTC 2050 Art. 625 exige diferencial Tipo B (detección de falta DC) en circuitos de carga DC rápida. Para 737A de entrada, se necesita un diferencial Tipo B de 800–1,000A. Este equipo <strong>no está en stock en Colombia</strong>. Schneider, ABB y Legrand lo tienen bajo pedido (6–12 semanas de entrega desde Europa).</p>
+          <div class="solution">
+            <strong>✅ Solución:</strong>
+            Cotizar e importar el diferencial Tipo B junto con el cargador desde China (YXD puede incluirlo como accesorio) o hacer el pedido con 8 semanas de anticipación a Schneider Electric Colombia o ABB Colombia. Costo estimado: <strong>$8M–$15M COP</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="critical-item">
+        <div class="critical-header warning">
+          <span>🟡</span>
+          <span>PC-4 · App y CSMS — el software chino no funciona para el mercado colombiano</span>
+          <span class="priority-chip chip-naranja">OPERATIVO</span>
+        </div>
+        <div class="critical-body">
+          <p>El cargador trae soporte para app propia, QR y RFID. Sin embargo, para operar comercialmente en Colombia se requiere: (1) integración con CárgaME vía OCPP 1.6J, (2) pagos con métodos locales (PSE, Nequi, Daviplata, tarjetas débito/crédito), (3) interfaz en español con precios en COP. La app del fabricante no cubre esto.</p>
+          <div class="solution">
+            <strong>✅ Solución:</strong>
+            Contratar un CSMS (Charge Station Management System) en modalidad SaaS: EV Connect, ChargePoint Enterprise, o solución latinoamericana (Greenflux, Monta). El cargador se conecta al CSMS vía OCPP 1.6J. El CSMS maneja la app, pagos y registro CárgaME. Costo setup: <strong>$10M–$18M COP</strong> + $1.5M COP/mes de operación.
+          </div>
+        </div>
+      </div>
+
+      <div class="critical-item">
+        <div class="critical-header info">
+          <span>🔵</span>
+          <span>PC-5 · Compatibilidad vehicular — no todos los VE alcanzan 10–20 min</span>
+          <span class="priority-chip chip-azul">INFORMATIVO</span>
+        </div>
+        <div class="critical-body">
+          <p>El tiempo de carga depende de lo que acepta el vehículo, no solo del cargador. El 480kW del equipo es el techo máximo disponible — cada coche toma lo que su BMS permite:</p>
+          <p>• <strong>BYD Han EV</strong> (150kW máx): ~30 min al 80% &nbsp;·&nbsp; <strong>Tesla Model Y AWD</strong> (250kW máx): ~15 min &nbsp;·&nbsp; <strong>Kia EV6/EV9</strong> (233kW máx): ~18 min &nbsp;·&nbsp; <strong>Porsche Taycan</strong> (270kW máx): ~16 min &nbsp;·&nbsp; <strong>BYD Atto 3</strong> (80kW máx): ~45 min</p>
+          <div class="solution">
+            <strong>ℹ️ No es un problema — es un dato de marketing:</strong>
+            La promesa correcta es "hasta 10 minutos para vehículos compatibles". Los VE de menor potencia siguen cargando más rápido que con un cargador de 80kW. Y con 2 pistolas simultáneas, la electrolinera sirve 2 vehículos a la vez — único en Cali.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4: PRESUPUESTO LLAVE EN MANO -->
+  <div class="section">
+    <div class="section-title"><div class="section-num">4</div>Presupuesto llave en mano — Todo costo del piloto</div>
+    <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1.2rem;">
+      Distancias definidas: Trafo → Cargador = 30 m · Subestación → Poste/Punto MT = 30 m. Todos los precios en COP 2025. TRM referencia: $4,200 COP/USD.
+    </p>
+
+    <!-- GRUPO 1 -->
+    <div class="budget-section">
+      <div class="budget-section-title">
+        Grupo 1 — Equipo YXD 480kW (Importación legalizada)
+        <span style="color:var(--accent);font-size:0.85rem;">$203M – $243M COP</span>
+      </div>
+      <table class="budget-table">
+        <tr>
+          <td>Cargador YXD 480kW CCS2 Dual (FOB China, est. USD 42,000–50,000)</td>
+          <td>$176M – $210M</td>
+        </tr>
+        <tr class="sub-note"><td colspan="2" style="color:var(--muted);font-size:0.75rem;padding-top:0;">Arancel 0% · IVA importación 0% (Ley 1964/2019) — aplica para infraestructura de carga pública</td></tr>
+        <tr><td>Flete marítimo China → Buenaventura (USD 2,500–3,500)</td><td>$10M – $15M</td></tr>
+        <tr><td>Agente aduanero + trámites de importación</td><td>$4M – $8M</td></tr>
+        <tr><td>Transporte Buenaventura → Cali + descarga con grúa</td><td>$3M – $5M</td></tr>
+        <tr><td>Seguro de transporte internacional</td><td>$2M – $3M</td></tr>
+        <tr class="subtotal"><td>SUBTOTAL EQUIPO IMPORTADO</td><td>$195M – $241M</td></tr>
+      </table>
+    </div>
+
+    <!-- GRUPO 2 -->
+    <div class="budget-section">
+      <div class="budget-section-title">
+        Grupo 2 — Certificación RETIE de Producto (Obligatoria · Gestionar antes de importar)
+        <span style="color:var(--accent);font-size:0.85rem;">$10M – $22M COP</span>
+      </div>
+      <table class="budget-table">
+        <tr><td>Servicio de certificación (ODIR / Bureau Veritas / ICONTEC)</td><td>$8M – $15M</td></tr>
+        <tr><td>Traducción técnica al español de documentos IEC (si aplica)</td><td>$2M – $4M</td></tr>
+        <tr><td>Gestión y coordinación con fabricante YXD (envío de reportes)</td><td>$0 – $3M</td></tr>
+        <tr class="subtotal"><td>SUBTOTAL RETIE PRODUCTO</td><td>$10M – $22M</td></tr>
+      </table>
+    </div>
+
+    <!-- GRUPO 3 -->
+    <div class="budget-section">
+      <div class="budget-section-title">
+        Grupo 3 — Media Tensión + Subestación (30 m poste → subestación)
+        <span style="color:var(--accent);font-size:0.85rem;">$298M – $452M COP</span>
+      </div>
+      <table class="budget-table">
+        <tr><td>Transformador seco encapsulado 800 kVA · 13.2kV/380V (recomendado)</td><td>$150M – $220M</td></tr>
+        <tr class="sub-note"><td colspan="2" style="color:var(--muted);font-size:0.75rem;padding-top:0;">Mínimo técnico: 630 kVA. 800 kVA da margen para ampliación futura. Fabricantes en Colombia: CMSA, Ineldec, ABB, Schneider.</td></tr>
+        <tr><td>Celda de seccionamiento MT (SF6 o vacío, 13.2kV)</td><td>$35M – $55M</td></tr>
+        <tr><td>Celda de protección MT (relé de protección + interruptor vacío)</td><td>$40M – $65M</td></tr>
+        <tr><td>Cable MT 13.2kV XLPE 30m (subestación ↔ punto conexión poste/red)</td><td>$18M – $28M</td></tr>
+        <tr><td>Accesorios MT (terminales, conectores, herrajes de anclaje)</td><td>$8M – $14M</td></tr>
+        <tr><td>Medidor de energía MT (EMCALI — bidireccional, telemétrico)</td><td>$15M – $25M</td></tr>
+        <tr><td>Caseta prefabricada para subestación (estructura metálica + adecuación)</td><td>$25M – $40M</td></tr>
+        <tr><td>Cargo de conexión EMCALI (estimado para 485 kVA MT)</td><td>$35M – $70M</td></tr>
+        <tr class="sub-note"><td colspan="2" style="color:var(--muted);font-size:0.75rem;padding-top:0;">El cargo de conexión varía según disponibilidad de red. Puede ser menor si la red MT ya tiene capacidad ociosa en la zona.</td></tr>
+        <tr class="subtotal"><td>SUBTOTAL MEDIA TENSIÓN + SUBESTACIÓN</td><td>$326M – $517M</td></tr>
+      </table>
+    </div>
+
+    <!-- GRUPO 4 -->
+    <div class="budget-section">
+      <div class="budget-section-title">
+        Grupo 4 — Baja Tensión: Subestación → Cargador (30 m)
+        <span style="color:var(--accent);font-size:0.85rem;">$62M – $103M COP</span>
+      </div>
+      <table class="budget-table">
+        <tr><td>Cable BT 2×300mm² Cu XLPE por fase · 3F + N + PE · 30m (2 paralelos/fase)</td><td>$22M – $35M</td></tr>
+        <tr class="sub-note"><td colspan="2" style="color:var(--muted);font-size:0.75rem;padding-top:0;">La corriente de 737A/fase exige 2 conductores de 300mm² en paralelo por fase. Total ~10 conductores × 30m.</td></tr>
+        <tr><td>Tablero general BT (ACB 1,000A, medición, barras, gabinete)</td><td>$18M – $30M</td></tr>
+        <tr><td>Interruptor diferencial Tipo B 800–1,000A (importado, pedido anticipado)</td><td>$8M – $15M</td></tr>
+        <tr><td>Canalización BT (tubería IMC o ductos enterrados, bandejas)</td><td>$8M – $13M</td></tr>
+        <tr><td>Sistema de puesta a tierra (malla, electrodos, conductor de tierra)</td><td>$6M – $10M</td></tr>
+        <tr class="subtotal"><td>SUBTOTAL BAJA TENSIÓN</td><td>$62M – $103M</td></tr>
+      </table>
+    </div>
+
+    <!-- GRUPO 5 -->
+    <div class="budget-section">
+      <div class="budget-section-title">
+        Grupo 5 — Obra Civil
+        <span style="color:var(--accent);font-size:0.85rem;">$62M – $108M COP</span>
+      </div>
+      <table class="budget-table">
+        <tr><td>Cimentación del cargador (placa en concreto, pernos de anclaje, nivelación)</td><td>$10M – $18M</td></tr>
+        <tr class="sub-note"><td colspan="2" style="color:var(--muted);font-size:0.75rem;padding-top:0;">El equipo pesa aprox. 600–900 kg. La cimentación debe diseñarse según especificaciones estructurales del fabricante.</td></tr>
+        <tr><td>Placa de subestación + excavación y relleno</td><td>$10M – $16M</td></tr>
+        <tr><td>Canalizaciones eléctricas enterradas (excavación 30m MT + 30m BT, tubería, relleno compactado)</td><td>$14M – $24M</td></tr>
+        <tr><td>Bahía de carga (2 puestos de estacionamiento, concreto o asfalto, demarcación, señalización vertical)</td><td>$15M – $25M</td></tr>
+        <tr><td>Iluminación zona de carga (RETILAP, mínimo 2 postes LED)</td><td>$6M – $12M</td></tr>
+        <tr><td>Cerramiento y seguridad subestación (reja, candado, señalización de seguridad eléctrica)</td><td>$5M – $10M</td></tr>
+        <tr><td>Izaje y posicionamiento del cargador (grúa de 2–3 ton)</td><td>$2M – $3M</td></tr>
+        <tr class="subtotal"><td>SUBTOTAL OBRA CIVIL</td><td>$62M – $108M</td></tr>
+      </table>
+    </div>
+
+    <!-- GRUPO 6 -->
+    <div class="budget-section">
+      <div class="budget-section-title">
+        Grupo 6 — Puesta en marcha + App + CSMS
+        <span style="color:var(--accent);font-size:0.85rem;">$31M – $55M COP</span>
+      </div>
+      <table class="budget-table">
+        <tr><td>Comisionamiento del equipo (técnico YXD remoto + técnico local certificado)</td><td>$5M – $10M</td></tr>
+        <tr><td>CSMS SaaS — setup año 1 (EV Connect / Monta / Greenflux)</td><td>$10M – $18M</td></tr>
+        <tr><td>App blanca (white-label) en español + marca INCOSERTEC</td><td>$8M – $15M</td></tr>
+        <tr><td>Integración pagos colombianos (PSE, Nequi, Daviplata, TC Visa/MC)</td><td>$5M – $8M</td></tr>
+        <tr><td>Registro y activación en plataforma CárgaME (MinEnergía)</td><td>$1M – $2M</td></tr>
+        <tr><td>Pruebas de aceptación y calibración de medidor</td><td>$2M – $2M</td></tr>
+        <tr class="subtotal"><td>SUBTOTAL PUESTA EN MARCHA + APP</td><td>$31M – $55M</td></tr>
+      </table>
+    </div>
+
+    <!-- GRUPO 7 -->
+    <div class="budget-section">
+      <div class="budget-section-title">
+        Grupo 7 — Ingeniería y Supervisión
+        <span style="color:var(--accent);font-size:0.85rem;">$31M – $53M COP</span>
+      </div>
+      <table class="budget-table">
+        <tr><td>Diseño eléctrico MT + BT (planos, memorias de cálculo, coordinación de protecciones, RETIE)</td><td>$12M – $20M</td></tr>
+        <tr><td>Diseño civil y estructural (cimentaciones, caseta subestación)</td><td>$6M – $10M</td></tr>
+        <tr><td>Supervisión técnica de obra (residente eléctrico, visitas de campo)</td><td>$8M – $15M</td></tr>
+        <tr><td>Inspección RETIE de instalación (inspector certificado ODIR / ICONTEC)</td><td>$5M – $8M</td></tr>
+        <tr class="subtotal"><td>SUBTOTAL INGENIERÍA + SUPERVISIÓN</td><td>$31M – $53M</td></tr>
+      </table>
+    </div>
+
+    <!-- GRUPO 8 -->
+    <div class="budget-section">
+      <div class="budget-section-title">
+        Grupo 8 — Permisos, Trámites y Legalizaciones
+        <span style="color:var(--accent);font-size:0.85rem;">$10M – $19M COP</span>
+      </div>
+      <table class="budget-table">
+        <tr><td>Licencia de construcción (Alcaldía de Cali)</td><td>$3M – $6M</td></tr>
+        <tr><td>Certificado RETIE de instalación (inspector certificado, acta de inspección)</td><td>$3M – $5M</td></tr>
+        <tr><td>NSR-10 diseño sismorresistente para caseta subestación</td><td>$2M – $4M</td></tr>
+        <tr><td>Trámites de metrología legal (SIC — calibración medidor de facturación)</td><td>$2M – $4M</td></tr>
+        <tr class="subtotal"><td>SUBTOTAL PERMISOS Y TRÁMITES</td><td>$10M – $19M</td></tr>
+      </table>
+    </div>
+
+    <!-- TOTALES CAPEX -->
+    <div class="budget-section">
+      <table class="budget-table">
+        <tr class="subtotal">
+          <td>SUBTOTAL CAPEX (antes de contingencia)</td>
+          <td>$726M – $1,018M</td>
+        </tr>
+        <tr>
+          <td style="color:#666;">Contingencia 12% (imprevistos de obra e importación)</td>
+          <td>$87M – $122M</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL INVERSIÓN LLAVE EN MANO</td>
+          <td>$813M – $1,140M COP</td>
+        </tr>
+        <tr class="total-row">
+          <td style="font-size:0.82rem;opacity:0.8;">Valor central de referencia para análisis financiero</td>
+          <td style="color:#90e0f5;">~ $980M COP</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- SECCIÓN 5: OPEX MENSUAL -->
+  <div class="section">
+    <div class="section-title"><div class="section-num">5</div>OPEX — Costos de operación mensual</div>
+
+    <div class="opex-grid">
+      <div class="opex-card">
+        <div class="op-label">CSMS SaaS + Conectividad 4G</div>
+        <div class="op-val">$1.5M – $2M</div>
+        <div class="op-note">Backend gestión + SIM 4G</div>
+      </div>
+      <div class="opex-card">
+        <div class="op-label">Mantenimiento preventivo equipo</div>
+        <div class="op-val">$2.5M – $4M</div>
+        <div class="op-note">Contrato servicio con instalador</div>
+      </div>
+      <div class="opex-card">
+        <div class="op-label">Seguro Todo Riesgo</div>
+        <div class="op-val">$3.5M – $5M</div>
+        <div class="op-note">Equipo + responsabilidad civil</div>
+      </div>
+      <div class="opex-card">
+        <div class="op-label">Personal operación/monitoreo</div>
+        <div class="op-val">$3M – $5M</div>
+        <div class="op-note">Monitoreo remoto + atención incidencias</div>
+      </div>
+      <div class="opex-card">
+        <div class="op-label">App mantenimiento + actualizaciones</div>
+        <div class="op-val">$0.8M – $1.5M</div>
+        <div class="op-note">Mantenimiento CSMS + pasarela pagos</div>
+      </div>
+      <div class="opex-card">
+        <div class="op-label">Administración + contabilidad</div>
+        <div class="op-val">$1.5M – $2.5M</div>
+        <div class="op-note">Facturación, DIAN, reportes MinEnergía</div>
+      </div>
+    </div>
+
+    <table class="budget-table" style="margin-top:1rem;">
+      <tr class="subtotal">
+        <td>OPEX FIJO mensual (sin energía)</td>
+        <td>$12.8M – $20M COP/mes</td>
+      </tr>
+      <tr>
+        <td>Energía EMCALI MT (variable, estimado 35% utilización — 80,640 kWh/mes × $500/kWh)</td>
+        <td>$40.3M COP/mes</td>
+      </tr>
+      <tr class="subtotal">
+        <td>OPEX TOTAL mensual a 35% utilización</td>
+        <td>$53M – $60M COP/mes</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- SECCIÓN 6: ANÁLISIS FINANCIERO -->
+  <div class="section">
+    <div class="section-title"><div class="section-num">6</div>Análisis financiero — 3 escenarios</div>
+
+    <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem;">
+      Precio de venta: <strong>$2,200 COP/kWh</strong> (premium ultra-fast vs. $1,750 de cargadores lentos). Costo energía: $500 COP/kWh. Operación 16h/día. Potencia: 480kW. Total mensual al 100%: 230,400 kWh. CAPEX central: $980M COP.
+    </p>
+
+    <div class="scenarios">
+      <div class="scenario-card conservador">
+        <div class="scenario-label">Conservador</div>
+        <div class="scenario-util">20%</div>
+        <div style="font-size:0.75rem;color:#92400e;margin-bottom:0.8rem;">utilización · ~3.2h activo/día</div>
+        <div class="scenario-metric"><span>kWh/mes</span><span class="val">46,080</span></div>
+        <div class="scenario-metric"><span>Ingresos</span><span class="val">$101.4M</span></div>
+        <div class="scenario-metric"><span>Energía</span><span class="val">$23M</span></div>
+        <div class="scenario-metric"><span>OPEX fijo</span><span class="val">$16M</span></div>
+        <div class="scenario-metric"><span>EBITDA</span><span class="val green">$62.4M/mes</span></div>
+        <div class="scenario-metric"><span>Payback</span><span class="val">~15.7 meses</span></div>
+      </div>
+
+      <div class="scenario-card base">
+        <div class="scenario-label">Base — Referencia</div>
+        <div class="scenario-util">35%</div>
+        <div style="font-size:0.75rem;color:var(--navy);margin-bottom:0.8rem;">utilización · ~5.6h activo/día</div>
+        <div class="scenario-metric"><span>kWh/mes</span><span class="val">80,640</span></div>
+        <div class="scenario-metric"><span>Ingresos</span><span class="val">$177.4M</span></div>
+        <div class="scenario-metric"><span>Energía</span><span class="val">$40.3M</span></div>
+        <div class="scenario-metric"><span>OPEX fijo</span><span class="val">$16M</span></div>
+        <div class="scenario-metric"><span>EBITDA</span><span class="val green">$121.1M/mes</span></div>
+        <div class="scenario-metric"><span>Payback</span><span class="val">~8.1 meses</span></div>
+      </div>
+
+      <div class="scenario-card optimo">
+        <div class="scenario-label">Óptimo</div>
+        <div class="scenario-util">50%</div>
+        <div style="font-size:0.75rem;color:#065f46;margin-bottom:0.8rem;">utilización · ~8h activo/día</div>
+        <div class="scenario-metric"><span>kWh/mes</span><span class="val">115,200</span></div>
+        <div class="scenario-metric"><span>Ingresos</span><span class="val">$253.4M</span></div>
+        <div class="scenario-metric"><span>Energía</span><span class="val">$57.6M</span></div>
+        <div class="scenario-metric"><span>OPEX fijo</span><span class="val">$16M</span></div>
+        <div class="scenario-metric"><span>EBITDA</span><span class="val green">$179.8M/mes</span></div>
+        <div class="scenario-metric"><span>Payback</span><span class="val">~5.5 meses</span></div>
+      </div>
+    </div>
+
+    <div style="background:#f0f9ff;border-left:4px solid var(--accent);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin-top:1.2rem;font-size:0.87rem;color:#0c4a6e;">
+      <strong>Punto de equilibrio operativo:</strong> Se alcanza con solo el <strong>3.8% de utilización</strong> — equivale a tener el cargador activo <strong>37 minutos por día</strong>. Por encima de ese mínimo, el punto genera ganancia. Con la demanda actual de Cali (884 VE para solo 23 puntos de carga) el 20% conservador es muy alcanzable desde el primer mes de operación.
+    </div>
+  </div>
+
+  <!-- SECCIÓN 7: CRONOGRAMA -->
+  <div class="section">
+    <div class="section-title"><div class="section-num">7</div>Cronograma de implementación</div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot active">1</div>
+        <div class="tl-header">Solicitud de viabilidad EMCALI + selección definitiva de predio</div>
+        <div class="tl-sub">Radicar antes de cualquier otro paso. Define si el predio es viable. Simultáneo: iniciar trámite RETIE de producto con ODIR/Bureau Veritas.</div>
+        <div class="tl-time">Semanas 1–2 (acción inmediata)</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-header">Certificación RETIE de Producto + pedido diferencial Tipo B</div>
+        <div class="tl-sub">YXD envía reportes IEC. ODIR emite certificado (20–35 días). Pedido simultáneo del diferencial Tipo B de alta corriente (6–8 semanas).</div>
+        <div class="tl-time">Semanas 2–7</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div class="tl-header">Confirmación viabilidad EMCALI + firma acuerdo de conexión MT</div>
+        <div class="tl-sub">EMCALI responde la solicitud. Se firma contrato de conexión y se paga cargo de conexión. Se obtiene licencia de construcción.</div>
+        <div class="tl-time">Semanas 6–10</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div class="tl-header">Importación del cargador YXD 480kW</div>
+        <div class="tl-sub">Con certificado RETIE de producto en mano. Flete marítimo ~30–45 días. Llega a Buenaventura, se nacionaliza sin arancel ni IVA.</div>
+        <div class="tl-time">Semanas 7–14</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">5</div>
+        <div class="tl-header">Obra civil + instalación MT + subestación</div>
+        <div class="tl-sub">Cimentaciones, caseta, canalizaciones, transformador, celdas MT, cable 13.2kV. Paralelo al transporte del equipo.</div>
+        <div class="tl-time">Semanas 8–18</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">6</div>
+        <div class="tl-header">Instalación BT + tablero + diferencial + cargador</div>
+        <div class="tl-sub">Conductores BT, tablero general, diferencial Tipo B, posicionamiento del cargador, conexionado, puesta a tierra.</div>
+        <div class="tl-time">Semanas 17–21</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">7</div>
+        <div class="tl-header">Puesta en marcha, CSMS, app y certificado RETIE de instalación</div>
+        <div class="tl-sub">Comisionamiento eléctrico, pruebas de carga, configuración OCPP, integración CárgaME, calibración medidor, inspección RETIE final.</div>
+        <div class="tl-time">Semanas 20–24</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot active">🚀</div>
+        <div class="tl-header">Apertura comercial</div>
+        <div class="tl-sub">Operación pública. Primera electrolinera ultra-rápida 480kW dual-gun de Cali.</div>
+        <div class="tl-time">~Mes 6 desde inicio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 8: PRÓXIMOS PASOS -->
+  <div class="section">
+    <div class="section-title"><div class="section-num">8</div>Próximos pasos inmediatos</div>
+
+    <div class="next-steps">
+      <div class="next-item">
+        <div class="next-num">1</div>
+        <div class="next-content">
+          <strong>Solicitar a YXD los reportes de ensayo IEC 61851-1/2017</strong>
+          <span>Email al fabricante. Preguntar si el equipo tiene certificado CE o UL vigente. Esto determina si la certificación RETIE es documental (20 días) o requiere ensayos adicionales (45+ días).</span>
+        </div>
+      </div>
+      <div class="next-item">
+        <div class="next-num">2</div>
+        <div class="next-content">
+          <strong>Radicar solicitud de viabilidad técnica en EMCALI</strong>
+          <span>Portal web EMCALI → Trámite Proyectos Eléctricos → Registrar Solicitud. Especificar carga: 485 kVA trifásico, media tensión. Adjuntar descripción del proyecto. La respuesta (positiva o negativa) define si el predio seleccionado es viable.</span>
+        </div>
+      </div>
+      <div class="next-item">
+        <div class="next-num">3</div>
+        <div class="next-content">
+          <strong>Contactar ODIR Certificaciones o Bureau Veritas para cotización RETIE</strong>
+          <span>Presentar la ficha técnica del YXD 480kW y solicitar cotización de certificación de producto. Con los reportes IEC del fabricante, el proceso puede ser en 20 días hábiles.</span>
+        </div>
+      </div>
+      <div class="next-item">
+        <div class="next-num">4</div>
+        <div class="next-content">
+          <strong>Cotizar transformador seco 800 kVA con CMSA, Ineldec o Schneider Colombia</strong>
+          <span>El transformador es el ítem de mayor costo y mayor tiempo de entrega (8–16 semanas). Solicitar cotización y tiempo de entrega esta semana para garantizar que no sea el cuello de botella del cronograma.</span>
+        </div>
+      </div>
+      <div class="next-item">
+        <div class="next-num">5</div>
+        <div class="next-content">
+          <strong>Evaluar CSMS: Monta, EV Connect o Greenflux</strong>
+          <span>Los tres soportan OCPP 1.6J, integración CárgaME y personalización de app. Solicitar demo y pricing. Decidir antes de importar el equipo para configurar el backend en paralelo con la instalación física.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUMEN EJECUTIVO FINAL -->
+  <div class="totals-box">
+    <h3>Resumen ejecutivo del piloto</h3>
+    <div class="totals-grid">
+      <div class="total-item">
+        <div class="t-label">Inversión total estimada</div>
+        <div class="t-val">~$980M COP</div>
+        <div class="t-note">Rango: $813M – $1,140M</div>
+      </div>
+      <div class="total-item">
+        <div class="t-label">EBITDA mensual (escenario base 35%)</div>
+        <div class="t-val">~$121M/mes</div>
+        <div class="t-note">$177.4M ingresos – $56.3M costos</div>
+      </div>
+      <div class="total-item">
+        <div class="t-label">Payback escenario base</div>
+        <div class="t-val">~8 meses</div>
+        <div class="t-note">Conservador (20%): ~16 meses</div>
+      </div>
+      <div class="total-item">
+        <div class="t-label">Break-even operativo</div>
+        <div class="t-val">3.8%</div>
+        <div class="t-note">37 min/día de carga activa</div>
+      </div>
+      <div class="total-item">
+        <div class="t-label">Potencia en Colombia</div>
+        <div class="t-val">#1 del país</div>
+        <div class="t-note">Celsia max 350kW — YXD 480kW dual supera</div>
+      </div>
+      <div class="total-item">
+        <div class="t-label">Cronograma de apertura</div>
+        <div class="t-val">~6 meses</div>
+        <div class="t-note">Desde inicio de trámites</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Análisis Técnico-Financiero · Piloto Cargador YXD 480kW DC Fast Charging · Cali, Colombia</p>
+  <p style="margin-top:0.4rem;">Elaborado por <strong>Ing. Victor Manuel Mina</strong> para <strong>INCOSERTEC S.A.S.</strong> &nbsp;|&nbsp; <a href="https://manuelmina.com" target="_blank">manuelmina.com</a> &nbsp;|&nbsp; 2025</p>
+  <p style="margin-top:0.4rem;font-size:0.78rem;opacity:0.7;">Fuentes: Ficha técnica YXD 480kW, RETIE (Res. 40117/2024), ODIR Certificaciones, El Carro Colombiano, Inpel.com.co, Celsia, EMCALI.</p>
+</footer>
+
+</body>
+</html>
